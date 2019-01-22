@@ -57,6 +57,9 @@ Route::group(['middleware'=>'admin'],function(){
   Route::get('/admin/blogmoderators','Admin\dashboard@blogmoderators');
   Route::get('/admin/encyclopediamoderators','Admin\dashboard@encyclopediamoderators');
   Route::get('/admin/editors','Admin\dashboard@editors');
+  Route::post('/admin/createTodo','todolistController@create');
+  Route::post('/admin/updateTodo','todolistController@update');
+  Route::delete('/admin/deleteTodo','todolistController@delete');
 });
 
 /* ROUTES ONLY FOR BLOG MODERATORS */

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\todolist;
 
 class dashboard extends Controller
 {
@@ -44,8 +45,8 @@ class dashboard extends Controller
 
 
     public function index(){
-
-      return view('admin.dashboard');
+      $list_tasks = todolist::all();
+      return view('admin.dashboard')->with('list_tasks' , $list_tasks);
     }
 
     public function users(){

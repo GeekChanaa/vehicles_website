@@ -1,5 +1,7 @@
-<!-- Admin Navbar -->
 
+<!-- Admin Navbar -->
+@extends('layouts.admin')
+@section('content')
 
 
 
@@ -18,3 +20,14 @@
 
 
 <!-- Add a DB file directly to the DB (with verifying) -->
+
+
+
+
+
+
+
+
+
+
+@endsection
