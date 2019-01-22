@@ -19,7 +19,9 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('num_tel')->unique();
             $table->string('address');
-            $table->string('rank');
+            $table->string('profile_image')->default('path');
+            $table->string('rank')->default('normal');
+            $table->integer('blog_score')->default('0');
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

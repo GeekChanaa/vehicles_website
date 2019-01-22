@@ -25,6 +25,34 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
+                            <label for="address" class="col-md-4 control-label">Address</label>
+
+                            <div class="col-md-6">
+                                <input id="address" type="text" class="form-control" name="address" value="{{ old('address') }}" required autofocus>
+
+                                @if ($errors->has('address'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('address') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('num_tel') ? ' has-error' : '' }}">
+                            <label for="num_tel" class="col-md-4 control-label">Numero de Tel</label>
+
+                            <div class="col-md-6">
+                                <input id="num_tel" type="text" class="form-control" name="num_tel" value="{{ old('num_tel') }}" required autofocus>
+
+                                @if ($errors->has('num_tel'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('num_tel') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 
