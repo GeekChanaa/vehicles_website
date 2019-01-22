@@ -16,7 +16,7 @@ class marketmoderator
      */
     public function handle($request, Closure $next)
     {
-      if (Auth::user() &&  Auth::user()->rank == 'marketm') {
+      if (Auth::user() &&  (Auth::user()->rank == 'marketm' || Auth::user()->rank == 'admin' )) {
              return $next($request);
       }
 

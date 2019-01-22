@@ -17,7 +17,7 @@ class encyclopediamoderator
     public function handle($request, Closure $next)
 
     {
-          if (Auth::user() &&  Auth::user()->rank == 'encyclopediam') {
+          if (Auth::user() &&  (Auth::user()->rank == 'encyclopediam' || Auth::user()->rank == 'admin' )) {
                  return $next($request);
           }
 

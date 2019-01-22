@@ -16,7 +16,7 @@ class blogmoderator
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::user() &&  Auth::user()->rank == 'blogm') {
+        if (Auth::user() &&  (Auth::user()->rank == 'blogm' || Auth::user()->rank == 'admin' ) ) {
                return $next($request);
         }
 

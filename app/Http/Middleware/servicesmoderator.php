@@ -15,7 +15,7 @@ class servicesmoderator
      */
     public function handle($request, Closure $next)
     {
-      if (Auth::user() &&  Auth::user()->rank == 'servicesm') {
+      if (Auth::user() &&  (Auth::user()->rank == 'servicesm' || Auth::user()->rank == 'admin') ) {
              return $next($request);
       }
 

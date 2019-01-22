@@ -16,7 +16,7 @@ class editor
     public function handle($request, Closure $next)
     {
 
-        if (Auth::user() &&  Auth::user()->rank == 'editor') {
+        if (Auth::user() &&  (Auth::user()->rank == 'editor' || Auth::user()->rank == 'admin'  ) ) {
                return $next($request);
         }
 
