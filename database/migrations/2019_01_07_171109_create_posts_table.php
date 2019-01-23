@@ -18,8 +18,10 @@ class CreatePostsTable extends Migration
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('content');
-            $table->integer('upvotes');
-            $table->float('rating');
+            $table->string('title');
+            $table->string('section');
+            $table->integer('upvotes')->default('0');
+            $table->float('rating')->default('0');
             $table->timestamps();
         });
     }

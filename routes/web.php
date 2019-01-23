@@ -46,7 +46,10 @@ Route::get('/onlyUser',function(){
   return view('onlyUser');
 });
 
-
+Route::get('/blog/newpost',function(){
+  return view('blog.newpost');
+});
+Route::post('/createpost','forumController@createpost');
 
 /* ROUTES ONLY FOR ADMINS */
 
@@ -101,6 +104,7 @@ Route::get('/editor/addbrand','Admin\encyclopediadashboard@addbrand');
 Route::get('/editor/addgeneration','Admin\encyclopediadashboard@addgeneration');
 Route::get('/editor/addmodel','Admin\encyclopediadashboard@addmodel');
 Route::get('/encyclopediamoderator/articles','Admin\dashboard@articles');
+Route::post('/admin/createbrand','brandsController@create');
 });
 
 /* Admin todolist routes */

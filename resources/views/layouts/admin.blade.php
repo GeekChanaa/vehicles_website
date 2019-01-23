@@ -12,6 +12,10 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap-grid.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap-reboot.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+
     <script src="{{ asset('js/jquery.min.js') }}"> </script>
 </head>
 <body>
@@ -77,5 +81,8 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.js') }}"></script>
+
 </body>
 </html>
