@@ -63,13 +63,14 @@ Route::group(['middleware'=>'admin'],function(){
   Route::post('/admin/createTodo','todolistController@create');
   Route::post('/admin/updateTodo','todolistController@update');
   Route::delete('/admin/deleteTodo','todolistController@delete');
+  Route::delete('/deleteuser','Admin\users@delete');
 });
 
 /* ROUTES ONLY FOR BLOG MODERATORS */
 Route::group(['middleware'=>'blogmoderator'],function(){
 Route::get('/BlogDashboard','Admin\dashboard@blogindex');
 Route::get('/blogmoderator/commentsreplies','Admin\dashboard@commentsreplies');
-Route::get('/blogmoderator/statistics','Admin\dashboard@blogstatistics');
+Route::get('/blogmoderator/statistics','Admin\blogdashboard@statistics');
 Route::get('/blogmoderator/posts','Admin\dashboard@blogposts');
 });
 
@@ -81,6 +82,7 @@ Route::get('/marketmoderator/newcarparts','Admin\marketdashboard@newcarpartsdash
 Route::get('/marketmoderator/usedcarparts','Admin\marketdashboard@usedcarpartsdashboard');
 Route::get('/marketmoderator/newvehicles','Admin\marketdashboard@newvehiclesdashboard');
 Route::get('/marketmoderator/usedvehicles','Admin\marketdashboard@usedvehiclesdashboard');
+Route::get('/marketmoderator/statistics','Admin\marketdashboard@statistics');
 });
 
 /* ROUTES ONLY FOR EDITORS */
@@ -107,4 +109,9 @@ Route::get('/encyclopediamoderator/articles','Admin\dashboard@articles');
 Route::post('/admin/createbrand','brandsController@create');
 });
 
-/* Admin todolist routes */
+/* User Only Routes */
+
+Route::get('/market/post-new-vehicle',function(){
+  return view('markets.addnewvehicle');
+});
+Route::post('/createnewvehicle','nvaController@create');

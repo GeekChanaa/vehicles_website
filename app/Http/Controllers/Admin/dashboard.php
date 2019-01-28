@@ -196,7 +196,37 @@ class dashboard extends Controller
     }
 
     public function users(){
-      return view('admin.users');
+      $data = [
+    'list_users' => $this->list_users ,
+    'list_admins' => $this->list_admins ,
+    'list_blog_moderators' => $this->list_blog_moderators ,
+    'list_encyclopedia_moderators' => $this->list_encyclopedia_moderators ,
+    'list_market_moderators' => $this->list_market_moderators ,
+    'list_services_moderators' => $this->list_services_moderators ,
+    'nbr_users' => $this->nbr_users ,
+    'nbr_blogm' => $this->nbr_blogm ,
+    'nbr_encyclopediam' => $this->nbr_encyclopediam ,
+    'nbr_marketm' => $this->nbr_marketm ,
+    'nbr_admins' => $this->nbr_admins ,
+    'nbr_recent_users_today' => $this->nbr_recent_users_today ,
+    'nbr_recent_users_last_week' => $this->nbr_recent_users_last_week ,
+    'nbr_recent_users_last_month' => $this->nbr_recent_users_last_month ,
+    'nbr_recent_users_last_2nd_month' => $this->nbr_recent_users_last_2nd_month ,
+    'nbr_recent_users_last_3rd_month' => $this->nbr_recent_users_last_3rd_month ,
+    'nbr_recent_users_last_4th_month' => $this->nbr_recent_users_last_4th_month ,
+    'nbr_recent_users_last_5th_month' => $this->nbr_recent_users_last_5th_month ,
+    'nbr_recent_users_last_6th_month' => $this->nbr_recent_users_last_6th_month ,
+    'nbr_recent_users_last_7th_month' => $this->nbr_recent_users_last_7th_month ,
+    'nbr_recent_users_last_8th_month' => $this->nbr_recent_users_last_8th_month ,
+    'nbr_recent_users_last_9th_month' => $this->nbr_recent_users_last_9th_month ,
+    'nbr_recent_users_last_10th_month' => $this->nbr_recent_users_last_10th_month ,
+    'nbr_recent_users_last_11th_month' => $this->nbr_recent_users_last_11th_month ,
+    'nbr_recent_users_last_12th_month' => $this->nbr_recent_users_last_12th_month ,
+    'nbr_recent_users_last_year' => $this->nbr_recent_users_last_year ,
+    'nbr_carwash_owners' => $this->nbr_carwash_owners ,
+    'nbr_workshop_owners' => $this->nbr_workshop_owners ,
+      ];
+      return view('admin.users')->with($data);
     }
 
     public function statistics(){
