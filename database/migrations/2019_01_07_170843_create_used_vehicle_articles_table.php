@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsedVehicleArticleTable extends Migration
+class CreateUsedVehicleArticlesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateUsedVehicleArticleTable extends Migration
      */
     public function up()
     {
-        Schema::create('used_vehicle_article', function (Blueprint $table) {
+        Schema::create('used_vehicle_articles', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
