@@ -13,7 +13,7 @@ class CreateUsedCarpartArticlesTable extends Migration
      */
     public function up()
     {
-        Schema::create('used_carpart_article', function (Blueprint $table) {
+        Schema::create('used_carpart_articles', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
@@ -32,6 +32,6 @@ class CreateUsedCarpartArticlesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('used_carpart_article');
+        Schema::dropIfExists('used_carpart_articles');
     }
 }

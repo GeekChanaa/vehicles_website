@@ -13,7 +13,7 @@ class CreateUsedVehicleArticlesTable extends Migration
      */
     public function up()
     {
-        Schema::create('used_vehicle_article', function (Blueprint $table) {
+        Schema::create('used_vehicle_articles', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');

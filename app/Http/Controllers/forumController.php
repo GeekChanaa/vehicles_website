@@ -15,6 +15,7 @@ class forumController extends Controller
     $post->title = $request->title;
     $post->user_id = Auth::user()->id;
     $post->content = $request->content;
+    $post->section = $request->section;
     $post->save();
     return redirect()->back();
   }
