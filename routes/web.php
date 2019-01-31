@@ -19,6 +19,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+/* ERROR ROUTES */
+
+Route::get('404', ['as' => '404', 'uses' => 'ErrorController@notFound']);
+Route::get('403', ['as' => '403', 'uses' => 'ErrorController@accessDenied']);
+
 
 /* FORBIDDEN ROUTES */
 
