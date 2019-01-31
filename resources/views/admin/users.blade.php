@@ -24,11 +24,15 @@
   <th scope="col">Blog Score </th>
   <th scope="col">Subscription Date </th>
   <th scope="col">Delete</th>
+  <th scope="col">Update </th>
 </thead>
 <tbody>
   @foreach($list_users as $one)
   <tr>
-  <td>{{$one->id}} </td>
+  <td>
+    <label class="td-list-update">{{$one->id}}</label>
+    <input class="td-input-update" type="text" value="{{$one->id}}" >
+  </td>
   <td> {{$one->name}} </td>
   <td>{{$one->email}} </td>
   <td>{{$one->num_tel}} </td>
@@ -40,8 +44,11 @@
     {{ method_field('DELETE') }}
     {{csrf_field()}}
     <input name="id" type="hidden" value="{{$one->id}}">
-    <button class="btn btn-danger" type="submit"> Bye </button>
+    <button class="btn btn-danger" data-id="{{$one->id}}" type="submit"> Bye </button>
   </form> </td>
+  <td>
+    <button class="btn btn-primary" onclick=""> Change </button>
+  </td>
 </tr>
   @endforeach
 </tbody>
