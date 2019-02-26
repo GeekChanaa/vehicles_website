@@ -21,7 +21,7 @@ class CreateGenerationsTable extends Migration
             $table->string('engine');
             $table->integer('doors');
             $table->string('power');
-            $table->string('maximum speed');
+            $table->string('maximum_speed');
             $table->string('acceleration_0_100_km/h');
             $table->string('acceleration_0_200_km/h');
             $table->string('acceleration_0_300_km/h');

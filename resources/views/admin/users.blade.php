@@ -11,7 +11,7 @@
 
 <!-- List Of Users with possibility of update and pagination -->
 <section class="bg-light">
-<div class="row col-lg-10 offset-lg-1">
+<div class="row col-lg-10" style="margin-left:2%">
 <table class="table table-dark">
 
 <thead>
@@ -28,26 +28,45 @@
 </thead>
 <tbody>
   @foreach($list_users as $one)
-  <tr>
+
+<tr>
+<form class="" action="{{ url('/updateuser') }}" method="post">
+
+  <td>{{$one->id}}<input type="hidden" name="id" value="{{$one->id}}"></td>
+  <td> <label class="td-list-update{{$one->id}}"> {{$one->name}}</label>
+      <input class="td-input-update{{$one->id}} d-n" type="text" name="name" value="{{$one->name}}" placeholder="{{$one->name}}" style="color:grey !important" >
+   </td>
+  <td><label class="td-list-update{{$one->id}}"> {{$one->email}}</label>
+      <input class="td-input-update{{$one->id}} d-n" type="text" name="email" value="{{$one->email}}" placeholder="{{$one->email}}" style="color:grey !important" >
+   </td>
+  <td><label class="td-list-update{{$one->id}}"> {{$one->num_tel}}</label>
+      <input class="td-input-update{{$one->id}} d-n" type="text" name="num_tel" value="{{$one->num_tel}}" placeholder="{{$one->num_tel}}" style="color:grey !important" >
+   </td>
+  <td><label class="td-list-update{{$one->id}}"> {{$one->address}}</label>
+      <input class="td-input-update{{$one->id}} d-n" type="text" name="address" value="{{$one->address}}" placeholder="{{$one->address}}" style="color:grey !important" >
+   </td>
+  <td><label class="td-list-update{{$one->id}}"> {{$one->rank}}</label>
+      <input class="td-input-update{{$one->id}} d-n" type="text" name="rank" value="{{$one->rank}}" placeholder="{{$one->rank}}" style="color:grey !important" >
+   </td>
+  <td><label class="td-list-update{{$one->id}}"> {{$one->blog_score}}</label>
+      <input class="td-input-update{{$one->id}} d-n" type="text" name="blog_score" value="{{$one->blog_score}}" placeholder="{{$one->blog_score}}" style="color:grey !important" >
+   </td>
+  <td>{{$one->created_at}}
+   </td>
   <td>
-    <label class="td-list-update">{{$one->id}}</label>
-    <input class="td-input-update" type="text" value="{{$one->id}}" >
+     <button class="btn btn-dark submit-update" type="submit"> update </button>
   </td>
-  <td> {{$one->name}} </td>
-  <td>{{$one->email}} </td>
-  <td>{{$one->num_tel}} </td>
-  <td>{{$one->address}} </td>
-  <td>{{$one->rank}} </td>
-  <td>{{$one->blog_score}} </td>
-  <td>{{$one->created_at}} </td>
-  <td> <form class="" action="{{ url('/deleteuser') }}" method="post">
+</form>
+  <td>
+  <form class="" action="{{ url('/deleteuser') }}" method="post">
     {{ method_field('DELETE') }}
     {{csrf_field()}}
     <input name="id" type="hidden" value="{{$one->id}}">
     <button class="btn btn-danger" data-id="{{$one->id}}" type="submit"> Bye </button>
-  </form> </td>
+  </form>
+</td>
   <td>
-    <button class="btn btn-primary" onclick=""> Change </button>
+    <button class="btn btn-primary" onclick="changeupdate({{$one->id}})"> Change </button>
   </td>
 </tr>
   @endforeach
