@@ -5,3 +5,50 @@
 .td-input-update{
   display : none;
 }
+
+/* Errors pages */
+
+.err-num{
+  display:block;
+  width:50%;
+  margin:2em auto;
+}
+.err-title{
+  font-family: Montserrat;
+  font-weight: bold;
+  font-size:9vw;
+}
+.err-paragraph{
+  font-size: 3.5vw;
+  color: #a8a8a8;
+}
+.err-container a{
+  font-size: 1.7vw;
+  text-decoration: underline;
+  transition: .1s all ease-in-out;
+}
+.err-container a:hover{
+  color:#339eec;
+}
+
+/*  Error 404 */
+
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) { }
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) { }
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .err-num{
+    width:45%;
+  }
+  .err-title{
+    font-size:8vw;
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) { }
