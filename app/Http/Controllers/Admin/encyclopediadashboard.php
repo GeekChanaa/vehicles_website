@@ -5,10 +5,9 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\brand;
-use App\model;
 use App\generation;
-use App\new;
 use App\technology;
+use App\vmodel;
 
 class encyclopediadashboard extends Controller
 {
@@ -19,17 +18,17 @@ class encyclopediadashboard extends Controller
 
     protected $list_brands;
 
-    // List of Models
+    // List of vmodels
 
-    protected $list_models;
+    protected $list_vmodels;
 
     // List of generations
 
     protected $list_generations;
 
-    // List of News
 
-    protected $list_news;
+
+
 
     // List of Technology
 
@@ -43,17 +42,17 @@ class encyclopediadashboard extends Controller
 
     protected $nbr_brands;
 
-    // Number of models
+    // Number of vmodels
 
-    protected $nbr_models;
+    protected $nbr_vmodels;
 
     // Number of generations
 
     protected $nbr_generations;
 
-    // Number of News
 
-    protected $nbr_news;
+
+
 
     // Number of technologies
 
@@ -63,15 +62,15 @@ class encyclopediadashboard extends Controller
 
     public function __construct(){
       $this->list_brands=brand::all();
-      $this->list_models=model::all();
+      $this->list_vmodels=vmodel::all();
       $this->list_generations=generation::all();
-      $this->list_news=new::all();
-      $this->list_technologies=techonology::all();
+
+      $this->list_technologies=technology::all();
       $this->nbr_brands=brand::all()->count();
-      $this->nbr_models=model::all()->count();
+      $this->nbr_vmodels=vmodel::all()->count();
       $this->nbr_generations=generation::all()->count();
-      $this->nbr_news=new::all()->count();
-      $this->nbr_technologies=techonology::all()->count();
+
+      $this->nbr_technologies=technology::all()->count();
     }
 
 
@@ -80,11 +79,45 @@ class encyclopediadashboard extends Controller
       return view('admin.encyclopedia.addbrand');
     }
 
+
+
     public function addgeneration(){
       return view('admin.encyclopedia.addgeneration');
     }
 
-    public function addmodel(){
+    public function addvmodel(){
       return view('admin.encyclopedia.addmodel');
+    }
+
+    public function statistics(){
+      return view('admin.encyclopedia.statistics');
+    }
+
+    public function editors(){
+      return view('admin.encyclopedia.editors');
+    }
+
+    public function moderators(){
+      return view('admin.encyclopedia.moderators');
+    }
+
+
+    // Listing of models
+    public function brands(){
+      $list_brands = $this->list_brands;
+      return view('admin.encyclopedia.brands')->with('list_brands',$list_brands);
+    }
+
+
+    // Listing Of Models
+    public function models(){
+
+      return view('admin.encyclopedia.models')->with('list_models',$this->list_vmodels);
+    }
+
+
+    // Listing Of generations
+    public function generations(){
+      return view('admin.encyclopedia.generations');
     }
 }

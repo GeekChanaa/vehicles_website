@@ -241,13 +241,6 @@ class dashboard extends Controller
       return view('admin.blog.comments_replies');
     }
 
-    public function blogstatistics(){
-      return view('admin.blog.statistics');
-    }
-
-    public function blogposts(){
-      return view('admin.blog.posts');
-    }
 
     public function blogmoderators(){
       return view('admin.blog.moderators');
@@ -275,5 +268,8 @@ class dashboard extends Controller
       return view('admin.markets.dashboard');
     }
 
+    public function servicesindex(){
+      return view('admin.services.dashboard');
+    }
 
 }

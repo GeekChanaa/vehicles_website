@@ -69,14 +69,15 @@ Route::group(['middleware'=>'admin'],function(){
   Route::post('/admin/updateTodo','todolistController@update');
   Route::delete('/admin/deleteTodo','todolistController@delete');
   Route::delete('/deleteuser','Admin\users@delete');
+  Route::post('/updateuser','Admin\users@update');
 });
 
 /* ROUTES ONLY FOR BLOG MODERATORS */
 Route::group(['middleware'=>'blogmoderator'],function(){
 Route::get('/BlogDashboard','Admin\dashboard@blogindex');
-Route::get('/blogmoderator/commentsreplies','Admin\dashboard@commentsreplies');
 Route::get('/blogmoderator/statistics','Admin\blogdashboard@statistics');
-Route::get('/blogmoderator/posts','Admin\dashboard@blogposts');
+Route::get('/blogmoderator/posts','Admin\blogdashboard@blogposts');
+Route::get('/blogmoderator/addpost','Admin\blogdashboard@addpost');
 });
 
 
@@ -100,8 +101,8 @@ Route::group(['middleware'=>'admin'],function(){
 
 Route::group(['middleware'=>'servicesmoderator'],function(){
 Route::get('/ServicesDashboard','Admin\dashboard@servicesindex');
-Route::get('/servicesmoderator/carwashes','Admin\dashboard@carwashes');
-Route::get('/servicesmoderator/workshops','Admin\dashboard@workshops');
+Route::get('/servicesmoderator/carwashes','Admin\servicesdashboard@carwashes');
+Route::get('/servicesmoderator/workshops','Admin\servicesdashboard@workshops');
 });
 
 /* ROUTES ONLY FOR ENCYCLOPEDIA MODERATORS */
@@ -109,9 +110,17 @@ Route::group(['middleware'=>'encyclopediamoderator'],function(){
 Route::get('/EncyclopediaDashboard','Admin\dashboard@encyclopediadashboard');
 Route::get('/editor/addbrand','Admin\encyclopediadashboard@addbrand');
 Route::get('/editor/addgeneration','Admin\encyclopediadashboard@addgeneration');
-Route::get('/editor/addmodel','Admin\encyclopediadashboard@addmodel');
+Route::get('/editor/addmodel','Admin\encyclopediadashboard@addvmodel');
+Route::get('/editor/editors','Admin\encyclopediadashboard@editors');
+Route::get('/encyclopediamoderator/moderators','Admin\encyclopediadashboard@moderators');
 Route::get('/encyclopediamoderator/articles','Admin\dashboard@articles');
+Route::get('/encyclopediamoderator/brands','Admin\encyclopediadashboard@brands');
+Route::get('/encyclopediamoderator/models','Admin\encyclopediadashboard@models');
+Route::get('/encyclopediamoderator/generations','Admin\encyclopediadashboard@generations');
+Route::get('/encyclopediamoderator/statistics','Admin\encyclopediadashboard@statistics');
 Route::post('/admin/createbrand','brandsController@create');
+Route::post('/admin/createmodel','vmodelsController@create');
+Route::post('/admin/creategeneration','generationsController@create');
 });
 
 /* User Only Routes */

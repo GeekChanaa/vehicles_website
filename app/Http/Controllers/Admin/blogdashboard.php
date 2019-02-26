@@ -340,6 +340,17 @@ class blogdashboard extends Controller
       return view('admin.blog.statistics')->with($data);
     }
 
+    public function blogstatistics(){
+      return view('admin.blog.statistics');
+    }
+
+    public function blogposts(){
+      return view('admin.blog.posts');
+    }
+
+    public function addpost(){
+      return view('admin.blog.addpost');
+    }
 
 
 }

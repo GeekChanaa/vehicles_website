@@ -1,9 +1,15 @@
 
 /* Table of Users Classes */
-.td-list-update{
+.d-n{
+  display:none;
 }
-.td-input-update{
-  display : none;
+.d-n::placeholder {
+  color: red;
+  opacity: 1; /* Firefox */
+}
+
+.dashboard-route{
+  height:200px;
 }
 
 /* Errors pages */
