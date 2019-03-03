@@ -16,7 +16,7 @@ class CreateUsedVehicleArticlesTable extends Migration
         Schema::create('used_vehicle_articles', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('imagefile');
             $table->double('price');
             $table->string('name');

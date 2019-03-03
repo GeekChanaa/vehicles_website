@@ -7,10 +7,15 @@ use App\Http\Controllers\Controller;
 use App\post;
 use App\reply;
 use App\comment;
+use App\section;
 
 class blogdashboard extends Controller
 {
     /* Blog posts comments and replies */
+
+    // Sections list
+
+    protected $list_sections;
 
     // Posts list
 
@@ -229,6 +234,7 @@ class blogdashboard extends Controller
     public function __construct(){
       $this->list_posts= post::all();
       $this->list_comments = comment::all();
+      $this->list_sections = section::all();
       $this->list_replies = reply::all();
       $this->nbr_posts = post::all()->count();
       $this->nbr_comments = comment::all()->count();
@@ -345,12 +351,32 @@ class blogdashboard extends Controller
     }
 
     public function blogposts(){
-      return view('admin.blog.posts');
+      $data=[
+        'list_posts' => $this->list_posts,
+        'list_comments' => $this->list_comments,
+        'list_replies' => $this->list_replies
+      ];
+      return view('admin.blog.posts')->with($data);
+    }
+
+    public function deletepost(Request $request){
+      $post = post::all()->where('id','=',$request->id)->first();
+      $post->delete();
+      return redirect()->back();
     }
 
     public function addpost(){
       return view('admin.blog.addpost');
     }
+
+    public function addsection(){
+      return view('admin.blog.addsection');
+    }
+
+    public function sections(){
+      return view('admin.blog.sections')->with('list_sections',$this->list_sections);
+    }
+
 
 
 }

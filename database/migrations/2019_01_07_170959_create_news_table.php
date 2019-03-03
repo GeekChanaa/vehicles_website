@@ -18,7 +18,7 @@ class CreateNewsTable extends Migration
             $table->string('title');
             $table->binary('content');
             $table->unsignedInteger('editor_id');
-            $table->foreign('editor_id')->references('id')->on('users');
+            $table->foreign('editor_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

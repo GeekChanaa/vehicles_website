@@ -200,10 +200,28 @@ class servicesdashboard extends Controller
     }
 
     public function carwashes(){
-      return view('admin.services.carwashes');
+      $data=[
+        'list_carwashes' => $this->list_carwashes,
+      ];
+      return view('admin.services.carwashes')->with($data);
     }
 
     public function workshops(){
-      return view('admin.services.workshops');
+      $data=[
+        'list_workshops' => $this->list_workshops
+      ];
+      return view('admin.services.workshops')->with($data);
+    }
+
+    public function deleteworkshop(Request $request){
+      $workshop = workshop::all()->where('id','=',$request->id)->first();
+      $workshop->delete();
+      return redirect()->back();
+    }
+
+    public function deletecarwash(Request $request){
+      $carwash = carwash::all()->where('id','=',$request->id)->first();
+      $carwash->delete();
+      return redirect()->back();
     }
   }

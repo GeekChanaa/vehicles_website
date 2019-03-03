@@ -18,8 +18,15 @@
 </div>
 <div class="row col-lg-10 offset-lg-1">
   <a class="col-lg-3 btn btn-danger" href="{{url('/blogmoderator/posts')}}" > Posts </a>
-  <a class="col-lg-3 offset-lg-1 btn btn-danger"  href="{{url('/blogmoderator/addpost')}}"> Add Post </a>
-  <a class="col-lg-3 offset-lg-1 btn btn-danger"  href="{{url('/blogmoderator/statistics')}}"> Statistics </a>
+  <a class="col-lg-3 btn btn-danger"  href="{{url('/blogmoderator/addpost')}}"> Add Post </a>
+  <a class="col-lg-3 btn btn-danger"  href="{{url('/blogmoderator/statistics')}}"> Statistics </a>
+  <a class="col-lg-3 btn btn-danger"  href="{{url('/blogmoderator/addsection')}}"> Addsection </a>
+
+</div>
+<div class="row col-lg-10 offset-lg-1">
+  <a class="col-lg-3 btn btn-danger" href="{{url('/blogmoderator/sections')}}" > Sections </a>
+
+
 </div>
 </section>
 

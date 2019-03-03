@@ -17,7 +17,7 @@ class CreateCarwashesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->unsignedInteger('owner_id');
-            $table->foreign('owner_id')->references('id')->on('users');
+            $table->foreign('owner_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

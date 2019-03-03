@@ -51,9 +51,7 @@ Route::get('/onlyUser',function(){
   return view('onlyUser');
 });
 
-Route::get('/blog/newpost',function(){
-  return view('blog.newpost');
-});
+Route::get('/blog/newpost','forumController@newpost');
 Route::post('/createpost','forumController@createpost');
 
 /* ROUTES ONLY FOR ADMINS */
@@ -78,6 +76,10 @@ Route::get('/BlogDashboard','Admin\dashboard@blogindex');
 Route::get('/blogmoderator/statistics','Admin\blogdashboard@statistics');
 Route::get('/blogmoderator/posts','Admin\blogdashboard@blogposts');
 Route::get('/blogmoderator/addpost','Admin\blogdashboard@addpost');
+Route::delete('/blogmoderator/deletepost','Admin\blogdashboard@deletepost');
+Route::get('/blogmoderator/addsection','Admin\blogdashboard@addsection');
+Route::post('/blogmoderator/createsection','sectionController@create');
+Route::get('/blogmoderator/sections','Admin\blogdashboard@sections');
 });
 
 
@@ -103,6 +105,8 @@ Route::group(['middleware'=>'servicesmoderator'],function(){
 Route::get('/ServicesDashboard','Admin\dashboard@servicesindex');
 Route::get('/servicesmoderator/carwashes','Admin\servicesdashboard@carwashes');
 Route::get('/servicesmoderator/workshops','Admin\servicesdashboard@workshops');
+Route::delete('/servicesmoderator/deleteworkshop','Admin\servicesdashboard@deleteworkshop');
+Route::delete('/servicesmoderator/deletecarwash','Admin\servicesdashboard@deletecarwash');
 });
 
 /* ROUTES ONLY FOR ENCYCLOPEDIA MODERATORS */
@@ -129,3 +133,60 @@ Route::get('/market/post-new-vehicle',function(){
   return view('markets.addnewvehicle');
 });
 Route::post('/createnewvehicle','nvaController@create');
+
+/* Market Routes */
+
+// Index
+Route::get('/market','marketController@index');
+
+// Used Vehicles Market
+Route::get('/market/usedvehicles','marketController@usedvehicles');
+
+// New Vehicles Market
+Route::get('/market/newvehicles','marketController@newvehicles');
+
+// Used Carpart Market
+Route::get('/market/usedcarpart','marketController@usedcarpart');
+
+// New Carpart Market
+Route::get('/market/newcarpart','marketController@newcarpart');
+
+/* ======================== Blog Routes ===================== */
+
+// Blog Index Page
+Route::get('/blog','forumController@index');
+
+// Section Page (listing All Posts with all comments and replies)
+Route::get('/blog/section','forumController@section');
+
+// Create Comment :
+Route::post('/blog/createcomment','forumController@createcomment');
+
+// Create reply :
+Route::post('/blog/createreply','forumController@createreply');
+
+
+/* ======================= Services Routes ======================  */
+
+//Services Index Page
+Route::get('/services','servicesController@index');
+
+//Workshops
+Route::get('/services/workshops','servicesController@workshops');
+
+//Carwashes
+Route::get('/services/carwashes','servicesController@carwashes');
+
+//Workshop owner interface
+Route::get('/services/workshops-ui','servicesController@workshop_owner_interface');
+
+//Carwash owner interface
+Route::get('/services/carwashes-ui','servicesController@carwash_owner_interface');
+
+//New Workshop
+Route::get('/services/newworkshop','servicesController@newworkshop');
+Route::post('/services/createworkshop','servicesController@createworkshop');
+
+//New Carwash
+Route::get('/services/newcarwash','servicesController@newcarwash');
+Route::post('/services/createcarwash','servicesController@createcarwash');
