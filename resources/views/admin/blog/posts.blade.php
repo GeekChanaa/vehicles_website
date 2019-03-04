@@ -67,16 +67,35 @@
                 @foreach($list_comments as $comment)
 
                   @if($comment->post_id == $post->id)
+                  <div>
                     {{$comment->content}}
+                    <form method="post" action="{{url('/blogmoderator/deletecomment')}}">
+                      {{method_field('DELETE')}}
+                      {{csrf_field()}}
+                      <input type="hidden" name="comid" value="{{$comment->id}}">
+                      <button type="submit" class="btn btn-primary">Delete</button>
+                    </form>
+                      <button class="btn btn-primary">Modify</button>
+
                     <!--replies-->
                     @foreach($list_replies as $reply)
 
                       @if($reply->comment_id == $comment->id)
-                        <span style="color:red">{{$reply->content}}</span>
+                        <div class="row col-lg-12 offset-lg-1"><span style="color:red">
+                          {{$reply->content}}
+                        </span>
+                        <form method="POST" action="{{url('/blogmoderator/deletereply')}}">
+                          {{method_field('DELETE')}}
+                          {{csrf_field()}}
+                          <input type="hidden" name="replyid" value="{{$reply->id}}">
+                          <button type="submit" class="btn btn-dark"> Delete </button>
+                        </form>
+                        <button class="btn btn-dark"> Modify </button>
+                      </div>
                       @endif
 
                     @endforeach
-
+                  </div>
                   @endif
 
                 @endforeach

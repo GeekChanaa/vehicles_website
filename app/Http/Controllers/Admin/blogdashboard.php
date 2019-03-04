@@ -291,7 +291,7 @@ class blogdashboard extends Controller
 
     public function statistics(){
       $data = [
-        'list_posts' => $this->list_posts,
+    'list_posts' => $this->list_posts,
     'list_comments' => $this->list_comments,
     'list_replies' => $this->list_replies,
     'nbr_posts' => $this->nbr_posts,
@@ -376,6 +376,19 @@ class blogdashboard extends Controller
     public function sections(){
       return view('admin.blog.sections')->with('list_sections',$this->list_sections);
     }
+
+    public function deletecomment(Request $request){
+      $comment = comment::all()->where('id','=',$request->comid)->first();
+      $comment->delete();
+      return redirect()->back();
+    }
+
+    public function deletereply(Request $request){
+      $reply = reply::all()->where('id','=',$request->replyid)->first();
+      $reply->delete();
+      return redirect()->back();
+    }
+
 
 
 

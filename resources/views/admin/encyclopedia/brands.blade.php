@@ -27,6 +27,7 @@
     <th> Number of Employees </th>
     <th> Description </th>
     <th> Added Date </th>
+    <th> Delete </th>
   </thead>
   <tbody>
 
@@ -44,6 +45,14 @@
     <td>{{$one->nbr_of_employees}} </td>
     <td>{{$one->description}} </td>
     <td>{{$one->created_at}} </td>
+    <td>
+      <form action="{{url('/encyclopediamoderator/deletebrand')}}" method="post">
+        {{method_field('DELETE')}}
+        {{csrf_field()}}
+        <input type="hidden" value="{{$one->id}}" name="id">
+        <button type="submit" class="btn btn-primary"> delete </button>
+      </form>
+    </td>
   </tr>
     @endforeach
 

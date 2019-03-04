@@ -80,6 +80,8 @@ Route::delete('/blogmoderator/deletepost','Admin\blogdashboard@deletepost');
 Route::get('/blogmoderator/addsection','Admin\blogdashboard@addsection');
 Route::post('/blogmoderator/createsection','sectionController@create');
 Route::get('/blogmoderator/sections','Admin\blogdashboard@sections');
+Route::delete('/blogmoderator/deletecomment','Admin\blogdashboard@deletecomment');
+Route::delete('/blogmoderator/deletereply','Admin\blogdashboard@deletereply');
 });
 
 
@@ -122,6 +124,7 @@ Route::get('/encyclopediamoderator/brands','Admin\encyclopediadashboard@brands')
 Route::get('/encyclopediamoderator/models','Admin\encyclopediadashboard@models');
 Route::get('/encyclopediamoderator/generations','Admin\encyclopediadashboard@generations');
 Route::get('/encyclopediamoderator/statistics','Admin\encyclopediadashboard@statistics');
+Route::delete('/encyclopediamoderator/deletebrand','Admin\encyclopediadashboard@deletebrand');
 Route::post('/admin/createbrand','brandsController@create');
 Route::post('/admin/createmodel','vmodelsController@create');
 Route::post('/admin/creategeneration','generationsController@create');

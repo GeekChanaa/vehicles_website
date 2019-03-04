@@ -120,4 +120,12 @@ class encyclopediadashboard extends Controller
     public function generations(){
       return view('admin.encyclopedia.generations');
     }
+
+    // Delete Model Function
+
+    public function deletebrand(Request $request){
+      $brand = brand::all()->where('id','=',$request->id)->first();
+      $brand->delete();
+      return redirect()->back();
+    }
 }
