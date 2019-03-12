@@ -4,7 +4,7 @@
 
 
 <!-- Add Generation Form (possibility to add multiple Brands at once) -->
-<form  action={{url('/admin/creategeneration')}}"" method="post">
+<form  action="{{url('/admin/creategeneration')}}" method="post">
   <span>Name : </span> <input type="text" name="name">
   <span>Brand : </span> <input type="text" name="brand">
   <span>Model : </span> <input type="text" name="model">

@@ -86,6 +86,7 @@
 
 
 
+<!-- Ajax Functionnalities -->
 
 
 @endsection

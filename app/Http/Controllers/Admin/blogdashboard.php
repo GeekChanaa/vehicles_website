@@ -389,7 +389,21 @@ class blogdashboard extends Controller
       return redirect()->back();
     }
 
+    public function modifyreply(Request $request){
+      $reply = reply::all()->where('id','=',$request->id)->first();
+      $reply->content = $request->content;
+      $reply->save();
+      return redirect()->back();
+    }
 
-
+    public function modifypost(Request $request){
+      $post = post::all()->where('id','=',$request->id)->first();
+      $post->title = $request->title;
+      $post->section = $request->section;
+      $post->content = $request->content;
+      $post->rating = $request->rating;
+      $post->save();
+      return redirect()->back();
+    }
 
 }

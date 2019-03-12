@@ -30,6 +30,10 @@
       <a class="col-lg-3 offset-lg-1 btn btn-primary" href="{{url('/encyclopediamoderator/brands')}}"> Brands </a>
       <a class="col-lg-3 offset-lg-1 btn btn-primary" href="{{url('/encyclopediamoderator/models')}}"> Models </a>
     </div>
+    <div class="row col-lg-12">
+      <a class="col-lg-3 offset-lg-5 btn btn-primary" href="{{url('/encyclopediamoderator/generations')}}"> Generations </a>
+
+    </div>
 </section>
 
 

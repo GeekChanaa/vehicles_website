@@ -21,8 +21,9 @@
   <th class="scope">Update Date </th>
   <th class="scope">Update  </th>
   <th class="scope">Delete </th>
-  <tr>
+
     @foreach($list_carwashes as $carwash)
+    <tr>
     <td>{{$carwash->id}} </td>
     <td>{{$carwash->name}} </td>
     <td>{{$carwash->owner_id}} </td>
@@ -37,8 +38,9 @@
         <button type="submit" class="btn btn-danger"> Delete </button>
       </form>
      </td>
+   </tr>
     @endforeach
-  </tr>
+
 </table>
 
 

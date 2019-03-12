@@ -20,8 +20,9 @@
   <th class="scope">Delete </th>
   <th class="scope">Update </th>
 
-  <tr>
+
     @foreach($list_workshops as $workshop)
+    <tr>
     <td>{{$workshop->id}} </td>
     <td>{{$workshop->name}} </td>
     <td>{{$workshop->owner_id}} </td>
@@ -37,8 +38,9 @@
       </form>
     </td>
     <td><button class="btn btn-dark"> Update </button></td>
+      </tr>
     @endforeach
-  </tr>
+
 </table>
 
 

@@ -8,6 +8,7 @@ use App\new_carpart_article;
 use App\new_vehicle_article;
 use App\used_carpart_article;
 use App\used_vehicle_article;
+use Auth;
 
 class marketdashboard extends Controller
 {
@@ -367,7 +368,11 @@ class marketdashboard extends Controller
     }
 
     public function newcarpartsdashboard(){
-      return view('admin.markets.newcarparts');
+
+      $data=[
+        'list_ncp' => $this->list_ncp,
+      ];
+      return view('admin.markets.newcarparts')->with($data);
     }
 
     public function newvehiclesdashboard(){
@@ -375,7 +380,10 @@ class marketdashboard extends Controller
     }
 
     public function usedcarpartsdashboard(){
-      return view('admin.markets.usedcarparts');
+      $data=[
+        'list_ucp' => $this->list_ucp,
+      ];
+      return view('admin.markets.usedcarparts')->with($data);
     }
 
     public function usedvehiclesdashboard(){
@@ -455,4 +463,127 @@ class marketdashboard extends Controller
       ];
       return view('admin.markets.statistics')->with($data);
     }
+
+    public function createnv(){
+      return view('admin.markets.create-nv');
+    }
+
+    public function createuv(){
+      return view('admin.markets.create-uv');
+    }
+
+    public function createncp(){
+      return view('admin.markets.create-ncp');
+    }
+
+    public function createucp(){
+      return view('admin.markets.create-ucp');
+    }
+
+    public function addnv(Request $request){
+      $nv = new new_vehicle_article;
+      $nv->imagefile="ok";
+      $nv->user_id = Auth::user()->id;
+      $nv->price = $request->price;
+      $nv->name = $request->name;
+      $nv->brand = $request->brand;
+      $nv->model = $request->model;
+      $nv->generation = $request->generation;
+      $nv->cd_changer_stacker = $request->cd_changer_stacker;
+      $nv->four_wheel_drive = $request->four_wheel_drive;
+      $nv->air_conditionning = $request->air_conditionning;
+      $nv->aluminum_wheels = $request->aluminum_wheels;
+      $nv->bed_liner = $request->bed_liner;
+      $nv->captains_chairs = $request->captains_chairs;
+      $nv->cruise_control = $request->cruise_control;
+      $nv->dual_air_conditionning = $request->dual_air_conditionning;
+      $nv->dual_power_seats = $request->dual_power_seats;
+      $nv->hard_top_convertible = $request->hard_top_convertible;
+      $nv->heated_seats = $request->heated_seats;
+      $nv->leather_seats = $request->leather_seats;
+      $nv->luggage_roofrack = $request->luggage_roofrack;
+      $nv->specialty_stereo_system = $request->speciality_stereo_system;
+      $nv->soft_top = $request->soft_top;
+      $nv->manual_transmission = $request->manual_transmission;
+      $nv->navigation_system = $request->navigation_system;
+      $nv->power_door_locks = $request->power_door_locks;
+      $nv->power_seat = $request->power_seat;
+      $nv->power_steering = $request->power_steering;
+      $nv->power_windows = $request->power_windows;
+      $nv->power_sunroof = $request->power_sunroof;
+      $nv->running_boards = $request->running_boards;
+      $nv->satelite_radio = $request->satelite_radio;
+      $nv->snow_plow_package = $request->snow_plow_package;
+      $nv->remote_starter = $request->remote_starter;
+      $nv->theft_deterrent_alarm = $request->theft_deterrent_alarm;
+      $nv->theft_recovery_system = $request->theft_recovery_system;
+      $nv->third_row_seats = $request->third_row_seats;
+      $nv->tilt_wheel = $request->tilt_wheel;
+      $nv->tonneau_cover_bed_cover = $request->tonneau_cover_bed_cover;
+      $nv->towing_trailerpackage = $request->towing_trailerpackage;
+      $nv->turbo_diesel = $request->turbo_diesel;
+      $nv->hybrid_not_flexfuel = $request->hybrid_not_flexfuel;
+      $nv->conversion_package = $request->conversion_package;
+      $nv->chrome_wheels_20_or_larger = $request->chrome_wheels_20_or_larger;
+      $nv->save();
+      return redirect()->back();
+    }
+
+    public function addncp(Request $request){
+      $ncp = new new_carpart_article;
+      $ncp->name = $request->name;
+      $ncp->brand = $request->brand;
+      $ncp->category = $request->category;
+      $ncp->compatible_cars = $request->compatible_cars;
+      $ncp->description = $request->description;
+      $ncp->user_id = Auth::user()->id;
+      $ncp->save();
+      return redirect()->back();
+    }
+
+    public function adducp(Request $request){
+      $ucp = new used_carpart_article;
+      $ucp->name = $request->name;
+      $ucp->brand = $request->brand;
+      $ucp->category = $request->category;
+      $ucp->compatible_cars = $request->compatible_cars;
+      $ucp->description = $request->description;
+      $ucp->user_id = Auth::user()->id;
+      $ucp->save();
+      return redirect()->back();
+    }
+
+    public function deleteucp(Request $request){
+      $ucp = used_carpart_article::all()->where('id','=',$request->id)->first();
+      $ucp->delete();
+      return redirect()->back();
+    }
+
+    public function deletencp(Request $request){
+      $ncp = new_carpart_article::all()->where('id','=',$request->id)->first();
+      $ncp->delete();
+      return redirect()->back();
+    }
+
+    public function updatencp(Request $request){
+      $ncp = new_carpart_article::all()->where('id','=',$request->id)->first();
+      $ncp->name = $request->name;
+      $ncp->brand = $request->brand;
+      $ncp->category = $request->category;
+      $ncp->compatible_cars = $request->compatible_cars;
+      $ncp->description = $request->description;
+      $ncp->save();
+      return redirect()->back();
+      }
+
+      public function updateucp(Request $request){
+        $ucp = used_carpart_article::all()->where('id','=',$request->id)->first();
+        $ucp->name = $request->name;
+        $ucp->brand = $request->brand;
+        $ucp->category = $request->category;
+        $ucp->compatible_cars = $request->compatible_cars;
+        $ucp->description = $request->description;
+        $ucp->save();
+        return redirect()->back();
+        }
 }

@@ -76,11 +76,13 @@ Route::get('/BlogDashboard','Admin\dashboard@blogindex');
 Route::get('/blogmoderator/statistics','Admin\blogdashboard@statistics');
 Route::get('/blogmoderator/posts','Admin\blogdashboard@blogposts');
 Route::get('/blogmoderator/addpost','Admin\blogdashboard@addpost');
+Route::post('/blogmoderator/modifypost','Admin\blogdashboard@modifypost');
 Route::delete('/blogmoderator/deletepost','Admin\blogdashboard@deletepost');
 Route::get('/blogmoderator/addsection','Admin\blogdashboard@addsection');
 Route::post('/blogmoderator/createsection','sectionController@create');
 Route::get('/blogmoderator/sections','Admin\blogdashboard@sections');
 Route::delete('/blogmoderator/deletecomment','Admin\blogdashboard@deletecomment');
+Route::post('/blogmoderator/modifyreply','Admin\blogdashboard@modifyreply');
 Route::delete('/blogmoderator/deletereply','Admin\blogdashboard@deletereply');
 });
 
@@ -93,6 +95,17 @@ Route::get('/marketmoderator/usedcarparts','Admin\marketdashboard@usedcarpartsda
 Route::get('/marketmoderator/newvehicles','Admin\marketdashboard@newvehiclesdashboard');
 Route::get('/marketmoderator/usedvehicles','Admin\marketdashboard@usedvehiclesdashboard');
 Route::get('/marketmoderator/statistics','Admin\marketdashboard@statistics');
+Route::get('/marketmoderator/createnv','Admin\marketdashboard@createnv');
+Route::post('/marketmoderator/addnv','Admin\marketdashboard@addnv');
+Route::get('/marketmoderator/createuv','Admin\marketdashboard@createuv');
+Route::get('/marketmoderator/createncp','Admin\marketdashboard@createncp');
+Route::post('/marketmoderator/addncp','Admin\marketdashboard@addncp');
+Route::post('/marketmoderator/updatencp','Admin\marketdashboard@updatencp');
+Route::delete('/marketmoderator/deletencp','Admin\marketdashboard@deletencp');
+Route::get('/marketmoderator/createucp','Admin\marketdashboard@createucp');
+Route::post('/marketmoderator/adducp','Admin\marketdashboard@adducp');
+Route::post('/marketmoderator/updateucp','Admin\marketdashboard@updateucp');
+Route::delete('/marketmoderator/deleteucp','Admin\marketdashboard@deleteucp');
 });
 
 /* ROUTES ONLY FOR EDITORS */
@@ -125,6 +138,9 @@ Route::get('/encyclopediamoderator/models','Admin\encyclopediadashboard@models')
 Route::get('/encyclopediamoderator/generations','Admin\encyclopediadashboard@generations');
 Route::get('/encyclopediamoderator/statistics','Admin\encyclopediadashboard@statistics');
 Route::delete('/encyclopediamoderator/deletebrand','Admin\encyclopediadashboard@deletebrand');
+Route::delete('/encyclopediamoderator/deletevmodel','Admin\encyclopediadashboard@deletevmodel');
+Route::post('/encyclopediamoderator/modifyvmodel','Admin\encyclopediadashboard@modifyvmodel');
+Route::post('/encyclopediamoderator/modifybrand','Admin\encyclopediadashboard@modifybrand');
 Route::post('/admin/createbrand','brandsController@create');
 Route::post('/admin/createmodel','vmodelsController@create');
 Route::post('/admin/creategeneration','generationsController@create');
@@ -193,3 +209,8 @@ Route::post('/services/createworkshop','servicesController@createworkshop');
 //New Carwash
 Route::get('/services/newcarwash','servicesController@newcarwash');
 Route::post('/services/createcarwash','servicesController@createcarwash');
+
+/* ====================== Encyclopedia Routes =================== */
+
+// Encyclopedia index page
+Route::get('/encyclopedia','encyclopediaController@index');
