@@ -18,6 +18,7 @@ class CreateTodolistsTable extends Migration
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('content');
+            $table->datetime('deadline')->default('DB::raw('CURRENT_TIMESTAMP')');
             $table->string('state');
             $table->timestamps();
         });

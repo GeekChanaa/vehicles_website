@@ -63,9 +63,13 @@ Route::group(['middleware'=>'admin'],function(){
   Route::get('/admin/blogmoderators','Admin\dashboard@blogmoderators');
   Route::get('/admin/encyclopediamoderators','Admin\dashboard@encyclopediamoderators');
   Route::get('/admin/editors','Admin\dashboard@editors');
+  // TO DO ROUTES :
   Route::post('/admin/createTodo','todolistController@create');
-  Route::post('/admin/updateTodo','todolistController@update');
+  Route::post('/admin/doneTodo','todolistController@done');
+  Route::post('/admin/updatecontentTodo','todolistController@updatecontent');
+  Route::post('/admin/undoneTodo','todolistController@undone');
   Route::delete('/admin/deleteTodo','todolistController@delete');
+
   Route::delete('/deleteuser','Admin\users@delete');
   Route::post('/updateuser','Admin\users@update');
   Route::post('/adduser','Admin\users@add');

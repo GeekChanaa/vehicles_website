@@ -21,10 +21,7 @@
 
     <script src="{{ asset('js/jquery.min.js') }}"> </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
-<<<<<<< HEAD
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-=======
->>>>>>> fdcc61d13df0bf5661f4612b36a5fb4118e0794c
 
 </head>
 <body>
