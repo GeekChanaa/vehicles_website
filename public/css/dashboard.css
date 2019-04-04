@@ -1,3 +1,14 @@
+/* General styles */
+
+*{
+  font-family: Open Sans;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+:root{
+  --main-blue:#559bf7;
+}
+
 
 /* Table of Users Classes */
 .d-n{
@@ -40,11 +51,183 @@
 /*  Error 404 */
 
 
+
+/* Navbar */
+.main-nav{
+  background:white;
+}
+.main-nav img{
+  width:200px;
+}
+.main-nav .nav-item ion-icon{
+  font-size:23px;
+  color:#d6d7e0;
+  height:40px;
+  margin:0 .3em;
+
+}
+.nav-avatar img{
+  width:40px;
+  border-radius: 50%;
+}
+
+.nav-avatar{
+  margin:0 1em;
+}
+
+/* Dashboard sections */
+body{
+  background:#f9f9f9  !important;
+}
+.sections{
+  margin:1.5em 0;
+  justify-content:space-between;
+}
+.section{
+  padding:0 !important;
+  background:white;
+  -webkit-box-shadow: 0px 12px 34px -18px rgba(0,0,0,0.7);
+  -moz-box-shadow: 0px 12px 34px -18px rgba(0,0,0,0.7);
+  box-shadow: 0px 12px 34px -18px rgba(0,0,0,0.7);
+}
+.section>div{
+  color:white;
+  text-align: center;
+  height:70px;
+}
+.section ion-icon{
+  display: inline-block;
+  height:inherit;
+  font-size: 25px;
+}
+.section a{
+  align-self: center;
+  font-family: Open Sans;
+  font-weight: 600;
+  color: #424242;
+  font-size:15px;
+}
+
+/* Todo list */
+
+.todos{
+  background:white;
+  -webkit-box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.1);
+  -moz-box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.1);
+  box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.1);
+  padding:1em;
+  display: block;
+  width:100%;
+  margin:0 auto;
+  padding:0;
+}
+.todo-heading{
+  background:var(--main-blue);
+  color:white;
+  height:60px;
+}
+.todo-heading ion-icon{
+  font-size: 30px;
+  align-self: center;
+  padding:0 !important;
+}
+.todo-heading h2{
+  align-self:center;
+  text-align: center;
+  padding:0 !important;
+  margin:0 .5em;
+  font-family: Open Sans;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.todo{
+  height:60px;
+  border-bottom:1px solid #f2f2f2;
+}
+.todo *{
+  padding:0 !important;
+  margin:0 !important;
+}
+
+.todo button{
+  display: inline-block;
+  width:20px;
+  height:20px;
+  border:none;
+  background:none;
+  padding:.2em;
+}
+.todo .check-btn{
+  line-height: 45px;
+}
+.todo .check-btn button{
+  border-radius:50%;
+  border:2px solid black;
+}
+.todo h4{
+  overflow: hidden;
+  align-self:center;
+  padding:0 .3em !important;
+}
+.todo .delete-btn{
+  height:60px;
+}
+.todo ion-icon{
+  height: inherit;
+  font-size:20px;
+  line-height: 50px;
+}
+.add-todo input{
+  height:50px;
+  border:none;
+  padding: 1em 1.5em 0 1.5em;
+  margin-bottom:.3em;
+  font-size:17px;
+}
+.add-todo .underline{
+  margin: 0 1.5em 0 1.5em;
+  height:2px;
+  width:0;
+  background:var(--main-blue);
+  visibility: hidden;
+  transition:.3s all ease-in-out;
+}
+
+.add-todo button{
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  background:var(--main-blue);
+  border:none;
+  color:white;
+  position: relative;
+  top: 25px;
+}
+.add-todo ion-icon{
+  height:inherit;
+  font-size:23px;
+  font-weight: bold;
+  line-height: 40px;
+}
+
+
+
+
+
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) { }
 
 /* Medium devices (tablets, 768px and up) */
-@media (min-width: 768px) { }
+@media (min-width: 768px) {
+  /* Dashboard sections */
+  .section{
+    margin:1em 0;
+    -webkit-box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.1);
+    -moz-box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.1);
+    box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.1);
+  }
+ }
 
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {

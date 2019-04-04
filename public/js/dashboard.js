@@ -8,7 +8,11 @@ function changeupdate(id){
   $('.td-input-update'+id).css('display','initial');
 }
 
+<<<<<<< HEAD
 function adduser(){
   $('.users-table').append('<tr><td> XX </td><td><input type="text" id="name"> </input></td><td><input type="text" id="email"> </input></td><td><input type="text" id="num_tel"> </input></td><td><input type="text" id="address"> </input></td><td><input type="text" id="rank"> </input></td><td><input type="text" id="blog_score"> </input></td><td> <button class="btn btn-primary adduser"> create! </button> </td><td> done </td><td> done </td><td> done </td></tr>');
 
 }
+=======
+// show border under todo input when it's focused
+>>>>>>> fdcc61d13df0bf5661f4612b36a5fb4118e0794c
