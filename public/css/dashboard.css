@@ -4,11 +4,13 @@
   font-family: Open Sans;
   font-size: 15px;
   box-sizing: border-box;
+  border:none;
+  outline:none;
 }
 :root{
   --main-blue:#559bf7;
-}
 
+}
 
 /* Table of Users Classes */
 .d-n{
@@ -122,20 +124,20 @@ body{
   padding:0;
 }
 .todo-heading{
-  background:var(--main-blue);
+  background: linear-gradient(to right, rgba(85,155,247,1) 0%, rgba(59,120,189,1) 100%);
   color:white;
   height:60px;
 }
 .todo-heading ion-icon{
   font-size: 30px;
   align-self: center;
-  padding:0 !important;
+  padding-left:.5em !important;
 }
 .todo-heading h2{
   align-self:center;
   text-align: center;
   padding:0 !important;
-  margin:0 .5em;
+  margin:0;
   font-family: Open Sans;
   font-size: 22px;
   font-weight: 600;
@@ -166,6 +168,9 @@ body{
   border:2px solid black;
 }
 .todo h4{
+  font-family:Raleway;
+  font-size:16px;
+  color:#414141;
   overflow: hidden;
   align-self:center;
   padding:0 .3em !important;
@@ -198,7 +203,7 @@ body{
   width:50px;
   height:50px;
   border-radius:50%;
-  background:var(--main-blue);
+  background: linear-gradient(to right, rgba(85,155,247,1) 0%, rgba(59,120,189,1) 100%);
   border:none;
   color:white;
   position: relative;
@@ -241,3 +246,10 @@ body{
 
 /* Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) { }
+
+.add-button{
+ padding-left:100vw;
+ padding-top:-20px;
+ bottom:0;
+ position : absolute;
+}

@@ -1,4 +1,4 @@
-é<?php
+<?php
 
 namespace App\Http\Controllers\Admin;
 
@@ -13,7 +13,6 @@ class users extends Controller
     public function delete(Request $request){
       $user = user::all()->where('id','=',$request->id)->first();
       $user->delete();
-      return redirect()->back();
     }
 
     public function update(Request $request){
@@ -25,6 +24,16 @@ class users extends Controller
       $user->rank = $request->rank;
       $user->blog_score = $request->blog_score;
       $user->save();
-      return redirect()->back();
+    }
+
+    public function add(Request $request){
+      $user = new user;
+      $user->name = $request->name;
+      $user->email = $request->email;
+      $user->num_tel = $request->num_tel;
+      $user->address = $request->address;
+      $user->rank = $request->rank;
+      $user->blog_score = $request->blog_score;
+      $user->save();
     }
 }

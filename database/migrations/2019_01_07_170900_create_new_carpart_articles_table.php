@@ -20,6 +20,7 @@ class CreateNewCarpartArticlesTable extends Migration
             $table->string('name');
             $table->string('brand');
             $table->string('category');
+            $table->string('compatible_cars');
             $table->string('description');
             $table->timestamps();
         });

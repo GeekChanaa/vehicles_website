@@ -27,30 +27,34 @@
     <th> Number of Employees </th>
     <th> Description </th>
     <th> Added Date </th>
+    <th> Modify </th>
     <th> Delete </th>
   </thead>
   <tbody>
 
     @foreach($list_brands as $one)
-  <tr>
+  <tr id="brand{{$one->id}}">
+    <form method="post" action="{{url('/encyclopediamoderator/modifybrand')}}">
+      {{csrf_field()}}
     <td>{{$one->id}} </td>
-    <td>{{$one->name}} </td>
-    <td>{{$one->year_foundation}} </td>
-    <td>{{$one->headquarters}} </td>
-    <td>{{$one->CEO}} </td>
-    <td>{{$one->website}} </td>
-    <td>{{$one->production_output}} </td>
-    <td>{{$one->revenue}} </td>
-    <td>{{$one->net_income}} </td>
-    <td>{{$one->nbr_of_employees}} </td>
-    <td>{{$one->description}} </td>
+    <td><input value="{{$one->name}}" placeholder="{{$one->name}}" name="name"> <input type="hidden" name="id" value="{{$one->id}}"></td>
+    <td><input value="{{$one->year_foundation}}" placeholder="{{$one->year_foundation}}" name="year_foundation"> </td>
+    <td><input value="{{$one->headquarters}}" placeholder="{{$one->headquarters}}" name="headquarters"> </td>
+    <td><input value="{{$one->CEO}}" placeholder="{{$one->CEO}}" name="CEO"> </td>
+    <td><input value="{{$one->website}}" placeholder="{{$one->website}}" name="website"> </td>
+    <td><input value="{{$one->production_output}}" placeholder="{{$one->production_output}}" name="production_output"> </td>
+    <td><input value="{{$one->revenue}}" placeholder="{{$one->revenue}}" name="revenue"> </td>
+    <td><input value="{{$one->net_income}}" placeholder="{{$one->net_income}}" name="net_income"> </td>
+    <td><input value="{{$one->nbr_of_employees}}" placeholder="{{$one->nbr_of_employees}}" name="nbr_of_employees"> </td>
+    <td><input value="{{$one->description}}" placeholder="{{$one->description}}" name="description"> </td>
     <td>{{$one->created_at}} </td>
+    <td> <button class="btn btn-primary" type="submit"> modify </button> </td>
+  </form>
     <td>
-      <form action="{{url('/encyclopediamoderator/deletebrand')}}" method="post">
+      <form class="" method="post">
         {{method_field('DELETE')}}
-        {{csrf_field()}}
-        <input type="hidden" value="{{$one->id}}" name="id">
-        <button type="submit" class="btn btn-primary"> delete </button>
+        <input id="id{{$one->id}}" type="hidden" value="{{$one->id}}" name="id">
+        <button data-id="{{$one->id}}" class="btn btn-primary deletebrand"> delete </button>
       </form>
     </td>
   </tr>
@@ -67,5 +71,42 @@
 <!-- Important Statistics About Brands -->
 
 
+
+
+
+
+
+
+
+
+<!-- Ajax Functionalities -->
+<script>
+jQuery(document).ready(function(){
+      jQuery(".deletebrand").on('click',function(e){
+        var brandid=$(this).data("id");
+         e.preventDefault();
+         console.log('ok');
+         $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            }
+
+        });
+         jQuery.ajax({
+            url: "/encyclopediamoderator/deletebrand",
+            method: 'delete',
+            data: {
+               id: $("#id"+brandid).val(),
+            },
+            success: function(result){
+              swal('deleted','NICE','success');
+              $('#brand'+brandid).html('');
+            },
+            error: function(jqXHR, textStatus, errorThrown){
+              swal('something went wrong','impossible','error');
+          }});
+         });
+      });
+</script>
 
 @endsection

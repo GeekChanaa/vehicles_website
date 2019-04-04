@@ -10,7 +10,6 @@
 
 
 
-
 <!-- Most Important Statistics -->
 
 
@@ -50,12 +49,11 @@
     </div>
   </div>
 
-
   <!-- Todo List -->
   <div class="todos col-sm-12 col-md-8 col-lg-6">
     <div class="row todo-heading">
       <ion-icon name="menu"></ion-icon>
-      <h2>Website Todo</h2>
+      <h2 class="col-10">Website Todo</h2>
     </div>
 
       @foreach($list_tasks as $one)

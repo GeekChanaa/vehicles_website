@@ -64,7 +64,7 @@ class forumController extends Controller
     $reply->upvotes = 0;
     $reply->save();
     return redirect()->back();
-    
+
   }
 
 }

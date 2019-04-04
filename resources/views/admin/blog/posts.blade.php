@@ -30,11 +30,18 @@
   @foreach($list_posts as $post)
   <tr>
     <td>{{$post->id}} </td>
-    <td>{{$post->title}} </td>
-    <td>{{$post->section}} </td>
-    <td>{{$post->content}} </td>
-    <td>{{$post->upvotes}} </td>
-    <td>{{$post->rating}} </td>
+    <!-- Modify Post Form -->
+    <form method="post" action="{{url('/blogmoderator/modifypost')}}">
+      {{csrf_field()}}
+      <td><input type="text" placeholder="{{$post->title}}" value="{{$post->title}}" name="title"> <input name="id" value="{{$post->id}}" type="hidden"> </td>
+      <td><input type="text" placeholder="{{$post->section}}" value="{{$post->section}}" name="section"> </td>
+      <td><input type="text" placeholder="{{$post->content}}" value="{{$post->content}}" name="content"> </td>
+      <td><input type="text" placeholder="{{$post->upvotes}}" value="{{$post->upvotes}}" name="upvotes"> </td>
+      <td><input type="text" placeholder="{{$post->rating}}" value="{{$post->rating}}" name="rating"> </td>
+      <td>
+        <button type="submit" class="btn btn-dark"> Modify </button>
+      </td>
+    </form>
     <td>{{$post->created_at}} </td>
     <td>{{$post->updated_at}} </td>
     <td><button class="btn btn-danger" data-toggle="modal" data-target="#post-{{$post->id}}"> Comments </button> </td>
@@ -46,9 +53,7 @@
       <button type="submit" class="btn btn-primary"> Delete </button>
       </form>
     </td>
-    <td>
-      <button class="btn btn-dark"> Modify </button>
-    </td>
+
   </tr>
 
 
@@ -82,7 +87,13 @@
 
                       @if($reply->comment_id == $comment->id)
                         <div class="row col-lg-12 offset-lg-1"><span style="color:red">
-                          {{$reply->content}}
+                          <!-- Form to Update A reply -->
+                          <form method="post" action="{{url('/blogmoderator/modifyreply')}}">
+                            {{csrf_field()}}
+                            <input type="hidden" name="id" value="{{$reply->id}}">
+                            <input name="content" placeholder="{{$reply->content}}">
+                          <button type="submit" class="btn btn-danger"> Modify </button>
+                        </form>
                         </span>
                         <form method="POST" action="{{url('/blogmoderator/deletereply')}}">
                           {{method_field('DELETE')}}
@@ -90,7 +101,6 @@
                           <input type="hidden" name="replyid" value="{{$reply->id}}">
                           <button type="submit" class="btn btn-dark"> Delete </button>
                         </form>
-                        <button class="btn btn-dark"> Modify </button>
                       </div>
                       @endif
 

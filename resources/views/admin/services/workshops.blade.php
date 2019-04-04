@@ -17,16 +17,23 @@
   <th class="scope">Owner id </th>
   <th class="scope">Creation Date </th>
   <th class="scope">Update Date </th>
-  <th class="scope">Delete </th>
   <th class="scope">Update </th>
+  <th class="scope">Delete </th>
 
-  <tr>
+
+
     @foreach($list_workshops as $workshop)
-    <td>{{$workshop->id}} </td>
-    <td>{{$workshop->name}} </td>
-    <td>{{$workshop->owner_id}} </td>
-    <td>{{$workshop->created_at}} </td>
-    <td>{{$workshop->updated_at}} </td>
+    <tr>
+      <form class="" action="{{url('/servicesmoderator/updateworkshop')}}" method="post">
+        {{csrf_field()}}
+        <td><input type="text" value="{{$workshop->id}}" name="id"> </td>
+        <td><input type="text" value="{{$workshop->name}}" name="name" </td>
+        <td>{{$workshop->owner_id}} </td>
+        <td>{{$workshop->created_at}} </td>
+        <td>{{$workshop->updated_at}} </td>
+        <td> <button class="btn btn-primary" type="submit"> Update </button>
+      </form>
+
     <td>
       <!-- form delete workshop -->
       <form action="{{url('/servicesmoderator/deleteworkshop')}}" method="post">
@@ -37,8 +44,9 @@
       </form>
     </td>
     <td><button class="btn btn-dark"> Update </button></td>
+      </tr>
     @endforeach
-  </tr>
+
 </table>
 
 

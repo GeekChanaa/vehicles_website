@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="description" content="">
+    <meta name="author" content="">
+   <meta name="_token" content="{{csrf_token()}}" />
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
@@ -19,6 +21,7 @@
 
     <script src="{{ asset('js/jquery.min.js') }}"> </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 </head>
 <body>
