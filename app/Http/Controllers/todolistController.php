@@ -14,6 +14,7 @@ class todolistController extends Controller
       $task->user_id = Auth::user()->id;
       $task->state = 'notdone';
       $task->content = $request->content;
+      $task->deadline = $request->deadline;
       $task->save();
       return redirect()->back();
     }
@@ -21,17 +22,39 @@ class todolistController extends Controller
     public function delete(Request $request){
       $task = todolist::all()->where('id','=',$request->id)->first();
       $task->delete();
-      return redirect()->back();
     }
 
     //done todo record
-    public function update(Request $request){
+    public function done(Request $request){
       $task = todolist::all()->where('id','=',$request->id)->first();
       $task->state='done';
       $task->save();
-      return redirect()->back();
+    }
+
+
+
+    // undone todo record
+    public function undone(Request $request){
+      $task = todolist::all()->where('id','=',$request->id)->first();
+      $task->state='undone';
+      $task->save();
 
     }
+
+    // update todo content
+    public function updatecontent(Request $request){
+      $task = todolist::all()->where('id','=',$request->id)->first();
+      $task->content = $request->content;
+      $task->save();
+    }
+
+    // update todo deadline
+    public function updatedeadline(Request $request){
+      $task = todolist::all()->where('id','=',$request->id)->first();
+      $task->deadline = $request->deadline;
+      $task->save();
+    }
+  
     //edit todo record
 
 }
