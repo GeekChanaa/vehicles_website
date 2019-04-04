@@ -224,4 +224,18 @@ class servicesdashboard extends Controller
       $carwash->delete();
       return redirect()->back();
     }
+
+    public function updatecarwash(Request $request){
+      $carwash = carwash::all()->where('id','=',$request->id)->first();
+      $carwash->name = $request->name;
+      $carwash->save();
+      return redirect()->back();
+    }
+
+    public function updateworkshop(Request $request){
+      $workshop = workshop::all()->where('id','=',$request->id)->first();
+      $workshop->name = $request->name;
+      $workshop->save();
+      return redirect()->back();
+    }
   }

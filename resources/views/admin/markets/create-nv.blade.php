@@ -50,7 +50,7 @@
 <span>Turbo diesel : </span> <input type="text" name="turbo_diesel"> <br>
 <span>hybrid not flexfuel : </span> <input type="text" name="hybrid_not_flexfuel"> <br>
 <span>Conversion Package : </span> <input type="text" name="conversion_package"> <br>
-<span>Chrome Wheels 20 or larger : </span> <input type="text" name="chrome_wheels_20_or_larger"> <>
+<span>Chrome Wheels 20 or larger : </span> <input type="text" name="chrome_wheels_20_or_larger">
 
 <button type="submit" class="btn btn-dark"> Create </button>
 

@@ -398,6 +398,7 @@ class encyclopediadashboard extends Controller
     public function deletebrand(Request $request){
       $brand = brand::all()->where('id','=',$request->id)->first();
       $brand->delete();
+      return redirect()->back();
     }
 
     public function deletevmodel(Request $request){

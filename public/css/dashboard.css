@@ -58,3 +58,10 @@
 
 /* Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) { }
+
+.add-button{
+ padding-left:100vw;
+ padding-top:-20px;
+ bottom:0;
+ position : absolute;
+}

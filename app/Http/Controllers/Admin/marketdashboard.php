@@ -376,7 +376,10 @@ class marketdashboard extends Controller
     }
 
     public function newvehiclesdashboard(){
-      return view('admin.markets.newvehicles');
+      $data = [
+        'list_nv' => $this->list_nv,
+      ];
+      return view('admin.markets.newvehicles')->with($data);
     }
 
     public function usedcarpartsdashboard(){
@@ -387,7 +390,10 @@ class marketdashboard extends Controller
     }
 
     public function usedvehiclesdashboard(){
-      return view('admin.markets.usedvehicles');
+      $data=[
+        'list_uv' => $this->list_uv,
+      ];
+      return view('admin.markets.usedvehicles')->with($data);
     }
 
     public function statistics(){
@@ -586,4 +592,165 @@ class marketdashboard extends Controller
         $ucp->save();
         return redirect()->back();
         }
+
+      public function adduv(Request $request){
+        $nv = new used_vehicle_article;
+        $nv->imagefile="ok";
+        $nv->user_id = Auth::user()->id;
+        $nv->price = $request->price;
+        $nv->name = $request->name;
+        $nv->brand = $request->brand;
+        $nv->model = $request->model;
+        $nv->generation = $request->generation;
+        $nv->cd_changer_stacker = $request->cd_changer_stacker;
+        $nv->four_wheel_drive = $request->four_wheel_drive;
+        $nv->air_conditionning = $request->air_conditionning;
+        $nv->aluminum_wheels = $request->aluminum_wheels;
+        $nv->bed_liner = $request->bed_liner;
+        $nv->captains_chairs = $request->captains_chairs;
+        $nv->cruise_control = $request->cruise_control;
+        $nv->dual_air_conditionning = $request->dual_air_conditionning;
+        $nv->dual_power_seats = $request->dual_power_seats;
+        $nv->hard_top_convertible = $request->hard_top_convertible;
+        $nv->heated_seats = $request->heated_seats;
+        $nv->leather_seats = $request->leather_seats;
+        $nv->luggage_roofrack = $request->luggage_roofrack;
+        $nv->specialty_stereo_system = $request->speciality_stereo_system;
+        $nv->soft_top = $request->soft_top;
+        $nv->manual_transmission = $request->manual_transmission;
+        $nv->navigation_system = $request->navigation_system;
+        $nv->power_door_locks = $request->power_door_locks;
+        $nv->power_seat = $request->power_seat;
+        $nv->power_steering = $request->power_steering;
+        $nv->power_windows = $request->power_windows;
+        $nv->power_sunroof = $request->power_sunroof;
+        $nv->running_boards = $request->running_boards;
+        $nv->satelite_radio = $request->satelite_radio;
+        $nv->snow_plow_package = $request->snow_plow_package;
+        $nv->remote_starter = $request->remote_starter;
+        $nv->theft_deterrent_alarm = $request->theft_deterrent_alarm;
+        $nv->theft_recovery_system = $request->theft_recovery_system;
+        $nv->third_row_seats = $request->third_row_seats;
+        $nv->tilt_wheel = $request->tilt_wheel;
+        $nv->tonneau_cover_bed_cover = $request->tonneau_cover_bed_cover;
+        $nv->towing_trailerpackage = $request->towing_trailerpackage;
+        $nv->turbo_diesel = $request->turbo_diesel;
+        $nv->hybrid_not_flexfuel = $request->hybrid_not_flexfuel;
+        $nv->conversion_package = $request->conversion_package;
+        $nv->chrome_wheels_20_or_larger = $request->chrome_wheels_20_or_larger;
+        $nv->accident = $request->accident;
+        $nv->mileage = $request->mileage;
+        $nv->year = $request->year;
+        $nv->save();
+        return redirect()->back();
+      }
+
+      public function updateuv(Request $request){
+        $nv = used_vehicle_article::all()->where('id','=',$request->id)->first();
+        $nv->price = $request->price;
+        $nv->name = $request->name;
+        $nv->brand = $request->brand;
+        $nv->model = $request->model;
+        $nv->generation = $request->generation;
+        $nv->cd_changer_stacker = $request->cd_changer_stacker;
+        $nv->four_wheel_drive = $request->four_wheel_drive;
+        $nv->air_conditionning = $request->air_conditionning;
+        $nv->aluminum_wheels = $request->aluminum_wheels;
+        $nv->bed_liner = $request->bed_liner;
+        $nv->captains_chairs = $request->captains_chairs;
+        $nv->cruise_control = $request->cruise_control;
+        $nv->dual_air_conditionning = $request->dual_air_conditionning;
+        $nv->dual_power_seats = $request->dual_power_seats;
+        $nv->hard_top_convertible = $request->hard_top_convertible;
+        $nv->heated_seats = $request->heated_seats;
+        $nv->leather_seats = $request->leather_seats;
+        $nv->luggage_roofrack = $request->luggage_roofrack;
+        $nv->specialty_stereo_system = $request->speciality_stereo_system;
+        $nv->soft_top = $request->soft_top;
+        $nv->manual_transmission = $request->manual_transmission;
+        $nv->navigation_system = $request->navigation_system;
+        $nv->power_door_locks = $request->power_door_locks;
+        $nv->power_seat = $request->power_seat;
+        $nv->power_steering = $request->power_steering;
+        $nv->power_windows = $request->power_windows;
+        $nv->power_sunroof = $request->power_sunroof;
+        $nv->running_boards = $request->running_boards;
+        $nv->satelite_radio = $request->satelite_radio;
+        $nv->snow_plow_package = $request->snow_plow_package;
+        $nv->remote_starter = $request->remote_starter;
+        $nv->theft_deterrent_alarm = $request->theft_deterrent_alarm;
+        $nv->theft_recovery_system = $request->theft_recovery_system;
+        $nv->third_row_seats = $request->third_row_seats;
+        $nv->tilt_wheel = $request->tilt_wheel;
+        $nv->tonneau_cover_bed_cover = $request->tonneau_cover_bed_cover;
+        $nv->towing_trailerpackage = $request->towing_trailerpackage;
+        $nv->turbo_diesel = $request->turbo_diesel;
+        $nv->hybrid_not_flexfuel = $request->hybrid_not_flexfuel;
+        $nv->conversion_package = $request->conversion_package;
+        $nv->chrome_wheels_20_or_larger = $request->chrome_wheels_20_or_larger;
+        $nv->accident = $request->accident;
+        $nv->mileage = $request->mileage;
+        $nv->year = $request->year;
+        $nv->save();
+        return redirect()->back();
+      }
+
+      public function updatenv(Request $request){
+        $nv = new_vehicle_article::all()->where('id','=',$request->id)->first();
+        $nv->price = $request->price;
+        $nv->name = $request->name;
+        $nv->brand = $request->brand;
+        $nv->model = $request->model;
+        $nv->generation = $request->generation;
+        $nv->cd_changer_stacker = $request->cd_changer_stacker;
+        $nv->four_wheel_drive = $request->four_wheel_drive;
+        $nv->air_conditionning = $request->air_conditionning;
+        $nv->aluminum_wheels = $request->aluminum_wheels;
+        $nv->bed_liner = $request->bed_liner;
+        $nv->captains_chairs = $request->captains_chairs;
+        $nv->cruise_control = $request->cruise_control;
+        $nv->dual_air_conditionning = $request->dual_air_conditionning;
+        $nv->dual_power_seats = $request->dual_power_seats;
+        $nv->hard_top_convertible = $request->hard_top_convertible;
+        $nv->heated_seats = $request->heated_seats;
+        $nv->leather_seats = $request->leather_seats;
+        $nv->luggage_roofrack = $request->luggage_roofrack;
+        $nv->specialty_stereo_system = $request->speciality_stereo_system;
+        $nv->soft_top = $request->soft_top;
+        $nv->manual_transmission = $request->manual_transmission;
+        $nv->navigation_system = $request->navigation_system;
+        $nv->power_door_locks = $request->power_door_locks;
+        $nv->power_seat = $request->power_seat;
+        $nv->power_steering = $request->power_steering;
+        $nv->power_windows = $request->power_windows;
+        $nv->power_sunroof = $request->power_sunroof;
+        $nv->running_boards = $request->running_boards;
+        $nv->satelite_radio = $request->satelite_radio;
+        $nv->snow_plow_package = $request->snow_plow_package;
+        $nv->remote_starter = $request->remote_starter;
+        $nv->theft_deterrent_alarm = $request->theft_deterrent_alarm;
+        $nv->theft_recovery_system = $request->theft_recovery_system;
+        $nv->third_row_seats = $request->third_row_seats;
+        $nv->tilt_wheel = $request->tilt_wheel;
+        $nv->tonneau_cover_bed_cover = $request->tonneau_cover_bed_cover;
+        $nv->towing_trailerpackage = $request->towing_trailerpackage;
+        $nv->turbo_diesel = $request->turbo_diesel;
+        $nv->hybrid_not_flexfuel = $request->hybrid_not_flexfuel;
+        $nv->conversion_package = $request->conversion_package;
+        $nv->chrome_wheels_20_or_larger = $request->chrome_wheels_20_or_larger;
+        $nv->save();
+        return redirect()->back();
+      }
+
+      public function deleteuv(Request $request){
+        $uv = used_vehicle_article::all()->where('id','=',$request->id)->first();
+        $uv->delete();
+        return redirect()->back();
+      }
+
+      public function deletenv(Request $request){
+        $nv = new_vehicle_article::all()->where('id','=',$request->id)->first();
+        $nv->delete();
+        return redirect()->back();
+      }
 }

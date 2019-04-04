@@ -24,12 +24,16 @@
 
     @foreach($list_carwashes as $carwash)
     <tr>
-    <td>{{$carwash->id}} </td>
-    <td>{{$carwash->name}} </td>
+      <form class="" action="{{url('/servicesmoderator/updatecarwash')}}" method="post">
+
+        {{csrf_field()}}
+    <td>{{$carwash->id}} <input type="hidden" name="id" value="{{$carwash->id}}" </td>
+    <td><input type="text" value="{{$carwash->name}}" name="name"> </td>
     <td>{{$carwash->owner_id}} </td>
     <td>{{$carwash->created_at}} </td>
     <td>{{$carwash->updated_at}} </td>
-    <td><button class="btn btn-danger"> Update </button> </td>
+    <td><button type="submit" class="btn btn-danger"> Update </button> </td>
+      </form>
     <td>
       <form action="{{url('/servicesmoderator/deletecarwash')}}" method="post">
         {{csrf_field()}}
