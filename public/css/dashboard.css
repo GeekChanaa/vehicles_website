@@ -7,8 +7,17 @@
   border:none;
   outline:none;
 }
+*:active{
+  border:none;
+  outline:none;
+}
+*:focus{
+  outline:none !important;
+}
 :root{
   --main-blue:#559bf7;
+  --main-grey:#acacac;
+  --dark-grey:#2f3542;
 
 }
 
@@ -113,7 +122,7 @@ body{
 /* Todo list */
 
 .todos{
-  background:white;
+  background:#fcfcfc;
   -webkit-box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.1);
   -moz-box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.1);
   box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.1);
@@ -144,18 +153,33 @@ body{
 }
 
 .todo{
+  background:white;
   height:60px;
-  border-bottom:1px solid #f2f2f2;
+  border-radius: 2em;
+  margin: 1em .5em !important;
+  padding: 0 .5em;
+  box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.1);
 }
 .todo *{
   padding:0 !important;
   margin:0 !important;
 }
 
+.update-content-todo{
+  background: white;
+  font-family:Raleway;
+  font-size:17px;
+  color:var(--dark-grey);
+  font-weight: 500;
+  overflow: hidden;
+  align-self:center;
+  padding:0 .3em !important;
+}
+
 .todo button{
   display: inline-block;
-  width:20px;
-  height:20px;
+  width:15px;
+  height:15px;
   border:none;
   background:none;
   padding:.2em;
@@ -163,27 +187,37 @@ body{
 .todo .check-btn{
   line-height: 45px;
 }
-.todo .check-btn button{
+.todo .undoneTodo,.todo .doneTodo{
+  align-self: center;
   border-radius:50%;
-  border:2px solid black;
+  border:3px solid var(--main-grey);
+  margin: 0 0.2em 0 1em !important;
 }
-.todo h4{
-  font-family:Raleway;
-  font-size:16px;
-  color:#414141;
-  overflow: hidden;
-  align-self:center;
-  padding:0 .3em !important;
+
+.todo .undoneTodo{
+  border:3px solid var(--main-blue);
+  background:var(--main-blue);
+
 }
+
 .todo .delete-btn{
   height:60px;
+  color:#ee5253;
 }
 .todo ion-icon{
   height: inherit;
   font-size:20px;
   line-height: 50px;
 }
+
+.done{
+  text-decoration: line-through;
+  color:var(--main-grey);
+  font-style: italic;
+}
+
 .add-todo input{
+  background:#fcfcfc;
   height:50px;
   border:none;
   padding: 1em 1.5em 0 1.5em;
@@ -191,7 +225,7 @@ body{
   font-size:17px;
 }
 .add-todo .underline{
-  margin: 0 1.5em 0 1.5em;
+  padding: 0 1.5em 0 1.5em;
   height:2px;
   width:0;
   background:var(--main-blue);
@@ -200,6 +234,7 @@ body{
 }
 
 .add-todo button{
+  display: block;
   width:50px;
   height:50px;
   border-radius:50%;

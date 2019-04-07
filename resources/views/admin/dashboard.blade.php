@@ -58,32 +58,31 @@
 
       @foreach($list_tasks as $one)
       <!-- the tasks -->
-    <div class="todo row">
+      <div class="todo row">
       @if($one->state == 'done')
       <!-- Undone Todo -->
         <input id="id{{$one->id}}" type="hidden" value="{{$one->id}}">
-        <button class="undoneTodo" data-id="{{$one->id}}" style=" background-color:red ;" type="submit"></button>
-      </form>
+        <button class="check-btn undoneTodo" data-id="{{$one->id}}" type="submit"></button>
       @else
       <!-- done Todo -->
         <input id="id{{$one->id}}" type="hidden" value="{{$one->id}}" name="id">
-        <button class="doneTodo" data-id="{{$one->id}}" type="submit"></button>
+        <button class="check-btn doneTodo" data-id="{{$one->id}}" type="submit"></button>
        @endif
 
        <!-- Update Content of a Todo-->
-      <input class="update-content-todo content{{$one->id}}" data-id="{{$one->id}}" value="{{$one->content}}">
+        <input class="col-10 {{$one->state=='done'?'done':''}} update-content-todo content{{$one->id}}" data-id="{{$one->id}}" value="{{$one->content}}" disabled>
 
       <!-- Update deadline of a Todo-->
-      <input type="date" class="update-deadline-todo deadline{{$one->id}}" data-id="{{$one->id}}" placeholder="{{$one->deadline}}" value="{{$one->deadline}}">
-
-        <button class="delete-btn" data-id="{{$one->id}}" type="submit"><ion-icon name="trash"></ion-icon></button>
-    </div>
+        <button class="col-1 delete-btn" data-id="{{$one->id}}" type="submit"><ion-icon name="remove-circle"></ion-icon></button>
+      </div>
       @endforeach
 
       <!-- Create Todo -->
-      <input id="create-todo-content" class="col-12" type="text" placeholder="Type your todo ..">
-      <input id="create-todo-deadline" type="date">
-      <button class="createTodo mx-auto" type="submit"><ion-icon name="add"></ion-icon></button>
+      <div class="add-todo">
+        <input id="create-todo-content" class="col-12" type="text" placeholder="Type your todo ..">
+        <div class="underline"></div>
+        <button class="createTodo mx-auto" type="submit"><ion-icon name="add"></ion-icon></button>
+      </div>
   </div>
 
 </section>
@@ -195,6 +194,7 @@ jQuery(document).ready(function(){
          });
       });
 
+// Add todo
       jQuery(document).ready(function(){
             jQuery(".createTodo").on('click',function(e){
                e.preventDefault();
@@ -208,11 +208,10 @@ jQuery(document).ready(function(){
                   url: "/admin/createTodo",
                   method: 'post',
                   data: {
-                     content: $('#create-todo-content').val(),
-                     deadline: $('#create-todo-deadline').val(),
+                     content: $('#create-todo-content').val()
                       },
                   success: function(result){
-
+                    console.log(result);
                   },
                   error: function(jqXHR, textStatus, errorThrown){
                     swal('something went wrong','impossible','error');

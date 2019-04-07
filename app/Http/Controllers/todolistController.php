@@ -14,7 +14,6 @@ class todolistController extends Controller
       $task->user_id = Auth::user()->id;
       $task->state = 'notdone';
       $task->content = $request->content;
-      $task->deadline = $request->deadline;
       $task->save();
       return redirect()->back();
     }
@@ -54,7 +53,7 @@ class todolistController extends Controller
       $task->deadline = $request->deadline;
       $task->save();
     }
-  
+
     //edit todo record
 
 }

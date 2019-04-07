@@ -1,6 +1,35 @@
 // DASHBOARD FUNCTIONS
 
 
+// Toggle the underline of add-todo input ( show it when focused and hide it when blured)
+
+$('.add-todo input').focus(function(e){
+  $(this).next().css('visibility','visible');
+  $(this).next().css('width','100%');
+});
+$('.add-todo input').blur(function(e){
+  $(this).next().css('visibility','hidden');
+  $(this).next().css('width','0%');
+});
+
+$('.update-content-todo').click(function(e){
+    $(this).removeAttr('disabled');
+});
+// toggle line through the todo (line through when its done and normal styling when it's undone)
+
+$('.check-btn').click(function(e){
+  if($(this).hasClass('doneTodo')){
+    $(this).removeClass('doneTodo');
+    $(this).addClass('undoneTodo');
+    $(this).next().addClass('done');
+  }
+  else{
+    $(this).removeClass('undoneTodo');
+    $(this).addClass('doneTodo');
+    $(this).next().removeClass('done');
+  }
+});
+
 
 // Display input and delete label tag
 function changeupdate(id){
