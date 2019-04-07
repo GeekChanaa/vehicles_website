@@ -56,20 +56,31 @@
       <h2 class="col-10">Website Todo</h2>
     </div>
 
-      @foreach($list_tasks as $one)
+
+
+      @foreach($list_undone_tasks as $one)
       <!-- the tasks -->
       <div class="todo row">
-      @if($one->state == 'done')
+
+        <input id="id{{$one->id}}" type="hidden" value="{{$one->id}}" name="id">
+        <button class="check-btn doneTodo" data-id="{{$one->id}}" type="submit"></button>
+
+       <!-- Update Content of a Todo-->
+        <input class="col-10 {{$one->state=='done'?'done':''}} update-content-todo content{{$one->id}}" data-id="{{$one->id}}" value="{{$one->content}}" disabled>
+
+      <!-- Update deadline of a Todo-->
+        <button class="col-1 delete-btn" data-id="{{$one->id}}" type="submit"><ion-icon name="remove-circle"></ion-icon></button>
+      </div>
+      @endforeach
+
+
+      @foreach($list_done_tasks as $one)
+      <!-- the tasks -->
+      <div class="todo row">
       <!-- Undone Todo -->
         <input id="id{{$one->id}}" type="hidden" value="{{$one->id}}">
         <button class="check-btn undoneTodo" data-id="{{$one->id}}" type="submit"></button>
-      @else
-      <!-- done Todo -->
-        <input id="id{{$one->id}}" type="hidden" value="{{$one->id}}" name="id">
-        <button class="check-btn doneTodo" data-id="{{$one->id}}" type="submit"></button>
-       @endif
-
-       <!-- Update Content of a Todo-->
+      <!-- Update Content of a Todo-->
         <input class="col-10 {{$one->state=='done'?'done':''}} update-content-todo content{{$one->id}}" data-id="{{$one->id}}" value="{{$one->content}}" disabled>
 
       <!-- Update deadline of a Todo-->

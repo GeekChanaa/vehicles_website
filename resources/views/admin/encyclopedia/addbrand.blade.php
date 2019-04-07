@@ -6,7 +6,7 @@
 
 
 <!-- Add brand Form (possibility to add multiple Brands at once) -->
-<form class="" action="{{url('/admin/createbrand')}}" method="post">
+<form class="" action="{{url('/admin/createbrand')}}" method="post" enctype="multipart/form-data">
   {{ csrf_field() }}
 <label>Name </label> <input name="name" type="text"> <br>
 <label>Foundation Year </label> <input name="year_foundation" type="text"> <br>
@@ -18,6 +18,7 @@
 <label>Net income </label> <input name="net_income" type="text"> <br>
 <label>Number of employees </label> <input name="nbr_of_employees" type="text"> <br>
 <label>Description </label> <input name="description" type="text">
+<label>Logo </label> <input name="imagef" type="file">
 <button type="submit"> create </button>
 
 </form>

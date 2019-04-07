@@ -192,7 +192,14 @@ class dashboard extends Controller
 
     public function index(){
       $list_tasks = todolist::all();
-      return view('admin.dashboard')->with('list_tasks' , $list_tasks);
+      $list_done_tasks = todolist::all()->where('state','=','done');
+      $list_undone_tasks = todolist::all()->where('state','=','undone');
+      $data=[
+        'list_tasks' => $list_tasks,
+        'list_done_tasks' => $list_done_tasks,
+        'list_undone_tasks' => $list_undone_tasks,
+      ];
+      return view('admin.dashboard')->with($data);
     }
 
     public function users(){

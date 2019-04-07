@@ -12,7 +12,7 @@ class todolistController extends Controller
     public function create(Request $request){
       $task = new todolist;
       $task->user_id = Auth::user()->id;
-      $task->state = 'notdone';
+      $task->state = 'undone';
       $task->content = $request->content;
       $task->save();
       return redirect()->back();
