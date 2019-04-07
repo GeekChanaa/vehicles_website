@@ -7,7 +7,11 @@
 <form method="post" action="{{url('/admin/createmodel')}}">
 {{ csrf_field() }}
 <span> Model Name :  </span> <input type="text" name="name">
-<span> Brand :   </span> <input type="hidden" name="brand" value="global">
+<span> Brand :   </span> <select name="brand">
+  @foreach($list_brands as $brand)
+  <option value="{{$brand->name}}">{{$brand->name}}</option>
+  @endforeach
+</select>
 <span> Description :  </span> <input type="text" name="description">
 
 

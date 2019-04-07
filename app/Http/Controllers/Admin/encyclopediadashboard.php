@@ -308,7 +308,10 @@ class encyclopediadashboard extends Controller
     }
 
     public function addvmodel(){
-      return view('admin.encyclopedia.addmodel');
+      $data=[
+        'list_brands' => $this->list_brands,
+      ];
+      return view('admin.encyclopedia.addmodel')->with($data);
     }
 
     public function statistics(){
