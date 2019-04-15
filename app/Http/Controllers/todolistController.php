@@ -15,7 +15,8 @@ class todolistController extends Controller
       $task->state = 'undone';
       $task->content = $request->content;
       $task->save();
-      return redirect()->back();
+
+      return response()->json($task);
     }
     //delete todo record
     public function delete(Request $request){

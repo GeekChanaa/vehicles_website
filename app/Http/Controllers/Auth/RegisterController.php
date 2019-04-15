@@ -53,6 +53,7 @@ class RegisterController extends Controller
             'password' => 'required|string|min:6|confirmed',
             'num_tel' => 'required|string|min:10|max:10|unique:users',
             'address' => 'required|string|min:10',
+            'imagef' => 'required',
          ]);
     }
 
@@ -64,6 +65,9 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+      $image = $data['imagef'];
+      $image_name = $data['num_tel'] . '.' . $image->getClientOriginalExtension();
+      $image->move(public_path("img/user-pdp"),$image_name);
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],

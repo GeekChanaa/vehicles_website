@@ -57,10 +57,10 @@
     </div>
 
 
-
+<div class="tasks-div" id="todo-list">
       @foreach($list_undone_tasks as $one)
       <!-- the tasks -->
-      <div class="todo row">
+      <div id="box-del{{$one->id}}" class="todo row">
 
         <input id="id{{$one->id}}" type="hidden" value="{{$one->id}}" name="id">
         <button class="check-btn doneTodo" data-id="{{$one->id}}" type="submit"></button>
@@ -68,7 +68,6 @@
        <!-- Update Content of a Todo-->
         <input class="col-10 {{$one->state=='done'?'done':''}} update-content-todo content{{$one->id}}" data-id="{{$one->id}}" value="{{$one->content}}" disabled>
 
-      <!-- Update deadline of a Todo-->
         <button class="col-1 delete-btn" data-id="{{$one->id}}" type="submit"><ion-icon name="remove-circle"></ion-icon></button>
       </div>
       @endforeach
@@ -76,17 +75,17 @@
 
       @foreach($list_done_tasks as $one)
       <!-- the tasks -->
-      <div class="todo row">
+      <div id="box-del{{$one->id}}" class="todo row">
       <!-- Undone Todo -->
         <input id="id{{$one->id}}" type="hidden" value="{{$one->id}}">
         <button class="check-btn undoneTodo" data-id="{{$one->id}}" type="submit"></button>
       <!-- Update Content of a Todo-->
         <input class="col-10 {{$one->state=='done'?'done':''}} update-content-todo content{{$one->id}}" data-id="{{$one->id}}" value="{{$one->content}}" disabled>
 
-      <!-- Update deadline of a Todo-->
         <button class="col-1 delete-btn" data-id="{{$one->id}}" type="submit"><ion-icon name="remove-circle"></ion-icon></button>
       </div>
       @endforeach
+</div>
 
       <!-- Create Todo -->
       <div class="add-todo">
@@ -127,7 +126,7 @@
 // Done Todo
 
 jQuery(document).ready(function(){
-      jQuery(".undoneTodo").on('click',function(e){
+        jQuery("#todo-list").on('click','.doneTodo',function(e){
         var todoid=$(this).data("id");
          e.preventDefault();
          $.ajaxSetup({
@@ -154,7 +153,7 @@ jQuery(document).ready(function(){
 // Undone Todo
 
 jQuery(document).ready(function(){
-      jQuery(".doneTodo").on('click',function(e){
+      jQuery("#todo-list").on('click','.undoneTodo',function(e){
         var todoid=$(this).data("id");
          e.preventDefault();
          $.ajaxSetup({
@@ -197,7 +196,7 @@ jQuery(document).ready(function(){
                id: $("#id"+todoid).val(),
             },
             success: function(result){
-
+              $('#box-del'+todoid).html('').remove();
             },
             error: function(jqXHR, textStatus, errorThrown){
               swal('something went wrong','impossible','error');
@@ -222,7 +221,7 @@ jQuery(document).ready(function(){
                      content: $('#create-todo-content').val()
                       },
                   success: function(result){
-                    console.log(result);
+                    $('.tasks-div').prepend('<div id="box-del+'+result.id+'" class="todo row"><input id="id'+result.id+'" type="hidden" value="'+result.id+'" name="id"><button class="check-btn doneTodo" data-id="'+result.id+'" type="submit"></button><input class="col-10 update-content-todo content'+result.id+'" data-id="'+result.id+'" value="'+result.content+'" disabled><button class="col-1 delete-btn" data-id="'+result.id+'" type="submit"><ion-icon name="remove-circle"></ion-icon></button></div>')
                   },
                   error: function(jqXHR, textStatus, errorThrown){
                     swal('something went wrong','impossible','error');
