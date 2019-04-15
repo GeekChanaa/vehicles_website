@@ -255,7 +255,14 @@ body{
   display: block;
 }
 
-
+.pdp-box{
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  height:50px;
+  width:50px;
+}
 
 
 /* Small devices (landscape phones, 576px and up) */

@@ -40,7 +40,7 @@
             <ion-icon name="notifications" class="align-middle"></ion-icon>
           </li>
           <li class="nav-item nav-avatar ">
-            <img src="{{asset('img/avatar.jpg')}}" alt="">
+            <div class="pdp-box" style="background-image: url('{{asset('img/user-pdp/'.Auth::user()->num_tel.'.jpg')}}');" alt="">
           </li>
         </ul>
     </nav>
