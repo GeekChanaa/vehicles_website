@@ -105,10 +105,10 @@ body{
   color:white;
   text-align: center;
   height:70px;
+  line-height: 70px;
 }
 .section ion-icon{
   display: inline-block;
-  height:inherit;
   font-size: 25px;
 }
 .section a{
@@ -190,7 +190,7 @@ body{
 .todo .undoneTodo,.todo .doneTodo{
   align-self: center;
   border-radius:50%;
-  border:3px solid var(--main-grey);
+  border:3px solid #515151;
   margin: 0 0.2em 0 1em !important;
 }
 
