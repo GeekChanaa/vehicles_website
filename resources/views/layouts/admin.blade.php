@@ -18,6 +18,7 @@
     <link href="{{ asset('css/bootstrap-grid.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap-reboot.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/jquery-jvectormap-world-mill.js') }}">
 
     <script src="{{ asset('js/jquery.min.js') }}"> </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
@@ -51,7 +52,8 @@
         @yield('content')
 
     <!-- Scripts -->
-
+    <script src="{{ asset('js/jquery-jvectormap-2.0.3.min.js') }}"></script>
+    <script src="{{ asset('js/jquery-jvectormap-world-mill-en.js') }}"></script>
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.js') }}"></script>
     <script src="https://unpkg.com/ionicons@4.2.2/dist/ionicons.js"></script>

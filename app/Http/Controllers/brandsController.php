@@ -19,6 +19,7 @@ class brandsController extends Controller
     $brand->net_income = $request->net_income ;
     $brand->nbr_of_employees = $request->nbr_of_employees ;
     $brand->description = $request->description ;
+    $brand->specialty = $request->specialty ;
     $brand->save();
     $image = $request->file('imagef');
     $image_name = $brand->name . '.' . $image->getClientOriginalExtension();

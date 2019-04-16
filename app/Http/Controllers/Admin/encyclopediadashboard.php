@@ -26,7 +26,13 @@ class encyclopediadashboard extends Controller
 
     protected $list_generations;
 
+    // List of vehicle brands :
 
+    protected $list_vehicles_brands;
+
+    // List of Carpart Brands :
+
+    protected $list_carparts_brands;
 
 
 
@@ -240,6 +246,8 @@ class encyclopediadashboard extends Controller
 
 
     public function __construct(){
+      $this->list_vehicles_brands=brand::all()->where('specialty','=','vehicles');
+      $this->list_carparts_brands=brand::all()->where('specialty','=','carparts');
       $this->list_brands=brand::all();
       $this->list_vmodels=vmodel::all();
       $this->list_generations=generation::all();
@@ -304,7 +312,12 @@ class encyclopediadashboard extends Controller
 
 
     public function addgeneration(){
-      return view('admin.encyclopedia.addgeneration');
+
+      $data=[
+        'list_brands' => $this->list_vehicles_brands,
+        'list_models' => $this->list_vmodels,
+      ];
+      return view('admin.encyclopedia.addgeneration')->with($data);
     }
 
     public function addvmodel(){

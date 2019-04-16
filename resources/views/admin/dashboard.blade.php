@@ -98,6 +98,11 @@
 </section>
 
 
+<section class="bg-light">
+  <div id="world-map" style="width: 600px; height: 400px"></div>
+</section>
+
+
 
 <!-- Side Bar (LEFT) -->
 
@@ -279,6 +284,14 @@ jQuery(document).ready(function(){
             }});
            });
         });
+</script>
+
+
+<!-- WORLD MAP -->
+<script>
+    $(function(){
+      $('#world-map').vectorMap({map: 'world_mill_en'});
+    });
 </script>
 
 
