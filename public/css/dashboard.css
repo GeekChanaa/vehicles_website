@@ -110,6 +110,7 @@ body{
 .section ion-icon{
   display: inline-block;
   font-size: 25px;
+  padding:0;
 }
 .section a{
   align-self: center;
@@ -235,6 +236,8 @@ body{
 
 .add-todo button{
   display: block;
+  text-align: center;
+  margin: 0 auto;
   width:50px;
   height:50px;
   border-radius:50%;
@@ -249,6 +252,7 @@ body{
   font-size:23px;
   font-weight: bold;
   line-height: 40px;
+  color:white;
 }
 
 .add-generation-inp{
@@ -264,6 +268,142 @@ body{
   width:50px;
 }
 
+/* Market dashboard */
+
+.m-section{
+  height:auto !important;
+  padding:.7em 0 !important;
+  margin-left: 0 !important;
+}
+
+.m-section h2{
+  font-size:18px;
+  margin:0;
+}
+.m-section ion-icon{
+  font-size:30px;
+
+}
+.m-section+div{
+  text-align:center;
+  margin-left: auto;
+}
+.add-btn{
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+  width:30px;
+  height:30px;
+  border-radius:50%;
+  background: linear-gradient(to right, rgba(85,155,247,1) 0%, rgba(59,120,189,1) 100%);
+  border:none;
+  color:white;
+  position: relative;
+  bottom:12px;
+}
+.add-btn ion-icon{
+  display:block;
+  height:30px;
+  font-size:15px;
+  font-weight: bold;
+  line-height: 30px;
+  color:white;
+  width:55%;
+  margin:0 auto;
+}
+
+/* Blog Dashboard */
+
+.b-container{
+  margin:2em auto !important;
+  justify-content: space-around;
+}
+.b-section{
+  justify-content: center;
+  text-align: center;
+  background:white;
+  padding:2em .5em;
+  color: white;
+  border-radius: 3px;
+  box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.1);
+}
+.b-section a:first-child{
+  font-family: Open Sans;
+  font-size: 35px;
+  font-weight: 600;
+  margin-top: 0.2em;
+}
+.b-section a:hover{
+  text-decoration:none;
+  color:var(--blue);
+}
+.b-icon{
+  position: relative;
+  top:40px;
+  background: #fff;
+  width: 30px;
+  color: var(--blue);
+  font-size: 34px;
+  height: 30px;
+  padding: .6em !important;
+  border-radius: 50%;
+  border:1px solid var(--blue);
+  box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.1);
+}
+
+/* Services Dashboard */
+.s-container{
+  justify-content: space-around;
+  margin:0 auto;
+  width: 100%;
+}
+.s-section{
+  text-align: center;
+  width:100%;
+  background:#fff;
+  padding:0 !important;
+  box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.1);
+}
+.s-section div{
+  height:100px;
+  background: linear-gradient(to right, rgba(85,155,247,1) 0%, rgba(59,120,189,1) 100%);
+
+}
+.s-section ion-icon{
+  padding: 0.5em;
+  font-size: 35px;
+  background: #609fff;
+  color: #fff;
+  border-radius: 50%;
+  border: 10px solid #fff;
+  position: relative;
+  bottom: 43px;
+}
+.s-section a{
+  display: block;
+  color: #8f8f8f;
+  font-weight: 500;
+  position: relative;
+  bottom: 40px;
+  font-size: 22px;
+}
+
+/* Encyclopedia Dashboard */
+.e-container{
+  padding:0 !important;
+  margin:0 auto !important;
+}
+.e-section{
+  padding: 1em .3em;
+  background: white;
+  box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.1);
+
+}
+.e-section *{
+  padding:0 !important;
+  margin:0 !important;
+  text-align: center;
+}
 
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) { }
@@ -272,7 +412,7 @@ body{
 @media (min-width: 768px) {
   /* Dashboard sections */
   .section{
-    margin:1em 0;
+    margin:1em .5em;
     -webkit-box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.1);
     -moz-box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.1);
     box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.1);
