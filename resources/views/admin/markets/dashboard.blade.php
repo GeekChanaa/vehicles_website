@@ -12,64 +12,61 @@
 
   <div class="container mx-auto sections row">
     <div class="section row col-md-6 col-lg-3 ">
-      <div class="col-3 row" style="background:#519EF7">
+      <div class="m-section col-3 row" style="background:#519EF7">
         <ion-icon name="car" class="col-12 align-middle"></ion-icon>
-        <h2 class="col-12">120</h2>
+        <h2 class="col-12">99</h2>
       </div>
-      <a href="{{ url('/marketmoderator/newcarparts') }}" class="col-9">
-        New Carparts
-      </a>
+      <div class="col-9">
+        <a href="{{ url('/marketmoderator/newcarparts') }}" class="col-12">
+          New Carparts
+        </a>
+        <a href="{{url('/marketmoderator/createncp')}}" class="add-btn"><ion-icon name="add"></ion-icon></a>
+      </div>
     </div>
     <div class="section row col-md-6 col-lg-3 ">
-      <div class="col-3"  style="background:#488EE2">
-        <ion-icon name="quote" class="align-middle"></ion-icon>
-        <h2>120</h2>
+      <div class="m-section col-3   row" style="background:#519EF7">
+        <ion-icon name="car" class="col-12 align-middle"></ion-icon>
+        <h2 class="col-12">99</h2>
       </div>
-      <a href="{{ url('/marketmoderator/usedcarparts') }}" class="col-9">
-        Used Carparts
-      </a>
+      <div class="col-9">
+        <a href="{{ url('/marketmoderator/usedcarparts') }}" class="col-12">
+          Used Carparts
+        </a>
+        <a href="{{url('/marketmoderator/createucp')}}" class="add-btn"><ion-icon name="add"></ion-icon></a>
+      </div>
     </div>
     <div class="section row col-md-6 col-lg-3 ">
-      <div class="col-3" style="background:#3B78BD">
-        <ion-icon name="hammer" class="align-middle"></ion-icon>
+      <div class="m-section col-3 row" style="background:#519EF7">
+        <ion-icon name="car" class="col-12 align-middle"></ion-icon>
+        <h2 class="col-12">99</h2>
       </div>
-      <a href="{{ url('/marketmoderator/newvehicles') }}" class="col-9">
-        New Vehicles
-      </a>
+      <div class="col-9 ">
+        <a href="{{ url('/marketmoderator/newvehicles') }}" class="col-12">
+          New Vehicles
+        </a>
+        <div style="width:100%;text-align:center">
+          <a href="{{url('/marketmoderator/createnv')}}" class="add-btn"><ion-icon name="add"></ion-icon></a>
+        </div>
+      </div>
     </div>
     <div class="section row col-md-6 col-lg-3 ">
-      <div class="col-3" style="background:#30629F">
-        <ion-icon name="school" class="align-middle"></ion-icon>
+      <div class="m-section col-3  row" style="background:#519EF7">
+        <ion-icon name="car" class="col-12 align-middle"></ion-icon>
+        <h2 class="col-12">99</h2>
       </div>
-      <a href="{{ url('/marketmoderator/usedvehicles') }}" class="col-9">
-        Used Vehicles
-      </a>
+      <div class="col-9  ">
+        <a href="{{ url('/marketmoderator/usedvehicles') }}" class="col-12">
+          New Carparts
+        </a>
+        <a href="{{url('/marketmoderator/createuv')}}" class="add-btn"><ion-icon name="add"></ion-icon></a>
+      </div>
     </div>
+
   </div>
 <section class="bg-light">
 <div class="row">
-
-
-
-
-
-
-</div>
-
-<div class="row col-lg-12">
-  <a href="{{url('/marketmoderator/createncp')}}" class="col-lg-3 btn btn-primary"> create new carpart </a>
-  <a href="{{url('/marketmoderator/createucp')}}" class="col-lg-3 btn btn-primary"> create used carpart </a>
-  <a href="{{url('/marketmoderator/createnv')}}" class="col-lg-3 btn btn-primary"> create new vehicle</a>
-  <a href="{{url('/marketmoderator/createuv')}}" class="col-lg-3 btn btn-primary"> create used vehicle</a>
-</div>
-
-<div class="row">
   <a href="{{ url('/marketmoderator/statistics') }}" class="col-lg-3 btn btn-outline-danger"> Statistics </a>
-
-
   <!-- Route to Make A user Special ! -->
-
-
 </div>
 </section>
 
