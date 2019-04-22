@@ -26,6 +26,7 @@
     <th> Net Income </th>
     <th> Number of Employees </th>
     <th> Description </th>
+    <th> Specialty </th>
     <th> Added Date </th>
     <th> Modify </th>
     <th> Delete </th>
@@ -47,6 +48,7 @@
     <td><input value="{{$one->net_income}}" placeholder="{{$one->net_income}}" name="net_income"> </td>
     <td><input value="{{$one->nbr_of_employees}}" placeholder="{{$one->nbr_of_employees}}" name="nbr_of_employees"> </td>
     <td><input value="{{$one->description}}" placeholder="{{$one->description}}" name="description"> </td>
+    <td>{{$one->specialty}} </td>
     <td>{{$one->created_at}} </td>
     <td> <button class="btn btn-primary" type="submit"> modify </button> </td>
   </form>

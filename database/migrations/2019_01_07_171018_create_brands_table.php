@@ -22,6 +22,7 @@ class CreateBrandsTable extends Migration
             $table->string('website');
             $table->string('production_output');
             $table->string('revenue');
+            $table->string('specialty');
             $table->string('net_income');
             $table->integer('nbr_of_employees');
             $table->binary('description');
