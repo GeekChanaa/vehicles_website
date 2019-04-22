@@ -21,6 +21,7 @@ class forumController extends Controller
     return redirect()->back();
   }
 
+
   public function index(){
     // Listing of all sections
     $list_sections = section::all();
@@ -30,20 +31,30 @@ class forumController extends Controller
 
   public function newpost(){
     $list_sections = section::all();
-
     return view('blog.newpost')->with('list_sections',$list_sections);
   }
 
- public function section(){
-   $list_posts = post::all();
-   $list_comments = comment::all();
-   $list_replies = reply::all();
+ public function section($section){
+   $list_posts = post::all()->where('section','=',$section);
+   $list_comments = comment::all()->whereIn('post_id',$list_posts);
+   $list_replies = reply::all()->whereIn('comment_id',$list_comments);
    $data=[
      'list_posts' => $list_posts,
      'list_comments' => $list_comments,
      'list_replies' => $list_replies,
+     'section' => $section
    ];
    return view('blog.section')->with($data);
+ }
+
+ public function post($section,$postid){
+   $list_comments = comment::all()->where('post_id','=',$postid);
+   $list_replies = reply::all()->whereIn('comment_id',$list_comments);
+   $data=[
+     'list_comments' => $list_comments,
+     'list_replies' => $list_replies
+   ];
+   return view('blog.post')->with($data);
  }
 
   public function createcomment(Request $request){

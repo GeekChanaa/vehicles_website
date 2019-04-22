@@ -188,13 +188,28 @@ class dashboard extends Controller
 
     }
 
+    // function number of users in a country
+    public function NumberUsersInCountry($country){
+      $nbr_users = User::all()->where('country','=',$country)->count();
+      return $nbr_users;
+    }
 
+    // Table Of Number of users by country
+    public function NumberUsersEveryCountry(){
+      $list_countries = User::select('country')->distinct()->get();
+      foreach($list_countries as $country){
+              $nbr_users[$country['country']] = $this->NumberUsersInCountry($country['country']);
+      }
+      return $nbr_users;
+    }
 
     public function index(){
+      $nbr_users_by_country = $this->NumberUsersEveryCountry();
       $list_tasks = todolist::all();
       $list_done_tasks = todolist::all()->where('state','=','done');
       $list_undone_tasks = todolist::all()->where('state','=','undone');
       $data=[
+        'nbr_users_by_country' => $nbr_users_by_country,
         'list_tasks' => $list_tasks,
         'list_done_tasks' => $list_done_tasks,
         'list_undone_tasks' => $list_undone_tasks,

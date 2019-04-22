@@ -5,6 +5,14 @@
 
 
 
+<!-- Statistics -->
+<section class="bg-light">
+  <div class="row col-lg-12">
+    <button class="btn btn-outline-danger col-lg-6">{{$nbr_vmodels}} </button>
+    <button class="btn btn-outline-danger col-lg-6">{{$rate_vmodels_by_brand}} </button>
+  </div>
+</section>
+
 
 <!-- Listing of Models -->
 <section class="bg-light col-lg-12">

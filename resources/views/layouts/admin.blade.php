@@ -18,6 +18,7 @@
     <link href="{{ asset('css/bootstrap-grid.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap-reboot.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/jquery-jvectormap-2.0.3.css') }}" rel="stylesheet">
     <link href="{{ asset('css/jquery-jvectormap-world-mill.js') }}">
 
     <script src="{{ asset('js/jquery.min.js') }}"> </script>

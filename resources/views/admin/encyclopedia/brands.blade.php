@@ -5,7 +5,12 @@
 
 <!-- Header For Page -->
 <section>
-
+<h1> Statistics </h1>
+<div class="row col-lg-12">
+  <button class="btn btn-outline-danger col-lg-4"> {{$nbr_brands}} </button>
+  <button class="btn btn-outline-danger col-lg-4"> {{$nbr_carpart_brands}} </button>
+  <button class="btn btn-outline-danger col-lg-4"> {{$nbr_vehicle_brands}} </button>
+</div>
 </section>
 
 

@@ -4,11 +4,14 @@
 
 @section('content')
 
+<h1>
+  {{$section}}
+</h1>
 
 <section class="bg-light">
 @foreach($list_posts as $post)
 <div class="row col-lg-12">
-  <h1> {{$post->title}} </h1>
+  <h1> <a href="{{url('/blog/'.$section.'/'.$post->id.'')}}"> {{$post->title}} </a> </h1>
   <span> {{$post->content}} </span>
 
   <!-- Listing Of All Comments Of A Post -->
@@ -51,6 +54,17 @@
 
 </div>
 @endforeach
+
+<div class="row col-lg-12 offset-lg-3">
+  <form action="{{url('/blog/createpost')}}" method="post">
+    {{csrf_field()}}
+
+    <span> title : </span> <input type="text" name="title"> <br>
+    <span> content : </span> <input type="text" name="content"> <br>
+    <input type="hidden" value="{{$section}}" name="section">
+    <button class="btn btn-danger"> Create </button>
+  </form>
+</div>
 
 </section>
 

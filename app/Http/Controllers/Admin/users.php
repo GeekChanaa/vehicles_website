@@ -9,6 +9,9 @@ use App\User;
 
 class users extends Controller
 {
+
+    
+
     //
     public function delete(Request $request){
       $user = user::all()->where('id','=',$request->id)->first();
@@ -36,4 +39,6 @@ class users extends Controller
       $user->blog_score = $request->blog_score;
       $user->save();
     }
+
+
 }

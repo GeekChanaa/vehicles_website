@@ -188,7 +188,13 @@ Route::get('/market/newcarpart','marketController@newcarpart');
 Route::get('/blog','forumController@index');
 
 // Section Page (listing All Posts with all comments and replies)
-Route::get('/blog/section','forumController@section');
+Route::get('/blog/{section}','forumController@section');
+
+// Post Page (listing all comments and replies of the post)
+Route::get('/blog/{section}/{postid}','forumController@post');
+
+// Create Post :
+Route::post('/blog/createpost','forumController@createpost');
 
 // Create Comment :
 Route::post('/blog/createcomment','forumController@createcomment');

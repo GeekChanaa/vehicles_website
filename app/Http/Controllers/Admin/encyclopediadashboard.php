@@ -48,6 +48,14 @@ class encyclopediadashboard extends Controller
 
     protected $nbr_brands;
 
+    // Number of carpart brands
+
+    protected $nbr_carpart_brands;
+
+    // Number of vehicle brands
+
+    protected $nbr_vehicle_brands;
+
     // Number of vmodels
 
     protected $nbr_vmodels;
@@ -246,6 +254,8 @@ class encyclopediadashboard extends Controller
 
 
     public function __construct(){
+      $this->nbr_carpart_brands=brand::all()->where('specialty','=','carparts')->count();
+      $this->nbr_vehicle_brands=brand::all()->where('specialty','=','vehicles')->count();
       $this->list_vehicles_brands=brand::all()->where('specialty','=','vehicles');
       $this->list_carparts_brands=brand::all()->where('specialty','=','carparts');
       $this->list_brands=brand::all();
@@ -392,21 +402,35 @@ class encyclopediadashboard extends Controller
 
     // Listing of models
     public function brands(){
-      $list_brands = $this->list_brands;
-      return view('admin.encyclopedia.brands')->with('list_brands',$list_brands);
+      $data=[
+        'list_brands' => $this->list_brands,
+        'nbr_brands' => $this->nbr_brands,
+        'nbr_vehicle_brands' => $this->nbr_vehicle_brands,
+        'nbr_carpart_brands' => $this->nbr_carpart_brands,
+      ];
+      return view('admin.encyclopedia.brands')->with($data);
     }
 
 
     // Listing Of Models
     public function models(){
-
-      return view('admin.encyclopedia.models')->with('list_models',$this->list_vmodels);
+      $data=[
+        'list_models' => $this->list_vmodels,
+        'nbr_vmodels' => $this->nbr_vmodels,
+        'rate_vmodels_by_brand' => $this->nbr_vmodels/($this->nbr_brands+0.1),
+      ];
+      return view('admin.encyclopedia.models')->with($data);
     }
 
 
     // Listing Of generations
     public function generations(){
-      return view('admin.encyclopedia.generations');
+      $rate_generation_by_model = $this->nbr_generations/($this->nbr_vmodels+0.1);
+      $data=[
+        'rate_generation_by_model' => $rate_generation_by_model,
+        'nbr_generations' => $this->nbr_generations,
+      ];
+      return view('admin.encyclopedia.generations')->with($data);
     }
 
     // Delete Model Function
