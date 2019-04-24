@@ -192,7 +192,7 @@ jQuery(document).ready(function(){
 // Delete Todo
 
 jQuery(document).ready(function(){
-      jQuery(".delete-btn").on('click',function(e){
+      jQuery("#todo-list").on('click','.delete-btn',function(e){
         var todoid=$(this).data("id");
          e.preventDefault();
          $.ajaxSetup({
@@ -233,7 +233,7 @@ jQuery(document).ready(function(){
                      content: $('#create-todo-content').val()
                       },
                   success: function(result){
-                    $('.tasks-div').prepend('<div id="box-del+'+result.id+'" class="todo row"><input id="id'+result.id+'" type="hidden" value="'+result.id+'" name="id"><button class="check-btn doneTodo" data-id="'+result.id+'" type="submit"></button><input class="col-10 update-content-todo content'+result.id+'" data-id="'+result.id+'" value="'+result.content+'" disabled><button class="col-1 delete-btn" data-id="'+result.id+'" type="submit"><ion-icon name="remove-circle"></ion-icon></button></div>')
+                    $('.tasks-div').prepend('<div id="box-del'+result.id+'" class="todo row"><input id="id'+result.id+'" type="hidden" value="'+result.id+'" name="id"><button class="check-btn doneTodo" data-id="'+result.id+'" type="submit"></button><input class="col-10 update-content-todo content'+result.id+'" data-id="'+result.id+'" value="'+result.content+'" disabled><button class="col-1 delete-btn" data-id="'+result.id+'" type="submit"><ion-icon name="remove-circle"></ion-icon></button></div>')
                   },
                   error: function(jqXHR, textStatus, errorThrown){
                     swal('something went wrong','impossible','error');

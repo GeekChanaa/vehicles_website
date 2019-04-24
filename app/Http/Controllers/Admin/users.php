@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 use App\Http\Controllers\Controller;
 use Auth;
 use App\User;
@@ -10,12 +12,14 @@ use App\User;
 class users extends Controller
 {
 
-    
+
 
     //
     public function delete(Request $request){
       $user = user::all()->where('id','=',$request->id)->first();
+      File::delete('img/user-pdp/'.$user->num_tel.'.jpeg');
       $user->delete();
+
     }
 
     public function update(Request $request){

@@ -69,7 +69,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
       $image = $data['imagef'];
-      $image_name = $data['num_tel'] . '.' . $image->getClientOriginalExtension();
+      $image_name = $data['num_tel'] . '.jpeg';
       $image->move(public_path("img/user-pdp"),$image_name);
         return User::create([
             'name' => $data['name'],
