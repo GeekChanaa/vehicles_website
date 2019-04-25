@@ -28,7 +28,7 @@
 </head>
 <body>
     <nav class="navbar navbar-expand navbar-primary main-nav">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="{{url('/Dashboard')}}">
           <img src="{{asset('img/logo.png')}}" alt="">
         </a>
         <ul class="navbar-nav ml-auto">

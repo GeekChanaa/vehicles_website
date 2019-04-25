@@ -1,0 +1,4 @@
+• Log out button in admin
+• When a new to do is created we enable to edit it
+• Delete image when deleting user
+• headquarters is a select box and not a simple text input 
