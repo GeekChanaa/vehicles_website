@@ -10,26 +10,29 @@
 
 
 <!-- Routes to other functionalities -->
-<section>
-  <div class="row col-lg-12 offset-lg-4">
-    <h1> Routes To other dashboards  </h1>
-  </div>
+<section class="content-wrapper">
   <div class="container-fluid e-container row">
-    <div class="row col-12" style="justify-content:space-around;margin-bottom:1em">
-      <div class="e-section row col-md-3 col-12">
-        <ion-icon name="pricetag" class="col-2"></ion-icon>
-        <a href="{{url('/encyclopediamoderator/brands')}}" class="col-8"> Brands </a>
-        <a class="plus col-2" href="{{url('/editor/addbrand')}}"><ion-icon name="add"></ion-icon></a>
+    <div class="row col-12" style="justify-content:space-around;margin:1em 0">
+      <div class="row col-md-3 col-12">
+        <div class="e-section">
+          <ion-icon name="pricetag"></ion-icon>
+          <a href="{{url('/encyclopediamoderator/brands')}}"> Brands </a>
+          <a class="plus" href="{{url('/editor/addbrand')}}"><ion-icon name="add"></ion-icon></a>
+        </div>
       </div>
-      <div class="e-section row col-md-3 col-12">
-        <ion-icon name="logo-model-s" class="col-2"></ion-icon>
-        <a href="{{url('/encyclopediamoderator/models')}}" class="col-8"> Models </a>
-        <a class="plus col-2" href="{{url('/editor/addmodel')}}"><ion-icon name="add"></ion-icon></a>
+      <div class="row col-md-3 col-12">
+        <div class="e-section">
+          <ion-icon name="logo-model-s"></ion-icon>
+          <a href="{{url('/encyclopediamoderator/models')}}"> Models </a>
+          <a class="plus" href="{{url('/editor/addmodel')}}"><ion-icon name="add"></ion-icon></a>
+        </div>
       </div>
-      <div class="e-section row col-md-3 col-12">
-        <ion-icon name="bug" class="col-2"></ion-icon>
-        <a href="{{url('/encyclopediamoderator/generations')}}" class="col-8"> Generations </a>
-        <a class="plus col-2" href="{{url('/editor/addgeneration')}}"><ion-icon name="add"></ion-icon></a>
+      <div class="row col-md-3 col-12">
+        <div class="e-section">
+          <ion-icon name="bug"></ion-icon>
+          <a href="{{url('/encyclopediamoderator/generations')}}"> Generations </a>
+          <a class="plus" href="{{url('/editor/addgeneration')}}"><ion-icon name="add"></ion-icon></a>
+        </div>
       </div>
     </div>
     <div class="row col-12">

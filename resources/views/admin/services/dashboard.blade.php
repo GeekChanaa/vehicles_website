@@ -8,22 +8,25 @@
 
 
 
-<section>
-  <div class="row col-lg-12 offset-lg-4">
-    <h1> Routes To other dashboards  </h1>
-  </div>
-    <div class="s-container row col-12">
-      <div class="s-section col-10 col-sm-5 col-md-4">
-        <div class="upper-bg"></div>
-        <ion-icon name="car"></ion-icon>
-        <a href="{{url('/servicesmoderator/carwashes')}}"> Carwashes </a>
+<section class="content-wrapper">
+  <div class="container-fluid e-container row">
+    <div class="row col-12" style="justify-content:center;margin:1em 0">
+      <div class="row col-lg-3 col-md-6 col-12" style="margin:0 .5em">
+          <div class="e-section">
+            <ion-icon name="car"></ion-icon>
+            <a href="{{url('/servicesmoderator/carwashes')}}"> Carwashes </a>
+            <a class="plus" href="{{url('/marketmoderator/createncp')}}"><ion-icon name="add"></ion-icon></a>
+          </div>
       </div>
-      <div class="s-section col-10 col-sm-5 col-md-4">
-        <div class="upper-bg"></div>
-        <ion-icon name="build"></ion-icon>
-        <a href="{{url('/servicesmoderator/workshops')}}"> Workshops </a>
+      <div class="row col-lg-3 col-md-6 col-12" style="margin:0 .5em">
+        <div class="e-section">
+          <ion-icon name="build"></ion-icon>
+          <a href="{{url('/servicesmoderator/workshops')}}"> Workshops </a>
+          <a class="plus" href="{{url('/marketmoderator/createncp')}}"><ion-icon name="add"></ion-icon></a>
+        </div>
       </div>
     </div>
+  </div>
 </section>
 
 

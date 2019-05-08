@@ -20,7 +20,7 @@
 
 
 
-<section class="container mx-auto">
+<section class="content-wrapper">
     <!-- Routes to other Dashboards -->
   <div class="sections row">
     <div class="section row col-md-6 col-lg-3 ">
@@ -104,11 +104,7 @@
 
 
 
-<section>
 
-{{$nbr_users_by_country['Morocco']}}
-
-</section>
 
 
 <!-- Side Bar (LEFT) -->
