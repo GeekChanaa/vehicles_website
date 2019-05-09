@@ -57,6 +57,14 @@ class nvaController extends Controller
     $nvh->conversion_package = $request->conversion_package ;
     $nvh->chrome_wheels_20_or_larger = $request->chrome_wheels_20_or_larger ;
     $nvh->save();
+    $images = Input::file('pictures');
+    $i = 0;
+    foreach($images as $image){
+      $i++;
+      $image_name = $i.'.'. $image->getClientOriginalExtension();
+      $image->storeAs('/public/brands/'.$nvh->id,$image_name);
+    }
+
   }
     //
 }

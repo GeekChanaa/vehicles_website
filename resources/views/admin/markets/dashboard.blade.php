@@ -56,7 +56,7 @@
       </div>
       <div class="col-9  ">
         <a href="{{ url('/marketmoderator/usedvehicles') }}" class="col-12">
-          New Carparts
+          Used Vehicles
         </a>
         <a href="{{url('/marketmoderator/createuv')}}" class="add-btn"><ion-icon name="add"></ion-icon></a>
       </div>

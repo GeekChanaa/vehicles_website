@@ -9,24 +9,11 @@
 
 <div class="row col-lg-12">
   <button class="btn btn-outline-danger">
-    Number of Articles (last day) : {{$nbr_recent_uv_today}}
-  </button>
-  <button class="btn btn-outline-danger">
-    Number of Articles (last week) : {{$nbr_recent_uv_last_week}}
-  </button>
-  <button class="btn btn-outline-danger">
-    Number of Articles (last month) : {{$nbr_recent_uv_last_month}}
-  </button>
-  <button class="btn btn-outline-danger">
-    Number of Articles (last year) : {{$nbr_recent_uv_last_year}}
+    Number of Articles : {{$nbr_uv_articles['0']->sum}}
   </button>
 </div>
 <div class="row col-lg-12">
-  <div> Last week added articles (by day) </div>
-  <div>
-    <canvas id="uv_chart_last_week"></canvas>
-  </div>
-  <div> Last week added articles (by month) </div>
+  <div> Number of articles by Year </div>
   <div>
     <canvas id="uv_chart_last_year"></canvas>
   </div>
@@ -140,6 +127,10 @@
   </table>
 </div>
 
+<div>
+  {{$list_uv->links()}}
+</div>
+
 </section>
 
 <script>
@@ -150,22 +141,12 @@ var replies_chart = new Chart(c2, {
     labels : ["first month","second month","third month","forth month","fifth month","sixth month","seventh month","eighth month","nineth month","tenth month","eleventh month","twelveth month"],
     datasets: [{
       label : "Number of New Carparts",
-      data :['{{$nbr_recent_uv_last_month}}','{{$nbr_recent_uv_last_2nd_month}}','{{$nbr_recent_uv_last_3rd_month}}','{{$nbr_recent_uv_last_4th_month}}','{{$nbr_recent_uv_last_5th_month}}','{{$nbr_recent_uv_last_6th_month}}','{{$nbr_recent_uv_last_7th_month}}','{{$nbr_recent_uv_last_8th_month}}','{{$nbr_recent_uv_last_9th_month}}','{{$nbr_recent_uv_last_10th_month}}','{{$nbr_recent_uv_last_11th_month}}','{{$nbr_recent_uv_last_12th_month}}'],
+      data :['{{$nbr_recent_uv_month['1']['0']->sum}}','{{$nbr_recent_uv_month['2']['0']->sum}}','{{$nbr_recent_uv_month['3']['0']->sum}}','{{$nbr_recent_uv_month['4']['0']->sum}}','{{$nbr_recent_uv_month['5']['0']->sum}}','{{$nbr_recent_uv_month['6']['0']->sum}}','{{$nbr_recent_uv_month['7']['0']->sum}}','{{$nbr_recent_uv_month['8']['0']->sum}}','{{$nbr_recent_uv_month['9']['0']->sum}}','{{$nbr_recent_uv_month['10']['0']->sum}}','{{$nbr_recent_uv_month['11']['0']->sum}}','{{$nbr_recent_uv_month['12']['0']->sum}}'],
     }]
   },
 });
 
-var c1 = document.getElementById("uv_chart_last_week");
-var replies_chart = new Chart(c1, {
-  type : 'line',
-  data : {
-    labels : ["first day","second day","third day","forth day","fifth day","sixth day","seventh day"],
-    datasets: [{
-      label : "Number of New Carparts",
-      data :['{{$nbr_recent_uv_today}}','{{$nbr_recent_uv_last_2nd_day}}','{{$nbr_recent_uv_last_3rd_day}}','{{$nbr_recent_uv_last_4th_day}}','{{$nbr_recent_uv_last_5th_day}}','{{$nbr_recent_uv_last_6th_day}}','{{$nbr_recent_uv_last_7th_day}}'],
-    }]
-  },
-});
+
 </script>
 
 

@@ -4,7 +4,8 @@
 
 
 <!-- Add Generation Form (possibility to add multiple Brands at once) -->
-<form  action="{{url('/admin/creategeneration')}}" method="post">
+<form  action="{{url('/admin/creategeneration')}}" method="post" enctype="multipart/form-data">
+  {{csrf_field(   )}}
   <span class="add-generation-sp">Name : </span> <input class="add-generation-inp" type="text" name="name">
   <span class="add-generation-sp">Brand : </span> <select class="add-generation-inp" name="brand">
     @foreach($list_brands as $brand)
@@ -48,8 +49,8 @@
   <span class="add-generation-sp">Front Overhang : </span> <input class="add-generation-inp" type="text" name="front_overhang">
   <span class="add-generation-sp">Rear Overhang : </span> <input class="add-generation-inp" type="text" name="rear_overhang">
   <span class="add-generation-sp">Wading depth :  </span> <input class="add-generation-inp" type="text" name="wading_depth">
-  <span class="add-generation-sp">Minimum Volume luggage (trunk) : </span> <input class="add-generation-inp" type="text" name="minimum_volume_luggage_(trunk)">
-  <span class="add-generation-sp">Maximum volume luggage (trunk) : </span> <input class="add-generation-inp" type="text" name="maximum_volume_luggage_(trunk)">
+  <span class="add-generation-sp">Minimum Volume luggage (trunk) : </span> <input class="add-generation-inp" type="text" name="minimum_volume_luggage_trunk">
+  <span class="add-generation-sp">Maximum volume luggage (trunk) : </span> <input class="add-generation-inp" type="text" name="maximum_volume_luggage_trunk">
   <span class="add-generation-sp">Model Engine :  </span> <input class="add-generation-inp" type="text" name="model_engine">
 
   <span class="add-generation-sp">Position Engine : </span>
@@ -135,8 +136,8 @@
     <option>Front Wheel Drive </option>
     <option>All Wheel Drive (4x4) </option>
   </select>
-  <span class="add-generation-sp">Number of Gears (automatic transmission) : </span> <input class="add-generation-inp" type="text" name="number_of_gears_(automatic_transmission)">
-  <span class="add-generation-sp">Number of Gears (manual transmission) : </span> <input class="add-generation-inp" type="text" name="number_of_gears_(manual_transmission)">
+  <span class="add-generation-sp">Number of Gears (automatic transmission) : </span> <input class="add-generation-inp" type="text" name="number_of_gears_automatic_transmission">
+  <span class="add-generation-sp">Number of Gears (manual transmission) : </span> <input class="add-generation-inp" type="text" name="number_of_gears_manual_transmission">
   <span class="add-generation-sp">Front Suspension : </span>
   <select class="add-generation-inp" name="front_suspension">
     <option value="Co McPherson strut">Co McPherson strut </option>
@@ -231,17 +232,17 @@
     <option value="Steering rack">Steering rack </option>
   </select>
   <span class="add-generation-sp">Power steering : </span> <input class="add-generation-inp" type="text" name="power_steering">
-  <span class="add-generation-sp">Minimum turning circle (turning diameter) : </span> <input class="add-generation-inp" type="text" name="minimum_turning_circle_(turning_diameter)">
-  <span class="add-generation-sp">Fuel consumption (economy) urban : </span> <input class="add-generation-inp" type="text" name="fuel_consumption_(economy)_urban">
-  <span class="add-generation-sp">Fuel consumption (economy) extra urban : </span> <input class="add-generation-inp" type="text" name="fuel_consumption_(economy)_extra_urban">
-  <span class="add-generation-sp">Fuel consumption (economy) combined : </span> <input class="add-generation-inp" type="text" name="fuel_consumption_(economy)_combined">
+  <span class="add-generation-sp">Minimum turning circle (turning diameter) : </span> <input class="add-generation-inp" type="text" name="minimum_turning_circle_turning_diameter">
+  <span class="add-generation-sp">Fuel consumption (economy) urban : </span> <input class="add-generation-inp" type="text" name="fuel_consumption_economy_urban">
+  <span class="add-generation-sp">Fuel consumption (economy) extra urban : </span> <input class="add-generation-inp" type="text" name="fuel_consumption_economy_extra_urban">
+  <span class="add-generation-sp">Fuel consumption (economy) combined : </span> <input class="add-generation-inp" type="text" name="fuel_consumption_economy_combined">
   <span class="add-generation-sp">Emission standard : </span> <input class="add-generation-inp" type="text" name="emission_standard">
   <span class="add-generation-sp">CO2 Emissions : </span> <input class="add-generation-inp" type="text" name="CO2_emissions">
   <span class="add-generation-sp">Kerb weight :  </span> <input class="add-generation-inp" type="text" name="kerb_weight">
   <span class="add-generation-sp">Max weight :  </span> <input class="add-generation-inp" type="text" name="max_weight">
   <span class="add-generation-sp">Max roof load : </span> <input class="add-generation-inp" type="text" name="max_roof_load">
-  <span class="add-generation-sp">Permitted trailer load with brakes (8%) : </span> <input class="add-generation-inp" type="text" name="permitted_trailer_load_with_brakes_(8%)">
-  <span class="add-generation-sp">Permitted trailed load with brakes (12%) : </span> <input class="add-generation-inp" type="text" name="permitted_trailer_load_with_brakes_(12%)">
+  <span class="add-generation-sp">Permitted trailer load with brakes (8%) : </span> <input class="add-generation-inp" type="text" name="permitted_trailer_load_with_brakes_8percent">
+  <span class="add-generation-sp">Permitted trailed load with brakes (12%) : </span> <input class="add-generation-inp" type="text" name="permitted_trailer_load_with_brakes_12percent">
   <span class="add-generation-sp">Permitted trailed load with brakes without brakes : </span> <input class="add-generation-inp" type="text" name="permitted_trailer_load_without_brakes">
   <span class="add-generation-sp">Permitted towbar download : </span> <input class="add-generation-inp" type="text" name="permitted_towbar_download">
   <span class="add-generation-sp">Tire size : </span> <input class="add-generation-inp" type="text" name="tire_size">
@@ -253,6 +254,9 @@
   <span class="add-generation-sp">ICE power : </span> <input class="add-generation-inp" type="text" name="ICE_power">
   <span class="add-generation-sp">ICE torque : </span> <input class="add-generation-inp" type="text" name="ICE_torque">
   <span class="add-generation-sp">Average energy consumption : </span class="add-generation-sp"> <input class="add-generation-inp" type="text" name="average_energy_consumption">
+  <span class="add-generation-sp">Front </span> <input name="image_front" type="file"> <br>
+  <span class="add-generation-sp">Side </span> <input name="image_side" type="file"> <br>
+  <span class="add-generation-sp">Rear </span> <input name="image_rear" type="file"> <br>
   <button type="submit" class="btn btn-danger"> Go </button>
 </form>
 
@@ -260,7 +264,7 @@
 
 
 
-<!-- Add the Logo And Images (multiple images possible too) of the generation (possibility to upload image or to write its name directly)-->
+<!-- Add Images (multiple images possible too) of the generation (possibility to upload image or to write its name directly)-->
 
 
 

@@ -54,7 +54,7 @@
 </tbody>
 
 </table>
-
+{{$list_models->links()}}
 
 
 </section>

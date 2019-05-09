@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\brand;
+use Storage;
 
 class brandsController extends Controller
 {
@@ -21,10 +22,14 @@ class brandsController extends Controller
     $brand->description = $request->description ;
     $brand->specialty = $request->specialty ;
     $brand->save();
+
     $image = $request->file('imagef');
     $image_name = $brand->name . '.' . $image->getClientOriginalExtension();
-    $image->move(public_path("img/brands"),$image_name);
+    $image->storeAs('/public/brands',$image_name);
     return redirect()->back();
     }
-    //
+
+
+    //Test if Picture  :
+
 }

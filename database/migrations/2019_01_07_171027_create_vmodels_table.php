@@ -15,9 +15,9 @@ class CreateVmodelsTable extends Migration
     {
         Schema::create('vmodels', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('brand');
-            $table->binary('description');
+            $table->string('name')->nullable();
+            $table->string('brand')->nullable();
+            $table->binary('description')->nullable();
             $table->timestamps();
         });
     }

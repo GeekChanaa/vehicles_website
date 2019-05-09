@@ -30,6 +30,69 @@ $('.check-btn').click(function(e){
   }
 });
 
+function listnv(){
+$('#list_nv').show();
+$('#list_uv').hide();
+$('#list_ncp').hide();
+$('#list_ucp').hide();
+}
+
+function listuv(){
+  $('#list_nv').hide();
+  $('#list_uv').show();
+  $('#list_ncp').hide();
+  $('#list_ucp').hide();
+}
+
+function listucp(){
+  $('#list_nv').hide();
+  $('#list_uv').hide();
+  $('#list_ncp').hide();
+  $('#list_ucp').show();
+}
+
+function listncp(){
+  $('.list_nv').hide();
+  $('.list_uv').hide();
+  $('.list_ncp').show();
+  $('.list_ucp').hide();
+}
+
+function listposts(){
+  $('.listposts').show();
+  $('.listcomments').hide();
+  $('.listreplies').hide();
+}
+
+function listcomments(){
+  $('.listposts').hide();
+  $('.listcomments').show();
+  $('.listreplies').hide();
+}
+
+function listreplies(){
+  $('.listposts').hide();
+  $('.listcomments').hide();
+  $('.listreplies').show();
+}
+
+function listbrands(){
+  $('.listbrands').show();
+  $('.listmodels').hide();
+  $('.listgenerations').hide();
+}
+
+function listmodels(){
+  $('.listbrands').hide();
+  $('.listmodels').show();
+  $('.listgenerations').hide();
+}
+
+function listgenerations(){
+  $('.listbrands').hide();
+  $('.listmodels').hide();
+  $('.listgenerations').show();
+}
 
 // Display input and delete label tag
 function changeupdate(id){

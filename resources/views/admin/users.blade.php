@@ -58,7 +58,7 @@
      <button class="btn btn-dark submit-update" type="submit"> update </button>
   </td>
 </form>
-  
+
   <td>
 
     <input name="id" id="id{{$one->id}}" type="hidden" value="{{$one->id}}">

@@ -15,9 +15,9 @@ class CreateNewsTable extends Migration
     {
         Schema::create('news', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title');
-            $table->binary('content');
-            $table->unsignedInteger('editor_id');
+            $table->string('title')->nullable();
+            $table->binary('content')->nullable();
+            $table->unsignedInteger('editor_id')->nullable();
             $table->foreign('editor_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });

@@ -5,7 +5,7 @@
 @section('content')
 
 <section class="bg-light">
-  
+
 </section>
 
 @endsection

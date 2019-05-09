@@ -15,17 +15,17 @@ class CreateBrandsTable extends Migration
     {
         Schema::create('brands', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('year_foundation');
-            $table->string('headquarters');
-            $table->string('CEO');
-            $table->string('website');
-            $table->string('production_output');
-            $table->string('revenue');
-            $table->string('specialty');
-            $table->string('net_income');
-            $table->integer('nbr_of_employees');
-            $table->binary('description');
+            $table->string('name')->nullable();
+            $table->string('year_foundation')->nullable();
+            $table->string('headquarters')->nullable();
+            $table->string('CEO')->nullable();
+            $table->string('website')->nullable();
+            $table->string('production_output')->nullable();
+            $table->string('revenue')->nullable();
+            $table->string('specialty')->nullable();
+            $table->string('net_income')->nullable();
+            $table->integer('nbr_of_employees')->nullable();
+            $table->binary('description')->nullable();
             $table->timestamps();
         });
     }

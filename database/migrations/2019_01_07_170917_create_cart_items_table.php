@@ -17,9 +17,9 @@ class CreateCartItemsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('item');
-            $table->float('price');
-            $table->integer('quantity');
+            $table->string('item')->nullable();
+            $table->float('price')->nullable();
+            $table->integer('quantity')->nullable();
             $table->timestamps();
         });
     }

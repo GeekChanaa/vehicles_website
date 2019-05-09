@@ -17,9 +17,9 @@ class CreatePostsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('content');
-            $table->string('title');
-            $table->string('section');
+            $table->text('content')->nullable();
+            $table->string('title')->nullable();
+            $table->string('section')->nullable();
             $table->integer('upvotes')->default('0');
             $table->float('rating')->default('0');
             $table->timestamps();

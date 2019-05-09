@@ -17,11 +17,14 @@ class CreateNewCarpartArticlesTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('name');
-            $table->string('brand');
-            $table->string('category');
-            $table->string('compatible_cars');
-            $table->string('description');
+            $table->string('name')->nullable();
+            $table->string('country')->nullable();
+            $table->string('auto_part');
+            $table->string('category')->nullable();
+            $table->string('city')->nullable();
+            $table->string('brand')->nullable();
+            $table->string('compatible_cars')->nullable();
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }

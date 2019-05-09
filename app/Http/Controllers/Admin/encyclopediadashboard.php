@@ -2,411 +2,108 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\brand;
+use App\country;
 use App\generation;
 use App\technology;
 use App\vmodel;
 
 class encyclopediadashboard extends Controller
 {
-    //Vars :
 
+    // ################### GETTERS ################### //
+    public function ListModels(){
+      return vmodel::paginate(50);
+    }
 
-    // List Of brands
+    public function ListBrands(){
+      return brand::paginate(50);
+    }
 
-    protected $list_brands;
+    public function ListGenerations(){
+      return generation::paginate(50);
+    }
 
-    // List of vmodels
+    public function getListVehicleBrands(){
+      return brand::all()->where('specialty','=','vehicles');
+    }
 
-    protected $list_vmodels;
+    public function getListCarpartBrands(){
+      return brand::all()->where('specialty','=','carparts');
+    }
 
-    // List of generations
+    public function getNbrBrands(){
+      return brand::all()->count();
+    }
 
-    protected $list_generations;
+    public function getNbrModels(){
+      return vmodel::all()->count();
+    }
 
-    // List of vehicle brands :
+    public function getNbrGenerations(){
+      return generation::all()->count();
+    }
 
-    protected $list_vehicles_brands;
+    public function getNbrVehicleBrands(){
+      return brand::all()->where('specialty','=','vehicles')->count();
+    }
 
-    // List of Carpart Brands :
-
-    protected $list_carparts_brands;
-
-
-
-    // List of Technology
-
-    protected $list_technologies;
-
-
-
-    /* Statistics Variables */
-
-    // Number of brands
-
-    protected $nbr_brands;
-
-    // Number of carpart brands
-
-    protected $nbr_carpart_brands;
-
-    // Number of vehicle brands
-
-    protected $nbr_vehicle_brands;
-
-    // Number of vmodels
-
-    protected $nbr_vmodels;
-
-    // Number of generations
-
-    protected $nbr_generations;
-
-    // Number of last day created brands
-
-    protected $nbr_brands_last_day;
-
-    // number of last week created brands
-
-    protected $nbr_brands_last_week;
-
-    // Number of last month created brands
-
-    protected $nbr_brands_last_month;
-
-    // Number of 2nd last month created brands
-
-    protected $nbr_brands_last_2nd_month;
-
-    // Number of 3rd last month created brands
-
-    protected $nbr_brands_last_3rd_month;
-
-    // Number of 4th last month created brands
-
-    protected $nbr_brands_last_4th_month;
-
-    // Number of 5th last month created brands
-
-    protected $nbr_brands_last_5th_month;
-
-    // Number of 6th last month created brands
-
-    protected $nbr_brands_last_6th_month;
-
-    // Number of 7th last month created brands
-
-    protected $nbr_brands_last_7th_month;
-
-    // Number of 8th last month created brands
-
-    protected $nbr_brands_last_8th_month;
-
-    // Number of 9th last month created brands
-
-    protected $nbr_brands_last_9th_month;
-
-    // Number of 10th last month created brands
-
-    protected $nbr_brands_last_10th_month;
-
-    // Number of 11th last month created brands
-
-    protected $nbr_brands_last_11th_month;
-
-    // Number of 12th last month created brands
-
-    protected $nbr_brands_last_12th_month;
-
-    // Number of last year created brands
-
-    protected $nbr_brands_last_year;
-
-    // Number of last day created vmodels
-
-    protected $nbr_vmodels_last_day;
-
-    // Number of last week created vmodels
-
-    protected $nbr_vmodels_last_week;
-
-    // Number of last month created vmodels
-
-    protected $nbr_vmodels_last_month;
-
-    // Number of second last month created vmodels
-
-    protected $nbr_vmodels_2nd_last_month;
-
-    // Number of third last month created vmodels
-
-    protected $nbr_vmodels_3rd_last_month;
-
-    // Number of 4th last month created vmodels
-
-    protected $nbr_vmodels_4th_last_month;
-
-    // Number of 5th last month created vmodels
-
-    protected $nbr_vmodels_5th_last_month;
-
-    // Number of 6th last month created vmodels
-
-    protected $nbr_vmodels_6th_last_month;
-
-    // Number of 7th last month created vmodels
-
-    protected $nbr_vmodels_7th_last_month;
-
-    // Number of 8th last month created vmodels
-
-    protected $nbr_vmodels_8th_last_month;
-
-    // Number of 9th last month created vmodels
-
-    protected $nbr_vmodels_9th_last_month;
-
-    // Number of 10th last month created vmodels
-
-    protected $nbr_vmodels_10th_last_month;
-
-    // Number of 11th last month created vmodels
-
-    protected $nbr_vmodels_11th_last_month;
-
-    // Number of 12th last month created vmodels
-
-    protected $nbr_vmodels_12th_last_month;
-
-    // Number of last year created vmodels
-
-    protected $nbr_vmodels_last_year;
-
-    // Number of last day created generations
-
-    protected $nbr_generations_last_day;
-
-    // Number of last week created generations
-
-    protected $nbr_generations_last_week;
-
-    // Number of last month created generations
-
-    protected $nbr_generations_last_month;
-
-    // Number of last second month created generations
-
-    protected $nbr_generations_2nd_last_month;
-
-    // Number of third last month created generations
-
-    protected $nbr_generations_3rd_last_month;
-
-    // Number of 4th last month created generations
-
-    protected $nbr_generations_4th_last_month;
-
-    // Number of 5th last month created generations
-
-    protected $nbr_generations_5th_last_month;
-
-    // Number of 6th last month created generations
-
-    protected $nbr_generations_6th_last_month;
-
-    // Number of 7th last month created generations
-
-    protected $nbr_generations_7th_last_month;
-
-    // Number of 8th last month created generations
-
-    protected $nbr_generations_8th_last_month;
-
-    // Number of 9th last month created generations
-
-    protected $nbr_generations_9th_last_month;
-
-    // Number of 10th last month created generations
-
-    protected $nbr_generations_10th_last_month;
-
-    // Number of 11th last month created generations
-
-    protected $nbr_generations_11th_last_month;
-
-    // Number of 12th last month created generations
-
-    protected $nbr_generations_12th_last_month;
-
-    // Number of last year created generations
-
-    protected $nbr_generations_last_year;
-
-
-
-
-    // Number of technologies
-
-    protected $nbr_technologies;
-
-
-
-    public function __construct(){
-      $this->nbr_carpart_brands=brand::all()->where('specialty','=','carparts')->count();
-      $this->nbr_vehicle_brands=brand::all()->where('specialty','=','vehicles')->count();
-      $this->list_vehicles_brands=brand::all()->where('specialty','=','vehicles');
-      $this->list_carparts_brands=brand::all()->where('specialty','=','carparts');
-      $this->list_brands=brand::all();
-      $this->list_vmodels=vmodel::all();
-      $this->list_generations=generation::all();
-      $this->list_technologies=technology::all();
-      $this->nbr_brands=brand::all()->count();
-      $this->nbr_vmodels=vmodel::all()->count();
-      $this->nbr_generations=generation::all()->count();
-      $this->nbr_technologies=technology::all()->count();
-      $this->nbr_brands_last_day=brand::all()->where('created_at','<','DATEADD(dd, -1, GETDATE())')->count() ;
-      $this->nbr_brands_last_week=brand::all()->where('created_at','<','DATEADD(dd, -7, GETDATE())')->count() ;
-      $this->nbr_brands_last_month=brand::all()->where('created_at','<','DATEADD(mm, -1, GETDATE())')->count() ;
-      $this->nbr_brands_last_2nd_month=brand::whereRaw('created_at < DATE_ADD(NOW(),Interval -1 month) and created_at > DATE_ADD(NOW(),Interval -2 month)')->count() ;
-      $this->nbr_brands_last_3rd_month=brand::whereRaw('created_at < DATE_ADD(NOW(),Interval -2 month) and created_at > DATE_ADD(NOW(),Interval -3 month)')->count() ;
-      $this->nbr_brands_last_4th_month=brand::whereRaw('created_at < DATE_ADD(NOW(),Interval -3 month) and created_at > DATE_ADD(NOW(),Interval -4 month)')->count() ;
-      $this->nbr_brands_last_5th_month=brand::whereRaw('created_at < DATE_ADD(NOW(),Interval -4 month) and created_at > DATE_ADD(NOW(),Interval -5 month)')->count() ;
-      $this->nbr_brands_last_6th_month=brand::whereRaw('created_at < DATE_ADD(NOW(),Interval -5 month) and created_at > DATE_ADD(NOW(),Interval -6 month)')->count() ;
-      $this->nbr_brands_last_7th_month=brand::whereRaw('created_at < DATE_ADD(NOW(),Interval -6 month) and created_at > DATE_ADD(NOW(),Interval -7 month)')->count() ;
-      $this->nbr_brands_last_8th_month=brand::whereRaw('created_at < DATE_ADD(NOW(),Interval -7 month) and created_at > DATE_ADD(NOW(),Interval -8 month)')->count() ;
-      $this->nbr_brands_last_9th_month=brand::whereRaw('created_at < DATE_ADD(NOW(),Interval -8 month) and created_at > DATE_ADD(NOW(),Interval -9 month)')->count() ;
-      $this->nbr_brands_last_10th_month=brand::whereRaw('created_at < DATE_ADD(NOW(),Interval -9 month) and created_at > DATE_ADD(NOW(),Interval -10 month)')->count() ;
-      $this->nbr_brands_last_11th_month=brand::whereRaw('created_at < DATE_ADD(NOW(),Interval -10 month) and created_at > DATE_ADD(NOW(),Interval -11 month)')->count() ;
-      $this->nbr_brands_last_12th_month=brand::whereRaw('created_at < DATE_ADD(NOW(),Interval -11 month) and created_at > DATE_ADD(NOW(),Interval -12 month)')->count() ;
-      $this->nbr_brands_last_year=brand::all()->where('created_at','<','DATEADD(yy, -1, GETDATE())')->count() ;
-      $this->nbr_vmodels_last_day=vmodel::all()->where('created_at','<','DATEADD(dd, -1, GETDATE())')->count() ;
-      $this->nbr_vmodels_last_week=vmodel::all()->where('created_at','<','DATEADD(dd, -7, GETDATE())')->count() ;
-      $this->nbr_vmodels_last_month=vmodel::all()->where('created_at','<','DATEADD(mm, -1, GETDATE())')->count() ;
-      $this->nbr_vmodels_2nd_last_month=vmodel::whereRaw('created_at < DATE_ADD(NOW(),Interval -1 month) and created_at > DATE_ADD(NOW(),Interval -2 month)')->count() ;
-      $this->nbr_vmodels_3rd_last_month=vmodel::whereRaw('created_at < DATE_ADD(NOW(),Interval -2 month) and created_at > DATE_ADD(NOW(),Interval -3 month)')->count() ;
-      $this->nbr_vmodels_4th_last_month=vmodel::whereRaw('created_at < DATE_ADD(NOW(),Interval -3 month) and created_at > DATE_ADD(NOW(),Interval -4 month)')->count() ;
-      $this->nbr_vmodels_5th_last_month=vmodel::whereRaw('created_at < DATE_ADD(NOW(),Interval -4 month) and created_at > DATE_ADD(NOW(),Interval -5 month)')->count() ;
-      $this->nbr_vmodels_6th_last_month=vmodel::whereRaw('created_at < DATE_ADD(NOW(),Interval -5 month) and created_at > DATE_ADD(NOW(),Interval -6 month)')->count() ;
-      $this->nbr_vmodels_7th_last_month=vmodel::whereRaw('created_at < DATE_ADD(NOW(),Interval -6 month) and created_at > DATE_ADD(NOW(),Interval -7 month)')->count() ;
-      $this->nbr_vmodels_8th_last_month=vmodel::whereRaw('created_at < DATE_ADD(NOW(),Interval -7 month) and created_at > DATE_ADD(NOW(),Interval -8 month)')->count() ;
-      $this->nbr_vmodels_9th_last_month=vmodel::whereRaw('created_at < DATE_ADD(NOW(),Interval -8 month) and created_at > DATE_ADD(NOW(),Interval -9 month)')->count() ;
-      $this->nbr_vmodels_10th_last_month=vmodel::whereRaw('created_at < DATE_ADD(NOW(),Interval -9 month) and created_at > DATE_ADD(NOW(),Interval -10 month)')->count() ;
-      $this->nbr_vmodels_11th_last_month=vmodel::whereRaw('created_at < DATE_ADD(NOW(),Interval -10 month) and created_at > DATE_ADD(NOW(),Interval -11 month)')->count() ;
-      $this->nbr_vmodels_12th_last_month=vmodel::whereRaw('created_at < DATE_ADD(NOW(),Interval -11 month) and created_at > DATE_ADD(NOW(),Interval -12 month)')->count() ;
-      $this->nbr_vmodels_last_year=vmodel::all()->where('created_at','<','DATEADD(yy, -1, GETDATE())')->count() ;
-      $this->nbr_generations_last_day=generation::all()->where('created_at','<','DATEADD(dd, -1, GETDATE())')->count() ;
-      $this->nbr_generations_last_week=generation::all()->where('created_at','<','DATEADD(dd, -7, GETDATE())')->count() ;
-      $this->nbr_generations_last_month=generation::all()->where('created_at','<','DATEADD(mm, -1, GETDATE())')->count() ;
-      $this->nbr_generations_2nd_last_month=generation::whereRaw('created_at < DATE_ADD(NOW(),Interval -1 month) and created_at > DATE_ADD(NOW(),Interval -2 month)')->count() ;
-      $this->nbr_generations_3rd_last_month=generation::whereRaw('created_at < DATE_ADD(NOW(),Interval -2 month) and created_at > DATE_ADD(NOW(),Interval -3 month)')->count() ;
-      $this->nbr_generations_4th_last_month=generation::whereRaw('created_at < DATE_ADD(NOW(),Interval -3 month) and created_at > DATE_ADD(NOW(),Interval -4 month)')->count() ;
-      $this->nbr_generations_5th_last_month=generation::whereRaw('created_at < DATE_ADD(NOW(),Interval -4 month) and created_at > DATE_ADD(NOW(),Interval -5 month)')->count() ;
-      $this->nbr_generations_6th_last_month=generation::whereRaw('created_at < DATE_ADD(NOW(),Interval -5 month) and created_at > DATE_ADD(NOW(),Interval -6 month)')->count() ;
-      $this->nbr_generations_7th_last_month=generation::whereRaw('created_at < DATE_ADD(NOW(),Interval -6 month) and created_at > DATE_ADD(NOW(),Interval -7 month)')->count() ;
-      $this->nbr_generations_8th_last_month=generation::whereRaw('created_at < DATE_ADD(NOW(),Interval -7 month) and created_at > DATE_ADD(NOW(),Interval -8 month)')->count() ;
-      $this->nbr_generations_9th_last_month=generation::whereRaw('created_at < DATE_ADD(NOW(),Interval -8 month) and created_at > DATE_ADD(NOW(),Interval -9 month)')->count() ;
-      $this->nbr_generations_10th_last_month=generation::whereRaw('created_at < DATE_ADD(NOW(),Interval -9 month) and created_at > DATE_ADD(NOW(),Interval -10 month)')->count() ;
-      $this->nbr_generations_11th_last_month=generation::whereRaw('created_at < DATE_ADD(NOW(),Interval -10 month) and created_at > DATE_ADD(NOW(),Interval -11 month)')->count() ;
-      $this->nbr_generations_12th_last_month=generation::whereRaw('created_at < DATE_ADD(NOW(),Interval -11 month) and created_at > DATE_ADD(NOW(),Interval -12 month)')->count() ;
-      $this->nbr_generations_last_year=generation::all()->where('created_at','<','DATEADD(yy, -1, GETDATE())')->count() ;
+    public function getNbrCarpartBrands(){
+      return brand::all()->where('specialty','=','carparts')->count();
     }
 
 
 
-    public function addbrand(){
-      return view('admin.encyclopedia.addbrand');
-    }
 
 
-
-    public function addgeneration(){
-
-      $data=[
-        'list_brands' => $this->list_vehicles_brands,
-        'list_models' => $this->list_vmodels,
-      ];
-      return view('admin.encyclopedia.addgeneration')->with($data);
-    }
-
-    public function addvmodel(){
-      $data=[
-        'list_brands' => $this->list_brands,
-      ];
-      return view('admin.encyclopedia.addmodel')->with($data);
-    }
 
     public function statistics(){
       $data=[
-        'nbr_brands' => $this->nbr_brands ,
-    'nbr_vmodels' => $this->nbr_vmodels ,
-    'nbr_generations' => $this->nbr_generations ,
-    'nbr_brands_last_day' => $this->nbr_brands_last_day ,
-    'nbr_brands_last_week' => $this->nbr_brands_last_week ,
-    'nbr_brands_last_month' => $this->nbr_brands_last_month ,
-    'nbr_brands_last_2nd_month' => $this->nbr_brands_last_2nd_month ,
-    'nbr_brands_last_3rd_month' => $this->nbr_brands_last_3rd_month ,
-    'nbr_brands_last_4th_month' => $this->nbr_brands_last_4th_month ,
-    'nbr_brands_last_5th_month' => $this->nbr_brands_last_5th_month ,
-    'nbr_brands_last_6th_month' => $this->nbr_brands_last_6th_month ,
-    'nbr_brands_last_7th_month' => $this->nbr_brands_last_7th_month ,
-    'nbr_brands_last_8th_month' => $this->nbr_brands_last_8th_month ,
-    'nbr_brands_last_9th_month' => $this->nbr_brands_last_9th_month ,
-    'nbr_brands_last_10th_month' => $this->nbr_brands_last_10th_month ,
-    'nbr_brands_last_11th_month' => $this->nbr_brands_last_11th_month ,
-    'nbr_brands_last_12th_month' => $this->nbr_brands_last_12th_month ,
-    'nbr_brands_last_year' => $this->nbr_brands_last_year ,
-    'nbr_vmodels_last_day' => $this->nbr_vmodels_last_day ,
-    'nbr_vmodels_last_week' => $this->nbr_vmodels_last_week ,
-    'nbr_vmodels_last_month' => $this->nbr_vmodels_last_month ,
-    'nbr_vmodels_2nd_last_month' => $this->nbr_vmodels_2nd_last_month ,
-    'nbr_vmodels_3rd_last_month' => $this->nbr_vmodels_3rd_last_month ,
-    'nbr_vmodels_4th_last_month' => $this->nbr_vmodels_4th_last_month ,
-    'nbr_vmodels_5th_last_month' => $this->nbr_vmodels_5th_last_month ,
-    'nbr_vmodels_6th_last_month' => $this->nbr_vmodels_6th_last_month ,
-    'nbr_vmodels_7th_last_month' => $this->nbr_vmodels_7th_last_month ,
-    'nbr_vmodels_8th_last_month' => $this->nbr_vmodels_8th_last_month ,
-    'nbr_vmodels_9th_last_month' => $this->nbr_vmodels_9th_last_month ,
-    'nbr_vmodels_10th_last_month' => $this->nbr_vmodels_10th_last_month ,
-    'nbr_vmodels_11th_last_month' => $this->nbr_vmodels_11th_last_month ,
-    'nbr_vmodels_12th_last_month' => $this->nbr_vmodels_12th_last_month ,
-    'nbr_vmodels_last_year' => $this->nbr_vmodels_last_year ,
-    'nbr_generations_last_day' => $this->nbr_generations_last_day ,
-    'nbr_generations_last_week' => $this->nbr_generations_last_week ,
-    'nbr_generations_last_month' => $this->nbr_generations_last_month ,
-    'nbr_generations_2nd_last_month' => $this->nbr_generations_2nd_last_month ,
-    'nbr_generations_3rd_last_month' => $this->nbr_generations_3rd_last_month ,
-    'nbr_generations_4th_last_month' => $this->nbr_generations_4th_last_month ,
-    'nbr_generations_5th_last_month' => $this->nbr_generations_5th_last_month ,
-    'nbr_generations_6th_last_month' => $this->nbr_generations_6th_last_month ,
-    'nbr_generations_7th_last_month' => $this->nbr_generations_7th_last_month ,
-    'nbr_generations_8th_last_month' => $this->nbr_generations_8th_last_month ,
-    'nbr_generations_9th_last_month' => $this->nbr_generations_9th_last_month ,
-    'nbr_generations_10th_last_month' => $this->nbr_generations_10th_last_month ,
-    'nbr_generations_11th_last_month' => $this->nbr_generations_11th_last_month ,
-    'nbr_generations_12th_last_month' => $this->nbr_generations_12th_last_month ,
-    'nbr_generations_last_year' => $this->nbr_generations_last_year ,
+        'list_brands' => brand::orderBy('name', 'desc')->paginate(15),
+        'list_models' => vmodel::paginate(15),
+        'list_generations' => generation::paginate(15),
+        'nbr_brands' => $this->getNbrBrands(),
+        'nbr_models' => $this->getNbrModels(),
+        'nbr_generations' => $this->getNbrGenerations(),
+        'rate_models_per_brand' => $this->getNbrModels()/$this->getNbrBrands(),
+        'rate_generations_per_model' => $this->getNbrGenerations()/$this->getNbrModels(),
+        'rate_generations_per_brand' => $this->getNbrGenerations()/$this->getNbrBrands(),
       ];
       return view('admin.encyclopedia.statistics')->with($data);
     }
 
-    public function editors(){
-      return view('admin.encyclopedia.editors');
+
+
+    public function addvmodel(){
+      $data=[
+        'list_brands' => $this->getListBrands(),
+      ];
+      return view('admin.encyclopedia.addmodel')->with($data);
     }
 
-    public function moderators(){
-      return view('admin.encyclopedia.moderators');
+
+    public function getBrandsOfCountry($country){
+      $brands = brand::all()->where('headquarters','=',$country);
+      return $brands;
     }
 
+    public function uploadLogo(Request $request){
+      $image = $request->file('imagef');
+      $image_name = $request->name . '.' . $image->getClientOriginalExtension();
+      $image->storeAs('/public/brands',$image_name);
+      return redirect()->back();
+    }
 
-    // Listing of models
+    // Listing of Brands
     public function brands(){
       $data=[
-        'list_brands' => $this->list_brands,
-        'nbr_brands' => $this->nbr_brands,
-        'nbr_vehicle_brands' => $this->nbr_vehicle_brands,
-        'nbr_carpart_brands' => $this->nbr_carpart_brands,
+        'list_brands' => $this->ListBrands(),
+        'nbr_brands' => $this->getNbrBrands(),
+        'nbr_vehicle_brands' => $this->getNbrVehicleBrands(),
+        'nbr_carpart_brands' => $this->getNbrCarpartBrands(),
       ];
       return view('admin.encyclopedia.brands')->with($data);
     }
@@ -415,9 +112,9 @@ class encyclopediadashboard extends Controller
     // Listing Of Models
     public function models(){
       $data=[
-        'list_models' => $this->list_vmodels,
-        'nbr_vmodels' => $this->nbr_vmodels,
-        'rate_vmodels_by_brand' => $this->nbr_vmodels/($this->nbr_brands+0.1),
+        'list_models' => $this->ListModels(),
+        'nbr_vmodels' => $this->getNbrModels(),
+        'rate_vmodels_by_brand' => $this->getNbrModels()/($this->getNbrBrands()),
       ];
       return view('admin.encyclopedia.models')->with($data);
     }
@@ -425,12 +122,29 @@ class encyclopediadashboard extends Controller
 
     // Listing Of generations
     public function generations(){
-      $rate_generation_by_model = $this->nbr_generations/($this->nbr_vmodels+0.1);
-      $data=[
-        'rate_generation_by_model' => $rate_generation_by_model,
-        'nbr_generations' => $this->nbr_generations,
+      $rate_generation_by_model = $this->getNbrGenerations()/($this->getNbrModels()+0.1);
+      $data=['rate_generation_by_model' => $rate_generation_by_model,
+        'nbr_generations' => $this->getNbrGenerations(),
+        'list_generations' => $this->ListGenerations()
       ];
       return view('admin.encyclopedia.generations')->with($data);
+    }
+
+    public function addgeneration(){
+
+      $data=[
+        'list_brands' => $this->getListVehicleBrands(),
+        'list_models' => $this->getListModels(),
+      ];
+      return view('admin.encyclopedia.addgeneration')->with($data);
+    }
+
+    public function editors(){
+      return view('admin.encyclopedia.editors');
+    }
+
+    public function moderators(){
+      return view('admin.encyclopedia.moderators');
     }
 
     // Delete Model Function
@@ -469,4 +183,13 @@ class encyclopediadashboard extends Controller
       $brand->save();
       return redirect()->back();
     }
+
+    public function addbrand(){
+      $countries = country::select('name')->get();
+      $data=[
+        'countries' => $countries,
+      ];
+      return view('admin.encyclopedia.addbrand')->with($data);
+    }
+
 }

@@ -10,7 +10,13 @@
   {{ csrf_field() }}
 <label>Name </label> <input name="name" type="text"> <br>
 <label>Foundation Year </label> <input name="year_foundation" type="text"> <br>
-<label>Headquarters </label> <input name="headquarters" type="text"> <br>
+<label>Headquarters </label>
+<select name="headquarters" type="text">
+  @foreach($countries as $country)
+  <option value="{{$country->name}}"> {{$country->name}} </option>
+  @endforeach
+</select>
+ <br>
 <label>CEO </label> <input name="CEO" type="text"> <br>
 <label>Website </label> <input name="website" type="text"> <br>
 <label>Production output </label> <input name="production_output" type="text"> <br>

@@ -104,11 +104,7 @@
 
 
 
-<section>
 
-{{$nbr_users_by_country['Morocco']}}
-
-</section>
 
 
 <!-- Side Bar (LEFT) -->

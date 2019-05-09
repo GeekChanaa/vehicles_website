@@ -70,7 +70,7 @@ class RegisterController extends Controller
     {
       $image = $data['imagef'];
       $image_name = $data['num_tel'] . '.jpeg';
-      $image->move(public_path("img/user-pdp"),$image_name);
+      $image->storeAs('/public/users_pdp',$image_name);
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],

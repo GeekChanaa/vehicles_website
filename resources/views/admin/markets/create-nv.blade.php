@@ -4,8 +4,10 @@
 
 @section('content')
 <!-- Create Form -->
-
-<form action="{{url('/marketmoderator/addnv')}}" method="post">
+@if (count($errors) > 0)
+{{$errors}}
+@endif
+<form action="{{url('/marketmoderator/addnv')}}" method="post" enctype="multipart/form-data">
 {{csrf_field()}}
 <!-- image file -->
 
@@ -13,6 +15,18 @@
 <span>Price : </span> <input type="text" name="price"> <br>
 <span>Name : </span> <input type="text" name="name"> <br>
 <span>Brand : </span> <input type="text" name="brand"> <br>
+<span>Country : </span>
+<select id="country" name="country">
+  @foreach($countries as $country)
+  <option value="{{$country->name}}">{{$country->name}}</option>
+  @endforeach
+</select>
+<br>
+<span>City : </span>
+<select id="cities" name="city">
+
+</select>
+<br>
 <span>Model : </span> <input type="text" name="model"> <br>
 <span>Generation : </span> <input type="text" name="generation"> <br>
 <span>CD Changer stacker : </span> <input type="text" name="cd_changer_stacker"> <br>
@@ -50,7 +64,9 @@
 <span>Turbo diesel : </span> <input type="text" name="turbo_diesel"> <br>
 <span>hybrid not flexfuel : </span> <input type="text" name="hybrid_not_flexfuel"> <br>
 <span>Conversion Package : </span> <input type="text" name="conversion_package"> <br>
-<span>Chrome Wheels 20 or larger : </span> <input type="text" name="chrome_wheels_20_or_larger">
+<span>Chrome Wheels 20 or larger : </span> <input type="text" name="chrome_wheels_20_or_larger"> <br>
+
+<input type="file" name="pictures[]" multiple="multiple">
 
 <button type="submit" class="btn btn-dark"> Create </button>
 
@@ -63,7 +79,34 @@
 
 
 
+<script>
+$(document).ready(function(){
+  $("#country").change(function(e){
+    e.preventDefault();
+    $.ajaxSetup({
+       headers: {
+           'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+       }
 
+   });
+   jQuery.ajax({
+      url: "/admin/getcities/"+$(this).val(),
+      method: 'get',
+      data: {
+         country_name: $(this).val(),
+          },
+      success: function(result){
+        $('#cities').html('');
+        $.each(result.data, function(i,index){
+          $("#cities").append('<option value="'+index.name+'">'+index.name+'</option>');
+        });
+      },
+      error: function(jqXHR, textStatus, errorThrown){
+        swal('something went wrong','impossible','error');
+    }});
+  });
+});
+</script>
 
 
 

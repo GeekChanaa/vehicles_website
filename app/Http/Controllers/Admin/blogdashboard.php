@@ -11,350 +11,121 @@ use App\section;
 
 class blogdashboard extends Controller
 {
-    /* Blog posts comments and replies */
 
-    // Sections list
 
-    protected $list_sections;
-
-    // Posts list
-
-    protected $list_posts;
-
-    // Comments List
-
-    protected $list_comments;
-
-    // Replies List
-
-    protected $list_replies;
-
-    // Number Of Posts
-
-    protected $nbr_posts;
-
-    // Number Of Comments
-
-    protected $nbr_comments;
-
-    // Number of Replies
-
-    protected $nbr_replies;
-
-    // number of posts Last Day
-
-    protected $nbr_posts_last_day;
-
-    // number of posts last week
-
-    protected $nbr_posts_last_week;
-
-    // number of posts last month
-
-    protected $nbr_posts_last_month;
-
-    // number of posts last year
-
-    protected $nbr_posts_last_year;
-
-    // number of comments Last Day
-
-    protected $nbr_comments_last_day;
-
-    // number of comments last week
-
-    protected $nbr_comments_last_week;
-
-    // number of comments last month
-
-    protected $nbr_comments_last_month;
-
-    // number of comments last year
-
-    protected $nbr_comments_last_year;
-
-    // number of replies Last Day
-
-    protected $nbr_replies_last_day;
-
-    // number of replies last week
-
-    protected $nbr_replies_last_week;
-
-    // number of replies last month
-
-    protected $nbr_replies_last_month;
-
-    // number of replies last year
-
-    protected $nbr_replies_last_year;
-
-    // number of posts last 2nd month
-
-    protected $nbr_posts_2nd_month;
-
-    // number of posts last 3rd month
-
-    protected $nbr_posts_3rd_month;
-
-    // number of posts last 4th month
-
-    protected $nbr_posts_4th_month;
-
-    // number of posts last 5th month
-
-    protected $nbr_posts_5th_month;
-
-    // number of posts last 6th month
-
-    protected $nbr_posts_6th_month;
-
-    // number of posts last 7th month
-
-    protected $nbr_posts_7th_month;
-
-    // number of posts last 8th month
-
-    protected $nbr_posts_8th_month;
-
-    // number of posts last 9th month
-
-    protected $nbr_posts_9th_month;
-
-    // number of posts last 10th month
-
-    protected $nbr_posts_10th_month;
-
-    // number of posts last 11th month
-
-    protected $nbr_posts_11th_month;
-
-    // number of posts last 12th month
-
-    protected $nbr_posts_12th_month;
-
-    // number of comments last 2nd month
-
-    protected $nbr_comments_2nd_month;
-
-    // number of comments last 3rd month
-
-    protected $nbr_comments_3rd_month;
-
-    // number of comments last 4th month
-
-    protected $nbr_comments_4th_month;
-
-    // number of comments last 5th month
-
-    protected $nbr_comments_5th_month;
-
-    // number of comments last 6th month
-
-    protected $nbr_comments_6th_month;
-
-    // number of comments last 7th month
-
-    protected $nbr_comments_7th_month;
-
-    // number of comments last 8th month
-
-    protected $nbr_comments_8th_month;
-
-    // number of comments last 9th month
-
-    protected $nbr_comments_9th_month;
-
-    // number of comments last 10th month
-
-    protected $nbr_comments_10th_month;
-
-    // number of comments last 11th month
-
-    protected $nbr_comments_11th_month;
-
-    // number of comments last 12th month
-
-    protected $nbr_comments_12th_month;
-
-    // number replies last 2nd month
-
-    protected $nbr_replies_2nd_month;
-
-    // number replies last 3rd month
-
-    protected $nbr_replies_3rd_month;
-
-    // number replies last 4th month
-
-    protected $nbr_replies_4th_month;
-
-    // number replies last 5th month
-
-    protected $nbr_replies_5th_month;
-
-    // number replies last 6th month
-
-    protected $nbr_replies_6th_month;
-
-    // number replies last 7th month
-
-    protected $nbr_replies_7th_month;
-
-    // number replies last 8th month
-
-    protected $nbr_replies_8th_month;
-
-    // number replies last 9th month
-
-    protected $nbr_replies_9th_month;
-
-    // number replies last 10th month
-
-    protected $nbr_replies_10th_month;
-
-    // number replies last 11th month
-
-    protected $nbr_replies_11th_month;
-
-    // number replies last 12th month
-
-    protected $nbr_replies_12th_month;
-
-
-
-
-
-
-    /* Statistics by Sections */
-
-
-
-
-    public function __construct(){
-      $this->list_posts= post::all();
-      $this->list_comments = comment::all();
-      $this->list_sections = section::all();
-      $this->list_replies = reply::all();
-      $this->nbr_posts = post::all()->count();
-      $this->nbr_comments = comment::all()->count();
-      $this->nbr_replies = reply::all()->count();
-      $this->nbr_posts_last_day = post::all()->where('created_at','<','DATEADD(dd, -1, GETDATE())')->count();
-      $this->nbr_posts_last_week = post::all()->where('created_at','<','DATEADD(dd, -7, GETDATE())')->count();
-      $this->nbr_posts_last_month = post::all()->where('created_at','<','DATEADD(mm, -1, GETDATE())')->count();
-      $this->nbr_posts_last_year = post::all()->where('created_at','<','DATEADD(yy, -1, GETDATE())')->count();
-      $this->nbr_comments_last_day = comment::all()->where('created_at','<','DATEADD(dd, -1, GETDATE())')->count();
-      $this->nbr_comments_last_week = comment::all()->where('created_at','<','DATEADD(dd, -7, GETDATE())')->count();
-      $this->nbr_comments_last_month = comment::all()->where('created_at','<','DATEADD(mm, -1, GETDATE())')->count();
-      $this->nbr_comments_last_year = comment::all()->where('created_at','<','DATEADD(yy, -1, GETDATE())')->count();
-      $this->nbr_replies_last_day = reply::all()->where('created_at','<','DATEADD(dd, -1, GETDATE())')->count();
-      $this->nbr_replies_last_week = reply::all()->where('created_at','<','DATEADD(dd, -7, GETDATE())')->count();
-      $this->nbr_replies_last_month = reply::all()->where('created_at','<','DATEADD(mm, -1, GETDATE())')->count();
-      $this->nbr_replies_last_year = reply::all()->where('created_at','<','DATEADD(yy, -1, GETDATE())')->count();
-      $this->nbr_posts_2nd_month = post::whereRaw('created_at < DATE_ADD(NOW(),Interval -1 month) and created_at > DATE_ADD(NOW(),Interval -2 month)')->count();
-      $this->nbr_posts_3rd_month = post::whereRaw('created_at < DATE_ADD(NOW(),Interval -2 month) and created_at > DATE_ADD(NOW(),Interval -3 month)')->count();
-      $this->nbr_posts_4th_month = post::whereRaw('created_at < DATE_ADD(NOW(),Interval -3 month) and created_at > DATE_ADD(NOW(),Interval -4 month)')->count();
-      $this->nbr_posts_5th_month = post::whereRaw('created_at < DATE_ADD(NOW(),Interval -4 month) and created_at > DATE_ADD(NOW(),Interval -5 month)')->count();
-      $this->nbr_posts_6th_month = post::whereRaw('created_at < DATE_ADD(NOW(),Interval -5 month) and created_at > DATE_ADD(NOW(),Interval -6 month)')->count();
-      $this->nbr_posts_7th_month = post::whereRaw('created_at < DATE_ADD(NOW(),Interval -6 month) and created_at > DATE_ADD(NOW(),Interval -7 month)')->count();
-      $this->nbr_posts_8th_month = post::whereRaw('created_at < DATE_ADD(NOW(),Interval -7 month) and created_at > DATE_ADD(NOW(),Interval -8 month)')->count();
-      $this->nbr_posts_9th_month = post::whereRaw('created_at < DATE_ADD(NOW(),Interval -8 month) and created_at > DATE_ADD(NOW(),Interval -9 month)')->count();
-      $this->nbr_posts_10th_month = post::whereRaw('created_at < DATE_ADD(NOW(),Interval -9 month) and created_at > DATE_ADD(NOW(),Interval -10 month)')->count();
-      $this->nbr_posts_11th_month = post::whereRaw('created_at < DATE_ADD(NOW(),Interval -10 month) and created_at > DATE_ADD(NOW(),Interval -11 month)')->count();
-      $this->nbr_posts_12th_month = post::whereRaw('created_at < DATE_ADD(NOW(),Interval -11 month) and created_at > DATE_ADD(NOW(),Interval -12 month)')->count();
-      $this->nbr_comments_2nd_month = comment::whereRaw('created_at < DATE_ADD(NOW(),Interval -1 month) and created_at > DATE_ADD(NOW(),Interval -2 month)')->count();
-      $this->nbr_comments_3rd_month = comment::whereRaw('created_at < DATE_ADD(NOW(),Interval -2 month) and created_at > DATE_ADD(NOW(),Interval -3 month)')->count();
-      $this->nbr_comments_4th_month = comment::whereRaw('created_at < DATE_ADD(NOW(),Interval -3 month) and created_at > DATE_ADD(NOW(),Interval -4 month)')->count();
-      $this->nbr_comments_5th_month = comment::whereRaw('created_at < DATE_ADD(NOW(),Interval -4 month) and created_at > DATE_ADD(NOW(),Interval -5 month)')->count();
-      $this->nbr_comments_6th_month = comment::whereRaw('created_at < DATE_ADD(NOW(),Interval -5 month) and created_at > DATE_ADD(NOW(),Interval -6 month)')->count();
-      $this->nbr_comments_7th_month = comment::whereRaw('created_at < DATE_ADD(NOW(),Interval -6 month) and created_at > DATE_ADD(NOW(),Interval -7 month)')->count();
-      $this->nbr_comments_8th_month = comment::whereRaw('created_at < DATE_ADD(NOW(),Interval -7 month) and created_at > DATE_ADD(NOW(),Interval -8 month)')->count();
-      $this->nbr_comments_9th_month = comment::whereRaw('created_at < DATE_ADD(NOW(),Interval -8 month) and created_at > DATE_ADD(NOW(),Interval -9 month)')->count();
-      $this->nbr_comments_10th_month = comment::whereRaw('created_at < DATE_ADD(NOW(),Interval -9 month) and created_at > DATE_ADD(NOW(),Interval -10 month)')->count();
-      $this->nbr_comments_11th_month = comment::whereRaw('created_at < DATE_ADD(NOW(),Interval -10 month) and created_at > DATE_ADD(NOW(),Interval -11 month)')->count();
-      $this->nbr_comments_12th_month = comment::whereRaw('created_at < DATE_ADD(NOW(),Interval -11 month) and created_at > DATE_ADD(NOW(),Interval -12 month)')->count();
-      $this->nbr_replies_2nd_month = reply::whereRaw('created_at < DATE_ADD(NOW(),Interval -1 month) and created_at > DATE_ADD(NOW(),Interval -2 month)')->count();
-      $this->nbr_replies_3rd_month = reply::whereRaw('created_at < DATE_ADD(NOW(),Interval -2 month) and created_at > DATE_ADD(NOW(),Interval -3 month)')->count();
-      $this->nbr_replies_4th_month = reply::whereRaw('created_at < DATE_ADD(NOW(),Interval -3 month) and created_at > DATE_ADD(NOW(),Interval -4 month)')->count();
-      $this->nbr_replies_5th_month = reply::whereRaw('created_at < DATE_ADD(NOW(),Interval -4 month) and created_at > DATE_ADD(NOW(),Interval -5 month)')->count();
-      $this->nbr_replies_6th_month = reply::whereRaw('created_at < DATE_ADD(NOW(),Interval -5 month) and created_at > DATE_ADD(NOW(),Interval -6 month)')->count();
-      $this->nbr_replies_7th_month = reply::whereRaw('created_at < DATE_ADD(NOW(),Interval -6 month) and created_at > DATE_ADD(NOW(),Interval -7 month)')->count();
-      $this->nbr_replies_8th_month = reply::whereRaw('created_at < DATE_ADD(NOW(),Interval -7 month) and created_at > DATE_ADD(NOW(),Interval -8 month)')->count();
-      $this->nbr_replies_9th_month = reply::whereRaw('created_at < DATE_ADD(NOW(),Interval -8 month) and created_at > DATE_ADD(NOW(),Interval -9 month)')->count();
-      $this->nbr_replies_10th_month = reply::whereRaw('created_at < DATE_ADD(NOW(),Interval -9 month) and created_at > DATE_ADD(NOW(),Interval -10 month)')->count();
-      $this->nbr_replies_11th_month = reply::whereRaw('created_at < DATE_ADD(NOW(),Interval -10 month) and created_at > DATE_ADD(NOW(),Interval -11 month)')->count();
-      $this->nbr_replies_12th_month = reply::whereRaw('created_at < DATE_ADD(NOW(),Interval -11 month) and created_at > DATE_ADD(NOW(),Interval -12 month)')->count();
+    /* Getters */
+    public function ListPosts(){
+      return post::paginate(50);
     }
 
+    public function ListComments(){
+      return comment::paginate(50);
+    }
 
+    public function ListReplies(){
+      return reply::paginate(50);
+    }
 
+    public function ListPosts_statistics(){
+      return post::paginate(5);
+    }
 
+    public function ListComments_statistics(){
+      return comment::paginate(5);
+    }
+
+    public function ListReplies_statistics(){
+      return reply::paginate(5);
+    }
+
+    public function NbrPosts(){
+      return post::selectRaw('count(*) as sum')->get();
+    }
+
+    public function NbrComments(){
+      return comment::selectRaw('count(*) as sum')->get();
+    }
+
+    public function NbrReplies(){
+      return reply::selectRaw('count(*) as sum')->get();
+    }
+
+    public function NbrSections(){
+      return section::selectRaw('count(*) as sum')->get();
+    }
+
+    public function RatePostsBySection(){
+      return $this->NbrPosts()['0']->sum/$this->NbrSections()['0']->sum;
+    }
+
+    public function RateCommentsByPost(){
+      return $this->NbrComments()['0']->sum/$this->NbrPosts()['0']->sum;
+    }
+
+    public function RateRepliesByComment(){
+      return $this->NbrReplies()['0']->sum/($this->NbrComments()['0']->sum+0.01);
+    }
+
+    /* STATISTICS BY YEAR AND MONTH */
+    public function getStatisticsOfMonth_posts($year,$month){
+      return post::selectRaw('count(*) as sum')->whereRaw(' month(created_at) = '.$month.' and year(created_at) ='.$year)->get();
+    }
+
+    public function getStatisticsOfYear_posts($year){
+      for($i=1;$i<13;$i++){
+        $nbr_recent_posts_month[$i] = $this->getStatisticsOfMonth_posts($year,$i) ;
+      }
+      return $nbr_recent_posts_month;
+    }
+
+    public function getStatisticsOfMonth_comments($year,$month){
+      return comment::selectRaw('count(*) as sum')->whereRaw(' month(created_at) = '.$month.' and year(created_at) ='.$year)->get();
+    }
+
+    public function getStatisticsOfYear_comments($year){
+      for($i=1;$i<13;$i++){
+        $nbr_recent_comments_month[$i] = $this->getStatisticsOfMonth_comments($year,$i) ;
+      }
+      return $nbr_recent_comments_month;
+    }
+
+    public function getStatisticsOfMonth_replies($year,$month){
+      return reply::selectRaw('count(*) as sum')->whereRaw(' month(created_at) = '.$month.' and year(created_at) ='.$year)->get();
+    }
+
+    public function getStatisticsOfYear_replies($year){
+      for($i=1;$i<13;$i++){
+        $nbr_recent_replies_month[$i] = $this->getStatisticsOfMonth_replies($year,$i) ;
+      }
+      return $nbr_recent_replies_month;
+    }
+
+    /* Statistics by Sections */
     public function statistics(){
       $data = [
-    'list_posts' => $this->list_posts,
-    'list_comments' => $this->list_comments,
-    'list_replies' => $this->list_replies,
-    'nbr_posts' => $this->nbr_posts,
-    'nbr_comments' => $this->nbr_comments,
-    'nbr_replies' => $this->nbr_replies,
-    'nbr_posts_last_day' => $this->nbr_posts_last_day,
-    'nbr_posts_last_week' => $this->nbr_posts_last_week,
-    'nbr_posts_last_month' => $this->nbr_posts_last_month,
-    'nbr_posts_last_year' => $this->nbr_posts_last_year,
-    'nbr_comments_last_day' => $this->nbr_comments_last_day,
-    'nbr_comments_last_week' => $this->nbr_comments_last_week,
-    'nbr_comments_last_month' => $this->nbr_comments_last_month,
-    'nbr_comments_last_year' => $this->nbr_comments_last_year,
-    'nbr_replies_last_day' => $this->nbr_replies_last_day,
-    'nbr_replies_last_week' => $this->nbr_replies_last_week,
-    'nbr_replies_last_month' => $this->nbr_replies_last_month,
-    'nbr_replies_last_year' => $this->nbr_replies_last_year,
-    'nbr_posts_2nd_month' => $this->nbr_posts_2nd_month,
-    'nbr_posts_3rd_month' => $this->nbr_posts_3rd_month,
-    'nbr_posts_4th_month' => $this->nbr_posts_4th_month,
-    'nbr_posts_5th_month' => $this->nbr_posts_5th_month,
-    'nbr_posts_6th_month' => $this->nbr_posts_6th_month,
-    'nbr_posts_7th_month' => $this->nbr_posts_7th_month,
-    'nbr_posts_8th_month' => $this->nbr_posts_8th_month,
-    'nbr_posts_9th_month' => $this->nbr_posts_9th_month,
-    'nbr_posts_10th_month' => $this->nbr_posts_10th_month,
-    'nbr_posts_11th_month' => $this->nbr_posts_11th_month,
-    'nbr_posts_12th_month' => $this->nbr_posts_12th_month,
-    'nbr_comments_2nd_month' => $this->nbr_comments_2nd_month,
-    'nbr_comments_3rd_month' => $this->nbr_comments_3rd_month,
-    'nbr_comments_4th_month' => $this->nbr_comments_4th_month,
-    'nbr_comments_5th_month' => $this->nbr_comments_5th_month,
-    'nbr_comments_6th_month' => $this->nbr_comments_6th_month,
-    'nbr_comments_7th_month' => $this->nbr_comments_7th_month,
-    'nbr_comments_8th_month' => $this->nbr_comments_8th_month,
-    'nbr_comments_9th_month' => $this->nbr_comments_9th_month,
-    'nbr_comments_10th_month' => $this->nbr_comments_10th_month,
-    'nbr_comments_11th_month' => $this->nbr_comments_11th_month,
-    'nbr_comments_12th_month' => $this->nbr_comments_12th_month,
-    'nbr_replies_2nd_month' => $this->nbr_replies_2nd_month,
-    'nbr_replies_3rd_month' => $this->nbr_replies_3rd_month,
-    'nbr_replies_4th_month' => $this->nbr_replies_4th_month,
-    'nbr_replies_5th_month' => $this->nbr_replies_5th_month,
-    'nbr_replies_6th_month' => $this->nbr_replies_6th_month,
-    'nbr_replies_7th_month' => $this->nbr_replies_7th_month,
-    'nbr_replies_8th_month' => $this->nbr_replies_8th_month,
-    'nbr_replies_9th_month' => $this->nbr_replies_9th_month,
-    'nbr_replies_10th_month' => $this->nbr_replies_10th_month,
-    'nbr_replies_11th_month' => $this->nbr_replies_11th_month,
-    'nbr_replies_12th_month' => $this->nbr_replies_12th_month,
+    'list_posts' => $this->ListPosts_statistics(),
+    'list_comments' => $this->ListComments_statistics(),
+    'list_replies' => $this->ListReplies_statistics(),
+    'nbr_posts' => $this->NbrPosts(),
+    'nbr_comments' => $this->NbrComments(),
+    'nbr_replies' => $this->NbrReplies(),
+    'rate_posts_by_section' => $this->RatePostsBySection(),
+    'rate_comments_by_post' => $this->RateCommentsByPost(),
+    'rate_replies_by_comment' => $this->RateRepliesByComment(),
+    'nbr_recent_replies_month' => $this->getStatisticsOfYear_replies(2019),
+    'nbr_recent_posts_month' => $this->getStatisticsOfYear_posts(2019),
+    'nbr_recent_comments_month' => $this->getStatisticsOfYear_comments(2019),
       ];
       return view('admin.blog.statistics')->with($data);
     }
 
-    public function blogstatistics(){
-      return view('admin.blog.statistics');
-    }
+
 
     public function blogposts(){
       $data=[
-        'list_posts' => $this->list_posts,
-        'list_comments' => $this->list_comments,
-        'list_replies' => $this->list_replies
+        'list_posts' => $this->ListPosts(),
+        'list_comments' => $this->ListComments(),
+        'list_replies' => $this->ListReplies()
       ];
       return view('admin.blog.posts')->with($data);
     }

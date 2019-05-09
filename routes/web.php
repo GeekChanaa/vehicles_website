@@ -16,8 +16,8 @@ Route::get('/', function () {
   });
 
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
+
 
 /* ERROR ROUTES */
 
@@ -111,11 +111,18 @@ Route::post('/marketmoderator/adduv','Admin\marketdashboard@adduv');
 Route::get('/marketmoderator/createncp','Admin\marketdashboard@createncp');
 Route::post('/marketmoderator/addncp','Admin\marketdashboard@addncp');
 Route::post('/marketmoderator/updatencp','Admin\marketdashboard@updatencp');
+Route::get('/marketmoderator/getpart/{category}','autopartController@getpart');
 Route::delete('/marketmoderator/deletencp','Admin\marketdashboard@deletencp');
 Route::get('/marketmoderator/createucp','Admin\marketdashboard@createucp');
 Route::post('/marketmoderator/adducp','Admin\marketdashboard@adducp');
 Route::post('/marketmoderator/updateucp','Admin\marketdashboard@updateucp');
 Route::delete('/marketmoderator/deleteucp','Admin\marketdashboard@deleteucp');
+
+Route::get('/ajax/getnvbyday/{date}','Admin\marketdashboard@getStatisticsOfDay_nv');
+Route::get('/ajax/getuvbyday/{date}','Admin\marketdashboard@getStatisticsOfDay_uv');
+Route::get('/ajax/getucpbyday/{date}','Admin\marketdashboard@getStatisticsOfDay_ucp');
+Route::get('/ajax/getncpbyday/{date}','Admin\marketdashboard@getStatisticsOfDay_ncp');
+
 });
 
 /* ROUTES ONLY FOR EDITORS */
@@ -152,10 +159,13 @@ Route::get('/encyclopediamoderator/statistics','Admin\encyclopediadashboard@stat
 Route::delete('/encyclopediamoderator/deletebrand','Admin\encyclopediadashboard@deletebrand');
 Route::delete('/encyclopediamoderator/deletevmodel','Admin\encyclopediadashboard@deletevmodel');
 Route::post('/encyclopediamoderator/modifyvmodel','Admin\encyclopediadashboard@modifyvmodel');
+Route::post('/encyclopediamoderator/uploadLogo','Admin\encyclopediadashboard@uploadLogo');
 Route::post('/encyclopediamoderator/modifybrand','Admin\encyclopediadashboard@modifybrand');
 Route::post('/admin/createbrand','brandsController@create');
 Route::post('/admin/createmodel','vmodelsController@create');
 Route::post('/admin/creategeneration','generationsController@create');
+// get brands of some country :
+Route::get('/encyclopediamoderator/getBrands/{country}','Admin\encyclopediadashboard@getBrandsOfCountry');
 });
 
 /* User Only Routes */
@@ -172,15 +182,19 @@ Route::get('/market','marketController@index');
 
 // Used Vehicles Market
 Route::get('/market/usedvehicles','marketController@usedvehicles');
+Route::get('/market/usedvehicles/{id}','marketController@usedvehicle');
 
 // New Vehicles Market
 Route::get('/market/newvehicles','marketController@newvehicles');
+Route::get('/market/newvehicles/{id}','marketController@newvehicles');
 
 // Used Carpart Market
-Route::get('/market/usedcarpart','marketController@usedcarpart');
+Route::get('/market/usedcarparts','marketController@usedcarparts');
+Route::get('/market/usedcarparts/{id}','marketController@usedcarpart');
 
 // New Carpart Market
-Route::get('/market/newcarpart','marketController@newcarpart');
+Route::get('/market/newcarparts','marketController@newcarparts');
+Route::get('/market/newcarparts/{id}','marketController@newcarpart');
 
 /* ======================== Blog Routes ===================== */
 
@@ -194,6 +208,7 @@ Route::get('/blog/{section}','forumController@section');
 Route::get('/blog/{section}/{postid}','forumController@post');
 
 // Create Post :
+Route::get('/blog/{section}/go/new_post','forumController@new_post');
 Route::post('/blog/createpost','forumController@createpost');
 
 // Create Comment :
@@ -232,3 +247,6 @@ Route::post('/services/createcarwash','servicesController@createcarwash');
 
 // Encyclopedia index page
 Route::get('/encyclopedia','encyclopediaController@index');
+
+/* ====================== Other Routes =================== */
+Route::get('/admin/getcities/{country_name}','countryController@getcities');
