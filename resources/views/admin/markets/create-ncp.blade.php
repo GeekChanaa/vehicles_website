@@ -73,7 +73,6 @@ $(document).ready(function(){
       url: "/marketmoderator/getpart/"+$(this).val(),
       method: 'get',
       data: {
-         country_name: $(this).val(),
           },
       success: function(result){
         $('#part').html('');

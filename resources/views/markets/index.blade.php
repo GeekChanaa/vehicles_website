@@ -6,12 +6,7 @@
 
 <section class="bg-light col-lg-12">
 
-<div class="row col-lg-12">
-  <a class="col-lg-3 btn btn-dark" href="{{ url('/market/usedcarparts') }}">Used Carparts </a>
-  <a class="col-lg-3 btn btn-dark" href="{{ url('/market/newcarparts') }}">New Carparts </a>
-  <a class="col-lg-3 btn btn-dark" href="{{ url('/market/usedvehicles') }}">Used Vehicles </a>
-  <a class="col-lg-3 btn btn-dark" href="{{ url('/market/newvehicles') }}">New Vehicles </a>
-</div>
+</section>
 
 <section class="bg-light">
   <h1> new vehicle search </h1>
@@ -49,7 +44,8 @@
 
   <h1> used vehicle search </h1>
   <div>
-    <form  action="" method="post">
+    <form  action="{{url('/market/searchuv')}}" method="post">
+      {{csrf_field()}}
       <span>Brand : </span>
       <select id="brand_uv" name="brand">
         @foreach($list_brands as $brand)
@@ -63,7 +59,7 @@
       </select>
         <br>
       <span>Max Price : </span> <input type="number" name="max_price"> <br>
-      <span>Country : </span><select>
+      <span>Country : </span><select name="country">
         @foreach($countries as $country)
           <option value="{{$country->name}}">{{$country->name}} </option>
         @endforeach
@@ -79,10 +75,20 @@
 
   <h1> new carpart search </h1>
   <div>
-    <form  action="" method="post">
-      <span>Category : </span>   <br>
-      <span>Auto-part : </span>   <br>
-      <span>Country : </span><select>
+
+    <form action="{{url('/market/searchncp')}}" method="post">
+          {{csrf_field()}}
+      <span>Category : </span>
+        <select id="category_autopart_ncp">
+          @foreach($cp_categories as $cat)
+            <option> {{$cat['category']}} </option>
+          @endforeach
+        </select><br>
+      <span>Auto-part : </span>
+      <select id="part_ncp" name="part">
+      </select>
+         <br>
+      <span>Country : </span><select name="country">
         @foreach($countries as $country)
           <option value="{{$country->name}}">{{$country->name}} </option>
         @endforeach
@@ -98,10 +104,19 @@
 
   <h1> used carpart search </h1>
   <div>
-    <form  action="" method="post">
-      <span>Category : </span>   <br>
-      <span>Auto-part : </span>   <br>
-      <span>Country : </span><select>
+    <form action="{{url('/market/searchucp')}}" method="post">
+      {{csrf_field()}}
+      <span>Category : </span>
+      <select id="category_autopart">
+        @foreach($cp_categories as $cat)
+          <option> {{$cat['category']}} </option>
+        @endforeach
+      </select><br>
+      <span>Auto-part : </span>
+      <select id="part" name="part">
+      </select>
+       <br>
+      <span>Country : </span><select name="country">
         @foreach($countries as $country)
           <option value="{{$country->name}}">{{$country->name}} </option>
         @endforeach
@@ -144,6 +159,92 @@ $(document).ready(function(){
     }});
   });
 });
+
+
+
+$(document).ready(function(){
+  $("#brand_uv").change(function(e){
+    e.preventDefault();
+    $.ajaxSetup({
+       headers: {
+           'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+       }
+
+   });
+   jQuery.ajax({
+      url: "/ajax/getvmodels/"+$(this).val(),
+      method: 'get',
+      data: {
+          },
+      success: function(result){
+        $("#models_uv").html('');
+        $.each(result.data, function(i,index){
+          $("#models_uv").append('<option value="'+index.name+'">'+index.name+'</option>');
+        });
+      },
+      error: function(jqXHR, textStatus, errorThrown){
+        swal('something went wrong','impossible','error');
+    }});
+  });
+});
+
+
+
+
+$(document).ready(function(){
+  $("#category_autopart").change(function(e){
+    e.preventDefault();
+    $.ajaxSetup({
+       headers: {
+           'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+       }
+
+   });
+   jQuery.ajax({
+      url: "/marketmoderator/getpart/"+$(this).val(),
+      method: 'get',
+      data: {
+          },
+      success: function(result){
+        $('#part').html('');
+        $.each(result.data, function(i,index){
+          $("#part").append('<option>'+index.name+'</option>');
+        });
+      },
+      error: function(jqXHR, textStatus, errorThrown){
+        swal('something went wrong','impossible','error');
+    }});
+  });
+});
+
+
+$(document).ready(function(){
+  $("#category_autopart_ncp").change(function(e){
+    e.preventDefault();
+    $.ajaxSetup({
+       headers: {
+           'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+       }
+
+   });
+   jQuery.ajax({
+      url: "/marketmoderator/getpart/"+$(this).val(),
+      method: 'get',
+      data: {
+          },
+      success: function(result){
+        $('#part_ncp').html('');
+        $.each(result.data, function(i,index){
+          $("#part_ncp").append('<option>'+index.name+'</option>');
+        });
+      },
+      error: function(jqXHR, textStatus, errorThrown){
+        swal('something went wrong','impossible','error');
+    }});
+  });
+});
+
+
 </script>
 
 

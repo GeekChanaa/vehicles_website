@@ -11,7 +11,7 @@
 
 @foreach($list_nv as $nv)
 <div class="row col-lg-8 offset-lg-2">
-  <li><a href="{{url('/market/newvehicles/'.$nv->id.'')}}"> {{$nv->id}}</a> </li>
+  <li><a href="{{url('/market/newvehicle/'.$nv->id.'')}}"> {{$nv->id}}</a> </li>
   <li>{{$nv->name}} </li>
   <li>{{$nv->price}} </li>
   <li>{{$nv->country}} </li>

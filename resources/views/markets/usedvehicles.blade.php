@@ -11,7 +11,7 @@
 
 @foreach($list_uv as $uv)
 <div class="row col-lg-8 offset-lg-2">
-  <li><a href="{{url('/market/newvehicles/'.$nv->id.'')}}"> {{$uv->id}}</a> </li>
+  <li><a href="{{url('/market/usedvehicle/'.$uv->id.'')}}"> {{$uv->id}}</a> </li>
   <li>{{$uv->name}} </li>
   <li>{{$uv->price}} </li>
   <li>{{$uv->country}} </li>

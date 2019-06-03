@@ -182,21 +182,20 @@ Route::get('/market','marketController@index');
 Route::get('/ajax/getvmodels/{brand}','vmodelsController@getvmodels');
 
 // Used Vehicles Market
-Route::get('/market/usedvehicles','marketController@usedvehicles');
 Route::get('/market/usedvehicles/{id}','marketController@usedvehicle');
+Route::post('/market/searchuv','marketController@search_uv');
 
 // New Vehicles Market
-Route::get('/market/newvehicles','marketController@newvehicles');
-Route::get('/market/newvehicles/{id}','marketController@newvehicles');
+Route::get('/market/newvehicles/{id}','marketController@newvehicle');
 Route::post('/market/searchnv','marketController@search_nv');
 
 // Used Carpart Market
-Route::get('/market/usedcarparts','marketController@usedcarparts');
 Route::get('/market/usedcarparts/{id}','marketController@usedcarpart');
+Route::post('/market/searchucp','marketController@search_ucp');
 
 // New Carpart Market
-Route::get('/market/newcarparts','marketController@newcarparts');
 Route::get('/market/newcarparts/{id}','marketController@newcarpart');
+Route::post('/market/searchncp','marketController@search_ncp');
 
 /* ======================== Blog Routes ===================== */
 

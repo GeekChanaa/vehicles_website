@@ -11,6 +11,7 @@ use App\new_vehicle_article;
 use App\used_vehicle_article;
 use App\brand;
 use App\vmodel;
+use App\auto_part;
 use DB;
 
 class marketController extends Controller
@@ -74,10 +75,12 @@ class marketController extends Controller
       $list_brands_cp = brand::all()->where('specialty','=','carparts');
       $list_models = vmodel::all();
       $countries = country::all();
+      $cp_categories = auto_part::selectRaw('distinct category')->get();
       $data=[
         'list_brands_cp' => $list_brands_cp,
         'list_brands' => $list_brands,
         'list_models' => $list_models,
+        'cp_categories' => $cp_categories,
         'countries' => $countries,
       ];
       return view('markets.index')->with($data);
@@ -89,6 +92,30 @@ class marketController extends Controller
         'list_nv' => $list_nv,
       ];
       return view('markets.newvehicles')->with($data);
+    }
+
+    public function search_uv(Request $request){
+      $list_uv = used_vehicle_article::where('model','=',$request->model)->where('price','<',$request->max_price)->where('country','=',$request->country)->paginate(10);
+      $data=[
+        'list_uv' => $list_uv,
+      ];
+      return view('markets.usedvehicles')->with($data);
+    }
+
+    public function search_ncp(Request $request){
+      $list_ncp = new_carpart_article::where('auto_part','=',$request->part)->where('country','=',$request->country)->paginate(10);
+      $data=[
+        'list_ncp' => $list_ncp,
+      ];
+      return view('markets.newcarparts')->with($data);
+    }
+
+    public function search_ucp(Request $request){
+      $list_ucp = new_carpart_article::where('auto_part','=',$request->part)->where('country','=',$request->country)->paginate(10);
+      $data=[
+        'list_ucp' => $list_ucp,
+      ];
+      return view('markets.usedcarparts')->with($data);
     }
 
 }
