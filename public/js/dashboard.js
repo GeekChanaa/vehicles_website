@@ -94,6 +94,19 @@ function listgenerations(){
   $('.listgenerations').show();
 }
 
+// Toggle the sidebar when collapse-btn is clicked
+
+$('.collapse-btn').click(function(e){
+  if($(this).attr('name')=='close'){
+    $(this).attr('name','menu');
+    $('.sidebar').removeClass('active');
+  }
+  else{
+    $(this).attr('name','close');
+    $('.sidebar').addClass('active');
+  }
+});
+
 // Display input and delete label tag
 function changeupdate(id){
   $('.td-list-update'+id).css('display','none');

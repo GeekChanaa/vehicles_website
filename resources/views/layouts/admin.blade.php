@@ -28,7 +28,7 @@
 </head>
 <body>
     <nav class="navbar navbar-expand navbar-primary main-nav">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="{{url('/Dashboard')}}">
           <img src="{{asset('img/logo.png')}}" alt="">
         </a>
         <ul class="navbar-nav ml-auto">
@@ -65,12 +65,48 @@
           </li>
         </ul>
     </nav>
-
-
-
-
-        @yield('content')
-
+    <div class="wrapper">
+      <div class="sidebar">
+        <div class="user-section">
+          <div class="user-avatar" style="background-image: url('{{asset('img/user-pdp/'.Auth::user()->num_tel.'.jpg')}}');">
+          </div>
+          <a href="">{{Auth::user()->name}}</a>
+          <nav class="navbar navbar-expand navbar-primary secondary-nav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <ion-icon name="create" class="align-middle"></ion-icon>
+              </li>
+              <li class="nav-item">
+                <ion-icon name="chatboxes" class="align-middle"></ion-icon>
+              </li>
+              <li class="nav-item">
+                <ion-icon name="notifications" class="align-middle"></ion-icon>
+              </li>
+            </ul>
+        </nav>
+        </div>
+        <div class="routes-section">
+          <div class="row">
+            <ion-icon name="car" class="col-2"></ion-icon>
+            <a href="{{url('/MarketDashboard')}}" class="col-10">Market Dashboard</a>
+          </div>
+          <div class="row">
+            <ion-icon name="quote" class="col-2"></ion-icon>
+            <a href="{{url('/BlogDashboard')}}" class="col-10">Blog Dashboard</a>
+          </div>
+          <div class="row">
+            <ion-icon name="hammer" class="col-2"></ion-icon>
+            <a href="{{url('/ServicesDashboard')}}" class="col-10">Services Dashboard</a>
+          </div>
+          <div class="row">
+            <ion-icon name="school" class="col-2"></ion-icon>
+            <a href="{{url('/EncyclopediaDashboard')}}" class="col-10">Encyclopedia Dashboard</a>
+          </div>
+        </div>
+        <ion-icon class="collapse-btn" name="menu"></ion-icon>
+      </div>
+      @yield('content')
+    </div>
     <!-- Scripts -->
     <script src="{{ asset('js/jquery-jvectormap-2.0.3.min.js') }}"></script>
     <script src="{{ asset('js/jquery-jvectormap-world-mill-en.js') }}"></script>
