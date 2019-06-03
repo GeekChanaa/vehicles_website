@@ -9,6 +9,8 @@ use App\used_carpart_article;
 use App\new_carpart_article;
 use App\new_vehicle_article;
 use App\used_vehicle_article;
+use App\brand;
+use App\vmodel;
 use DB;
 
 class marketController extends Controller
@@ -68,6 +70,25 @@ class marketController extends Controller
     }
 
     public function index(){
-      return view('markets.index');
+      $list_brands = brand::all()->where('specialty','=','vehicles');
+      $list_brands_cp = brand::all()->where('specialty','=','carparts');
+      $list_models = vmodel::all();
+      $countries = country::all();
+      $data=[
+        'list_brands_cp' => $list_brands_cp,
+        'list_brands' => $list_brands,
+        'list_models' => $list_models,
+        'countries' => $countries,
+      ];
+      return view('markets.index')->with($data);
     }
+
+    public function search_nv(Request $request){
+      $list_nv = new_vehicle_article::where('model','=',$request->model)->where('price','<',$request->max_price)->where('country','=',$request->country)->paginate(10);
+      $data=[
+        'list_nv' => $list_nv,
+      ];
+      return view('markets.newvehicles')->with($data);
+    }
+
 }

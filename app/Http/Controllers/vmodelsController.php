@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\vmodel;
+use Response;
 
 class vmodelsController extends Controller
 {
@@ -15,5 +16,12 @@ class vmodelsController extends Controller
       $vmodel->description = $request->description;
       $vmodel->save();
       return redirect()->back();
+    }
+
+    // Get models by brand
+    public function getvmodels($brand){
+      $models = vmodel::all()->where('brand','=',$brand);
+      return Response::json(array('success'=>true,'data'=>$models));
+
     }
 }

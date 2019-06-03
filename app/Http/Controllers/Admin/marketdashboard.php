@@ -15,6 +15,7 @@ use App\city;
 use App\auto_part;
 use Auth;
 use Response;
+use Storage;
 use DB;
 
 
@@ -52,7 +53,7 @@ class marketdashboard extends Controller
       $categories=$this->CarpartCategories();
       for($i=0;$i<19;$i++)
       {
-        $nbr_ncp_category[$categories[$i]['category']] = new_carpart_article::selectRaw('count(id) as sum')->whereRaw('category = \''.$categories[$i]['category'].'\'')->get();
+        $nbr_ncp_category[$categories[$i]['category']] = new_carpart_article::selectRaw('count(*) as sum')->whereRaw('category = \''.$categories[$i]['category'].'\'')->get();
       }
       return $nbr_ncp_category;
     }
@@ -61,7 +62,7 @@ class marketdashboard extends Controller
       $categories=$this->CarpartCategories();
       for($i=0;$i<19;$i++)
       {
-        $nbr_ucp_category[$categories[$i]['category']] = used_carpart_article::selectRaw('count(id) as sum')->whereRaw('category = \''.$categories[$i]['category'].'\'')->get();
+        $nbr_ucp_category[$categories[$i]['category']] = used_carpart_article::selectRaw('count(*) as sum')->whereRaw('category = \''.$categories[$i]['category'].'\'')->get();
       }
       return $nbr_ucp_category;
     }
@@ -459,12 +460,14 @@ class marketdashboard extends Controller
 
     public function deleteucp(Request $request){
       $ucp = used_carpart_article::all()->where('id','=',$request->id)->first();
+      Storage::delete('public/market/Newcarparts/'.$request->id.'.png');
       $ucp->delete();
       return redirect()->back();
     }
 
     public function deletencp(Request $request){
       $ncp = new_carpart_article::all()->where('id','=',$request->id)->first();
+
       $ncp->delete();
       return redirect()->back();
     }
@@ -656,11 +659,13 @@ class marketdashboard extends Controller
       public function deleteuv(Request $request){
         $uv = used_vehicle_article::all()->where('id','=',$request->id)->first();
         $uv->delete();
+        Storage::deleteDirectory('public/market/Usedvehicles/'.$request->id.'uv');
         return redirect()->back();
       }
 
       public function deletenv(Request $request){
         $nv = new_vehicle_article::all()->where('id','=',$request->id)->first();
+        Storage::deleteDirectory('public/market/Newvehicles/'.$request->id.'nv');
         $nv->delete();
         return redirect()->back();
       }
