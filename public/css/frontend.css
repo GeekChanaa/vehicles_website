@@ -1,0 +1,86 @@
+/*  Market index -- START */
+
+/* Search engine form */
+.search-engines{
+  justify-content: center;
+}
+.se-container{
+  margin:1rem;
+  border: 1px solid #efefef;
+  box-shadow: 0px 3px 4px 0px rgba(0,0,0,0.15);
+  border-radius: 2PX;
+  background: white;
+
+}
+.se-header{
+  padding:.5em;
+}
+.se-header ion-icon{
+  line-height: 30px;
+  height: 30px;
+  width: 30px;
+  display: block;
+  margin: 1.4em auto 0.8em auto;
+  background: var(--blue);
+  padding: 1em;
+  color: white;
+  border-radius: 50%;
+}
+.se-header h1{
+  text-align: center;
+  margin: 0.1em 0 1em 0;
+  font-family: Open Sans;
+  font-weight: 600;
+  color: #303030;
+  font-size: 22px;
+}
+.search-form .form-field{
+  margin:1.5em 0;
+}
+.search-form .form-field label{
+  align-self: center;
+  font-family: Open Sans;
+  font-size: 15px;
+  font-weight: 600;
+}
+.search-form .form-field select,.search-form .form-field input{
+  padding:.5em 0 .5em 1em;
+  font-size:14px;
+  border: 1px solid #bcbcbc;
+  color: #3b3b3b;
+  font-family: Open Sans;
+  font-weight: 600;
+  margin-right: 1em;
+  /*  Hiding the select arrow */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-indent: 1px;
+  text-overflow: '';
+}
+.search-form .form-field select::-ms-expand{
+    display: none;
+}
+.search-form .form-field ion-icon{
+  width: 16px;
+  height: 16px;
+  position: relative;
+  top: 15px;
+  right: 30px;
+  color: var(--blue);
+}
+.search-form button{
+  padding: .5em 1em;
+  font-family: Open Sans;
+  font-size: 15px;
+  background: white;
+  border: 2px solid var(--blue);
+  color: var(--blue);
+  border-radius: 0;
+  font-weight: 600;
+  margin: 2em auto 1em auto;
+  display: block;
+}
+.search-form button:hover{
+  background: var(--blue);
+  border: 2px solid var(--blue);
+}

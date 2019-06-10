@@ -76,7 +76,7 @@ a:hover{
 }
 .main-nav .nav-item ion-icon{
   font-size:23px;
-  color: #8a8a8a;
+  color: #d7d5d5;
   height:40px;
   margin:0 .3em;
 }
@@ -140,7 +140,7 @@ a:hover{
   margin:0 .3em;
 }
 .secondary-nav ion-icon{
-  color: #e7e7e7;
+  color: #d7d5d5;
   font-size:20px;
 }
 .routes-section{
