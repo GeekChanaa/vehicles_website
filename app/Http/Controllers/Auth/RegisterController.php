@@ -56,7 +56,6 @@ class RegisterController extends Controller
             'address' => 'required|string|min:10',
             'country' => 'required',
             'imagef' => 'required',
-
          ]);
     }
 

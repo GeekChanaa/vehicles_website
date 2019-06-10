@@ -105,6 +105,7 @@
         </div>
         <ion-icon class="collapse-btn" name="menu"></ion-icon>
       </div>
+    </div>
       @yield('content')
     </div>
     <!-- Scripts -->

@@ -7,7 +7,11 @@ use App\post;
 use App\reply;
 use App\comment;
 use Auth;
+use App\postvote;
+use App\replyvote;
+use App\commentvote;
 use App\section;
+use Response;
 
 class forumController extends Controller
 {
@@ -39,12 +43,10 @@ class forumController extends Controller
 
  public function section($section){
    if(section::all()->where('title','=',$section)->first()){
-     $list_posts = post::all()->where('section','=',$section);
-     $list_comments = comment::all()->whereIn('post_id',$list_posts);
-     $list_replies = reply::all()->whereIn('comment_id',$list_comments);
+     $list_posts = post::where('section','=',$section)->with('comments','comments.replies')->paginate(15);
+     $list_replies = reply::paginate(15);
      $data=[
        'list_posts' => $list_posts,
-       'list_comments' => $list_comments,
        'list_replies' => $list_replies,
        'section' => $section
      ];
@@ -88,6 +90,108 @@ class forumController extends Controller
     $reply->save();
     return redirect()->back();
 
+  }
+
+  public function upvotePost(Request $request){
+    if(postvote::where('post_id','=',$request->postid)->where('user_id','=',$request->userid)->first()){
+      $vote = postvote::where('post_id','=',$request->postid)->where('user_id','=',$request->userid)->first();
+      $vote->value=1;
+      $vote->save();
+      return Response::json(array('success'=>true,));
+    }
+    else{
+      $vote = new postvote;
+      $vote->user_id = $request->userid;
+      $vote->post_id = $request->postid;
+      $vote->value=1;
+      $vote->save();
+      return Response::json(array('success'=>true,));
+    }
+  }
+
+  public function downvotePost(Request $request){
+    if(postvote::where('post_id','=',$request->postid)->where('user_id','=',$request->userid)->first()){
+      $vote = postvote::where('post_id','=',$request->postid)->where('user_id','=',$request->userid)->first();
+      $vote->value=-1;
+      $vote->save();
+      return Response::json(array('success'=>true,));
+    }
+    else{
+      $vote = new postvote;
+      $vote->user_id = $request->userid;
+      $vote->post_id = $request->postid;
+      $vote->value=-1;
+      $vote->save();
+      return Response::json(array('success'=>true,));
+    }
+  }
+
+  public function upvoteComment(Request $request){
+    if(commentvote::where('comment_id','=',$request->commentid)->where('user_id','=',$request->userid)->first()){
+      $vote = commentvote::where('comment_id','=',$request->commentid)->where('user_id','=',$request->userid)->first();
+      $vote->value=1;
+      $vote->save();
+      return Response::json(array('success'=>true,));
+    }
+    else{
+      $vote = new commentvote;
+      $vote->user_id = $request->userid;
+      $vote->comment_id = $request->commentid;
+      $vote->value=1;
+      $vote->save();
+      return Response::json(array('success'=>true,));
+    }
+  }
+
+  public function downvoteComment(Request $request){
+    if(commentvote::where('comment_id','=',$request->commentid)->where('user_id','=',$request->userid)->first()){
+      $vote = commentvote::where('comment_id','=',$request->commentid)->where('user_id','=',$request->userid)->first();
+      $vote->value=-1;
+      $vote->save();
+      return Response::json(array('success'=>true,));
+    }
+    else{
+      $vote = new commentvote;
+      $vote->user_id = $request->userid;
+      $vote->comment_id = $request->commentid;
+      $vote->value=-1;
+      $vote->save();
+      return Response::json(array('success'=>true,));
+    }
+  }
+
+  public function upvoteReply(Request $request){
+    if(replyvote::where('reply_id','=',$request->replyid)->where('user_id','=',$request->userid)->first()){
+      $vote = replyvote::where('reply_id','=',$request->replyid)->where('user_id','=',$request->userid)->first();
+      $vote->value=1;
+      $vote->save();
+      return Response::json(array('success'=>true,));
+    }
+    else{
+      $vote = new replyvote;
+      $vote->user_id = $request->userid;
+      $vote->reply_id = $request->replyid;
+      $vote->value=1;
+      $vote->save();
+      return Response::json(array('success'=>true,));
+    }
+  }
+
+  public function downvoteReply(Request $request){
+    if(replyvote::where('reply_id','=',$request->replyid)->where('user_id','=',$request->userid)->first()){
+      $vote = replyvote::where('reply_id','=',$request->replyid)->where('user_id','=',$request->userid)->first();
+      $vote->value=-1;
+      $vote->save();
+      return Response::json(array('success'=>true,));
+    }
+    else{
+      $vote = new replyvote;
+      $vote->user_id = $request->userid;
+      $vote->reply_id = $request->replyid;
+      $vote->value=-1;
+      $vote->save();
+      return Response::json(array('success'=>true,));
+    }
   }
 
 

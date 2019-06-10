@@ -16,6 +16,8 @@ class CreateCarwashesTable extends Migration
         Schema::create('carwashes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('country');
+            $table->string('city');
             $table->unsignedInteger('owner_id');
             $table->foreign('owner_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

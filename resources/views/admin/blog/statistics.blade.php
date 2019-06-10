@@ -4,7 +4,7 @@
 
 @section('content')
 
-<section>
+<section class="bg-dark col-lg-12">
 <h1> Global Numbers </h1>
 <div class="row">
   <a href="" class="btn btn-outline-primary">number of posts :<span> {{$nbr_posts['0']->sum}} </span>  </a>
@@ -18,7 +18,7 @@
 </div>
 </section>
 
-<section class="bg-light">
+<section class="bg-light col-lg-12">
   <div class="col-lg-6 offset-lg-3 text-center">
     <div class="btn-group" role="group" aria-label="Basic example">
       <button onclick="listposts()" class="btn btn-danger">Posts</button>
@@ -35,47 +35,63 @@
     <th>Title </th>
     <th>Section </th>
     <th>Creation Date </th>
+    <th>Delete </th>
     @foreach($list_posts as $post)
     <tr>
       <td>{{$post->title}} </td>
       <td>{{$post->section}} </td>
       <td>{{$post->created_at}} </td>
+      <td>
+        <button type="submit" class="btn btn-danger deletepost" data-id="{{$post->id}}"> Delete </button>
+      </td>
     </tr>
     @endforeach
   </table>
+
+
   <table style="display:none;" class="listcomments table table-dark">
     <th>Post Id </th>
     <th>Content </th>
     <th>Creation Date </th>
+    <th> Delete </th>
     @foreach($list_comments as $comment)
     <tr>
       <td>{{$comment->post_id}} </td>
       <td>{{$comment->content}} </td>
       <td>{{$comment->created_at}} </td>
+      <td>
+        <button type="submit" class="btn btn-danger deletecomment" data-id="{{$comment->id}}"> Delete </button>
+      </td>
     </tr>
     @endforeach
   </table>
+
+
   <table style="display:none;" class="listreplies table table-dark">
     <th>Comment Id </th>
     <th>Content </th>
     <th>Creation Date </th>
+    <th>Delete </th>
     @foreach($list_replies as $reply)
     <tr>
       <td>{{$reply->comment_id}} </td>
       <td>{{$reply->content}} </td>
       <td>{{$reply->created_at}} </td>
+      <td>
+        <button type="submit" class="btn btn-danger deletereply" data-id="{{$reply->id}}"> Delete </button>
+      </td>
     </tr>
     @endforeach
   </table>
 </div>
 <span class="listposts">{{$list_posts->links()}} </span>
-<span class="listcomments">{{$list_comments->links()}} </span>
-<span class="listreplies">{{$list_replies->links()}} </span>
+<span class="listcomments" style="display:none;">{{$list_comments->links()}} </span>
+<span class="listreplies" style="display:none;">{{$list_replies->links()}} </span>
 </section>
 
 
 
-<section>
+<section class="bg-light>">
   <h1> Posts Statistics and Numbers </h1>
   <div>
     <h4> Number of posts by section </h4>
@@ -166,6 +182,84 @@ var replies_chart = new Chart(c0, {
     }]
   },
 });
+
+
+jQuery(document).ready(function(){
+      jQuery(".deletepost").on('click',function(e){
+        var postid=$(this).data("id");
+         e.preventDefault();
+         $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            }
+
+        });
+         jQuery.ajax({
+            url: "/ajax/deletePost",
+            method: 'delete',
+            data: {
+               id: postid,
+            },
+            success: function(result){
+              swal('deleted','NICE','success');
+            },
+            error: function(jqXHR, textStatus, errorThrown){
+              swal('something went wrong','impossible','error');
+          }});
+         });
+
+
+       jQuery(".deletecomment").on('click',function(e){
+         var commentid=$(this).data("id");
+          e.preventDefault();
+          $.ajaxSetup({
+             headers: {
+                 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+             }
+
+         });
+          jQuery.ajax({
+             url: "/ajax/deleteComment",
+             method: 'delete',
+             data: {
+                id: commentid,
+             },
+             success: function(result){
+               swal('deleted','NICE','success');
+             },
+             error: function(jqXHR, textStatus, errorThrown){
+               swal('something went wrong','impossible','error');
+           }});
+          });
+
+        jQuery(".deletereply").on('click',function(e){
+          var replyid=$(this).data("id");
+           e.preventDefault();
+           $.ajaxSetup({
+              headers: {
+                  'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+              }
+
+          });
+           jQuery.ajax({
+              url: "/ajax/deleteReply",
+              method: 'delete',
+              data: {
+                 id: replyid,
+              },
+              success: function(result){
+                swal('deleted','NICE','success');
+              },
+              error: function(jqXHR, textStatus, errorThrown){
+                swal('something went wrong','impossible','error');
+            }});
+           });
+      });
+
+
+
+
+
 </script>
 
 
