@@ -64,11 +64,11 @@ Route::group(['middleware'=>'admin'],function(){
   Route::get('/admin/encyclopediamoderators','Admin\dashboard@encyclopediamoderators');
   Route::get('/admin/editors','Admin\dashboard@editors');
   // TO DO ROUTES :
-  Route::post('/admin/createTodo','todolistController@create');
-  Route::post('/admin/doneTodo','todolistController@done');
-  Route::post('/admin/updatecontentTodo','todolistController@updatecontent');
-  Route::post('/admin/undoneTodo','todolistController@undone');
-  Route::delete('/admin/deleteTodo','todolistController@delete');
+  Route::post('/admin/createTask','taskController@create');
+  Route::post('/admin/doneTask','taskController@done');
+  Route::post('/admin/updatecontentTask','taskController@updatecontent');
+  Route::post('/admin/undoneTask','taskController@undone');
+  Route::delete('/admin/deleteTask','taskController@delete');
 
   Route::delete('/deleteuser','Admin\users@delete');
   Route::post('/updateuser','Admin\users@update');
@@ -83,6 +83,9 @@ Route::get('/blogmoderator/posts','Admin\blogdashboard@blogposts');
 Route::get('/blogmoderator/addpost','Admin\blogdashboard@addpost');
 Route::post('/blogmoderator/modifypost','Admin\blogdashboard@modifypost');
 Route::delete('/blogmoderator/deletepost','Admin\blogdashboard@deletepost');
+Route::delete('/ajax/deletePost','Admin\blogdashboard@deletePostAjax');
+Route::delete('/ajax/deleteReply','Admin\blogdashboard@deleteReplyAjax');
+Route::delete('/ajax/deleteComment','Admin\blogdashboard@deleteCommentAjax');
 Route::get('/blogmoderator/addsection','Admin\blogdashboard@addsection');
 Route::post('/blogmoderator/createsection','sectionController@create');
 Route::get('/blogmoderator/sections','Admin\blogdashboard@sections');
@@ -161,7 +164,7 @@ Route::delete('/encyclopediamoderator/deletevmodel','Admin\encyclopediadashboard
 Route::post('/encyclopediamoderator/modifyvmodel','Admin\encyclopediadashboard@modifyvmodel');
 Route::post('/encyclopediamoderator/uploadLogo','Admin\encyclopediadashboard@uploadLogo');
 Route::post('/encyclopediamoderator/modifybrand','Admin\encyclopediadashboard@modifybrand');
-Route::post('/admin/createbrand','brandsController@create');
+Route::post('/admin/createbrand','Admin\encyclopediadashboard@createBrand');
 Route::post('/admin/createmodel','vmodelsController@create');
 Route::post('/admin/creategeneration','generationsController@create');
 // get brands of some country :
@@ -217,6 +220,14 @@ Route::post('/blog/createcomment','forumController@createcomment');
 
 // Create reply :
 Route::post('/blog/createreply','forumController@createreply');
+
+// Vote posts comments and replies:
+Route::post('/ajax/upvotePost','forumController@upvotePost');
+Route::post('/ajax/upvoteComment','forumController@upvoteComment');
+Route::post('/ajax/upvoteReply','forumController@upvoteReply');
+Route::post('/ajax/downvotePost','forumController@downvotePost');
+Route::post('/ajax/downvoteComment','forumController@downvoteComment');
+Route::post('/ajax/downvoteReply','forumController@downvoteReply');
 
 
 /* ======================= Services Routes ======================  */

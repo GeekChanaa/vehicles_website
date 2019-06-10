@@ -77,6 +77,8 @@
 </table>
 <div class="add-button add-user" onclick="adduser()"> <button class="btn btn-danger" style="border-radius:100%"> + </button></div>
 </div>
+
+<button class="btn btn-danger"> {{$list_users->links()}} </button> 
 </section>
 
 

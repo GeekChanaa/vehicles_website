@@ -3,15 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\todolist;
+use App\task;
 use auth;
 
-class todolistController extends Controller
+class taskController extends Controller
 {
     //add todo record
     public function create(Request $request){
-      $task = new todolist;
+      $task = new task;
       $task->user_id = Auth::user()->id;
+      $task->in_charge_of_id = 1;
+      $task->section = $request->section;
       $task->state = 'undone';
       $task->content = $request->content;
       $task->save();
@@ -20,13 +22,13 @@ class todolistController extends Controller
     }
     //delete todo record
     public function delete(Request $request){
-      $task = todolist::all()->where('id','=',$request->id)->first();
+      $task = task::all()->where('id','=',$request->id)->first();
       $task->delete();
     }
 
     //done todo record
     public function done(Request $request){
-      $task = todolist::all()->where('id','=',$request->id)->first();
+      $task = task::all()->where('id','=',$request->id)->first();
       $task->state='done';
       $task->save();
     }
@@ -35,7 +37,7 @@ class todolistController extends Controller
 
     // undone todo record
     public function undone(Request $request){
-      $task = todolist::all()->where('id','=',$request->id)->first();
+      $task = task::all()->where('id','=',$request->id)->first();
       $task->state='undone';
       $task->save();
 
@@ -43,14 +45,14 @@ class todolistController extends Controller
 
     // update todo content
     public function updatecontent(Request $request){
-      $task = todolist::all()->where('id','=',$request->id)->first();
+      $task = task::all()->where('id','=',$request->id)->first();
       $task->content = $request->content;
       $task->save();
     }
 
     // update todo deadline
     public function updatedeadline(Request $request){
-      $task = todolist::all()->where('id','=',$request->id)->first();
+      $task = task::all()->where('id','=',$request->id)->first();
       $task->deadline = $request->deadline;
       $task->save();
     }

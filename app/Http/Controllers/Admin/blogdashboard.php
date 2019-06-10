@@ -177,4 +177,20 @@ class blogdashboard extends Controller
       return redirect()->back();
     }
 
+
+    public function deletePostAjax(Request $request){
+      $post = post::all()->where('id','=',$request->id)->first();
+      $post->delete();
+    }
+
+    public function deleteCommentAjax(Request $request){
+      $comment = comment::all()->where('id','=',$request->id)->first();
+      $comment->delete();
+    }
+
+    public function deleteReplyAjax(Request $request){
+      $reply = reply::all()->where('id','=',$request->id)->first();
+      $reply->delete();
+    }
+
 }

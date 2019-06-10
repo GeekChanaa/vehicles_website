@@ -144,7 +144,7 @@ jQuery(document).ready(function(){
 
         });
          jQuery.ajax({
-            url: "/admin/undoneTodo",
+            url: "/admin/undoneTask",
             method: 'post',
             data: {
                id: $("#id"+todoid).val(),
@@ -171,7 +171,7 @@ jQuery(document).ready(function(){
 
         });
          jQuery.ajax({
-            url: "/admin/doneTodo",
+            url: "/admin/doneTask",
             method: 'post',
             data: {
                id: $("#id"+todoid).val(),
@@ -198,7 +198,7 @@ jQuery(document).ready(function(){
 
         });
          jQuery.ajax({
-            url: "/admin/deleteTodo",
+            url: "/admin/deleteTask",
             method: 'delete',
             data: {
                id: $("#id"+todoid).val(),
@@ -223,10 +223,11 @@ jQuery(document).ready(function(){
 
               });
                jQuery.ajax({
-                  url: "/admin/createTodo",
+                  url: "/admin/createTask",
                   method: 'post',
                   data: {
-                     content: $('#create-todo-content').val()
+                     content: $('#create-todo-content').val(),
+                     section: 'Global',
                       },
                   success: function(result){
                     $('.tasks-div').prepend('<div id="box-del'+result.id+'" class="todo row"><input id="id'+result.id+'" type="hidden" value="'+result.id+'" name="id"><button class="check-btn doneTodo" data-id="'+result.id+'" type="submit"></button><input class="col-10 update-content-todo content'+result.id+'" data-id="'+result.id+'" value="'+result.content+'" disabled><button class="col-1 delete-btn" data-id="'+result.id+'" type="submit"><ion-icon name="remove-circle"></ion-icon></button></div>')
@@ -248,7 +249,7 @@ jQuery(document).ready(function(){
 
           });
            jQuery.ajax({
-              url: "/admin/updatecontentTodo",
+              url: "/admin/updatecontentTask",
               method: 'post',
               data: {
                  id: $("#id"+todoid).val(),
@@ -262,31 +263,7 @@ jQuery(document).ready(function(){
            });
         });
 
-  jQuery(document).ready(function(){
-        jQuery(".update-deadline-todo").on('blur',function(e){
-          var todoid=$(this).data("id");
-           e.preventDefault();
-           $.ajaxSetup({
-              headers: {
-                  'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-              }
 
-          });
-           jQuery.ajax({
-              url: "/admin/updatedeadlineTodo",
-              method: 'post',
-              data: {
-                 id: $("#id"+todoid).val(),
-                 deadline: $('.deadline'+todoid).val(),
-                  },
-              success: function(result){
-                swal('Added','NICE','success');
-              },
-              error: function(jqXHR, textStatus, errorThrown){
-                swal('something went wrong','impossible','error');
-            }});
-           });
-        });
 </script>
 
 

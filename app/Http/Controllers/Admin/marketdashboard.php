@@ -22,27 +22,6 @@ use DB;
 class marketdashboard extends Controller
 {
 
-    /* Market Stats */
-
-    //number of newcarpart articles
-
-    protected $nbr_ncp_articles;
-
-    //number of usedcarparts articles
-
-    protected $nbr_ucp_articles;
-
-    //number of usedvehicles articles
-
-    protected $nbr_uv_articles;
-
-    //number of newvehicles articles
-
-    protected $nbr_nv_articles;
-
-
-
-
     // Function list Carpart Categories:
     public function CarpartCategories(){
       $categories = auto_part::selectRaw('distinct category')->get();
