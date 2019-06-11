@@ -39,6 +39,7 @@
           <input class="col" type="number" name="max_price">
         </div>
         <button type="submit" class="btn btn-danger"> Search </button>
+        <a class="btn btn-primary" href="{{url('/advancedSearchNewVehicles')}}"> Advanced Search </a>
       </form>
     </div>
     <div class="se-container col-10  col-md-5">
@@ -74,9 +75,12 @@
           <input class="col" type="number" name="max_price">
         </div>
         <button type="submit" class="btn btn-danger"> Search </button>
+          <a class="btn btn-primary" href="{{url('/advancedSearchNewCarparts')}}"> Advanced Search </a>
       </form>
     </div>
-  </section>
+
+</section>
+
     <!-- <h1> used vehicle search </h1>
     <div>
     <form  action="{{url('/market/searchuv')}}" method="post">
@@ -126,11 +130,218 @@
       <button type="submit" class="btn btn-danger"> Search </button>
     </form>
   </div> -->
+
+
 </section>
 
+<!-- Recent New Vehicle Articles -->
+<section class="bg-light">
+  @foreach($list_recentnv as $article)
+    <div> {{$article->name}} </div>
+  @endforeach
+</section>
 
+<!-- Recent Used Vehicle Articles -->
+<section class="bg-light">
+  @foreach($list_recentuv as $article)
+    <div> {{$article->name}} </div>
+  @endforeach
+</section>
+
+<!-- Recent New Carpart Articles -->
+<section class="bg-light">
+  @foreach($list_recentncp as $article)
+    <div> {{$article->name}} </div>
+  @endforeach
+</section>
+
+<!-- Recent Used Carpart Articles -->
+<section class="bg-light">
+  @foreach($list_recentucp as $article)
+    <div> {{$article->price}} </div>
+  @endforeach
+</section>
+
+<!-- Most Known Vehicle Brands -->
+<section class="bg-light">
+  <a href="">
+    <img src="{{asset('/storage/brands/Audi.png')}}">
+  </a>
+
+  <a href="">
+    <img src="{{asset('/storage/brands/BMW.png')}}">
+  </a>
+
+  <a href="">
+    <img src="{{asset('/storage/brands/Cadillac.png')}}">
+  </a>
+
+  <a href="">
+    <img src="{{asset('/storage/brands/Dodge.png')}}">
+  </a>
+
+  <a href="">
+    <img src="{{asset('/storage/brands/Chevrolet.png')}}">
+  </a>
+
+  <a href="">
+    <img src="{{asset('/storage/brands/Ford.png')}}">
+  </a>
+
+  <a href="">
+    <img src="{{asset('/storage/brands/Volkswagen.png')}}">
+  </a>
+
+  <a href="">
+    <img src="{{asset('/storage/brands/Seat.png')}}">
+  </a>
+
+  <a href="">
+    <img src="{{asset('/storage/brands/Mercedes-Benz.png')}}">
+  </a>
+
+  <a href="">
+    <img src="{{asset('/storage/brands/Rolls-Royce.png')}}">
+  </a>
+</section>
+
+<!-- Most Known Carpart Brands -->
+<section class="bg-light">
+</section>
+
+<!-- Favorite Article -->
+<section class="bg-light">
+  <div>
+    @foreach($list_favnv as $favArticle)
+      <span> {{$favArticle->name}} </span>
+      <button class="deletefavnv" data-id="{{$favArticle->id}}"> Delete </button>
+    @endforeach
+  </div>
+  <div>
+    @foreach($list_favuv as $favArticle)
+      <span> {{$favArticle->name}} </span>
+      <button class="deletefavuv" data-id="{{$favArticle->id}}"> Delete </button>
+    @endforeach
+  </div>
+  <div>
+    @foreach($list_favncp as $favArticle)
+      <span> {{$favArticle->name}} </span>
+      <button class="deletefavncp" data-id="{{$favArticle->id}}"> Delete </button>
+    @endforeach
+  </div>
+  <div>
+    @foreach($list_favucp as $favArticle)
+      <span> {{$favArticle->name}} </span>
+      <button class="deletefavucp" data-id="{{$favArticle->id}}"> Delete </button>
+    @endforeach
+  </div>
+</section>
 <script>
 $(document).ready(function(){
+
+  jQuery(".deletefavnv").on('click',function(e){
+    var articleid=$(this).data("id");
+     e.preventDefault();
+     $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+        }
+
+    });
+     jQuery.ajax({
+        url: "/ajax/deletenvfav",
+        method: 'delete',
+        data: {
+           id: articleid,
+        },
+        success: function(result){
+          swal('deleted','NICE','success');
+        },
+        error: function(jqXHR, textStatus, errorThrown){
+          swal('something went wrong','impossible','error');
+      }});
+     });
+
+
+
+     jQuery(".deletefavuv").on('click',function(e){
+       var articleid=$(this).data("id");
+        e.preventDefault();
+        $.ajaxSetup({
+           headers: {
+               'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+           }
+
+       });
+        jQuery.ajax({
+           url: "/ajax/deleteuvfav",
+           method: 'delete',
+           data: {
+              id: articleid,
+           },
+           success: function(result){
+             swal('deleted','NICE','success');
+           },
+           error: function(jqXHR, textStatus, errorThrown){
+             swal('something went wrong','impossible','error');
+         }});
+        });
+
+
+
+  jQuery(".deletefavncp").on('click',function(e){
+    var articleid=$(this).data("id");
+     e.preventDefault();
+     $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+        }
+
+    });
+     jQuery.ajax({
+        url: "/ajax/addncpfav",
+        method: 'delete',
+        data: {
+           id: articleid,
+        },
+        success: function(result){
+          swal('deleted','NICE','success');
+        },
+        error: function(jqXHR, textStatus, errorThrown){
+          swal('something went wrong','impossible','error');
+      }});
+     });
+
+
+
+     jQuery(".deletefavucp").on('click',function(e){
+       var articleid=$(this).data("id");
+        e.preventDefault();
+        $.ajaxSetup({
+           headers: {
+               'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+           }
+
+       });
+        jQuery.ajax({
+           url: "/ajax/deleteucpfav",
+           method: 'delete',
+           data: {
+              id: articleid,
+           },
+           success: function(result){
+             swal('deleted','NICE','success');
+           },
+           error: function(jqXHR, textStatus, errorThrown){
+             swal('something went wrong','impossible','error');
+         }});
+        });
+
+
+
+
+
+
   $("#category_autopart").change(function(e){
       e.preventDefault();
       $.ajaxSetup({

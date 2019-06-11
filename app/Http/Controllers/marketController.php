@@ -12,12 +12,56 @@ use App\used_vehicle_article;
 use App\brand;
 use App\vmodel;
 use App\auto_part;
+use App\favorite_ncp;
+use App\favorite_ucp;
+use App\favorite_uv;
+use App\favorite_nv;
+use App\report_nv;
+use App\report_uv;
+use App\report_ncp;
+use App\report_ucp;
+use Auth;
+use Response;
 use DB;
 
 class marketController extends Controller
 {
 
 
+
+    // Getters Recent Articles
+    public function getRecentNv(){
+      return new_vehicle_article::orderBy('created_at','DESC')->limit(5)->get();
+    }
+
+    public function getRecentUv(){
+      return used_vehicle_article::orderBy('created_at','DESC')->limit(5)->get();
+    }
+
+    public function getRecentNcp(){
+      return new_carpart_article::orderBy('created_at','DESC')->limit(5)->get();
+    }
+
+    public function getRecentUcp(){
+      return used_carpart_article::orderBy('created_at','DESC')->limit(5)->get();
+    }
+
+    // GETTERS FAVORITE ARTICLES
+    public function getFavNv(){
+      return favorite_nv::where('user_id','=',Auth::user()->id)->get();
+    }
+
+    public function getFavUv(){
+      return favorite_uv::where('user_id','=',Auth::user()->id);
+    }
+
+    public function getFavNcp(){
+      return favorite_ncp::where('user_id','=',Auth::user()->id);
+    }
+
+    public function getFavUcp(){
+      return favorite_ucp::where('user_id','=',Auth::user()->id);
+    }
 
     //Routes To Markets
     public function usedvehicles(){
@@ -77,6 +121,14 @@ class marketController extends Controller
       $countries = country::all();
       $cp_categories = auto_part::selectRaw('distinct category')->get();
       $data=[
+        'list_recentnv' => $this->getRecentNv(),
+        'list_recentuv' => $this->getRecentUv(),
+        'list_recentncp' => $this->getRecentNcp(),
+        'list_recentucp' => $this->getRecentUcp(),
+        'list_favnv' => $this->getFavNv(),
+        'list_favuv' => $this->getFavUv(),
+        'list_favncp' => $this->getFavNcp(),
+        'list_favucp' => $this->getFavUcp(),
         'list_brands_cp' => $list_brands_cp,
         'list_brands' => $list_brands,
         'list_models' => $list_models,
@@ -116,6 +168,134 @@ class marketController extends Controller
         'list_ucp' => $list_ucp,
       ];
       return view('markets.usedcarparts')->with($data);
+    }
+
+    /*
+    *******************
+    ADD TO FAVORITE FUNCTIONS
+    *******************
+    */
+    public function addNvFav(Request $request){
+      $fav = new favorite_nv;
+      $fav->user_id = Auth::user()->id;
+      $fav->article_id = $request->articleid;
+      $fav->save();
+      return Response::json(array('success'=>true,));
+    }
+
+    public function addUvFav(Request $request){
+      $fav = new favorite_uv;
+      $fav->user_id = Auth::user()->id;
+      $fav->article_id = $request->articleid;
+      $fav->save();
+      return Response::json(array('success'=>true,));
+    }
+
+    public function addNcpFav(Request $request){
+      $fav = new favorite_ncp;
+      $fav->user_id = Auth::user()->id;
+      $fav->article_id = $request->articleid;
+      $fav->save();
+      return Response::json(array('success'=>true,));
+    }
+
+    public function addUcpFav(Request $request){
+      $fav = new favorite_ucp;
+      $fav->user_id = Auth::user()->id;
+      $fav->article_id = $request->articleid;
+      $fav->save();
+      return Response::json(array('success'=>true,));
+    }
+
+    /*
+    *******************
+    ADVANCED SEARCH ROUTES
+    *******************
+    */
+
+    public function as_nv(){
+      return view('markets.AdvancedSearch.NV');
+    }
+
+    public function as_uv(){
+      return view('markets.AdvancedSearch.UV');
+    }
+
+    public function as_ncp(){
+      return view('markets.AdvancedSearch.NCP');
+    }
+
+    public function as_ucp(){
+      return view('markets.AdvancedSearch.UCP');
+    }
+
+    /*
+    *******************
+    DELETE FROM FAVORITE FUNCTIONS
+    *******************
+    */
+
+    public function deleteNvFav(Request $request){
+      $fav = favorite_nv::where('id','=',$request->id)->first();
+      $fav->delete();
+      return Response::json(array('success'=>true,));
+    }
+
+    public function deleteUvFav(Request $request){
+      $fav = favorite_uv::where('id','=',$request->id)->first();
+      $fav->delete();
+      return Response::json(array('success'=>true,));
+    }
+
+    public function deleteNcpFav(Request $request){
+      $fav = favorite_ncp::where('id','=',$request->id)->first();
+      $fav->delete();
+      return Response::json(array('success'=>true,));
+    }
+
+    public function deleteUcpFav(Request $request){
+      $fav = favorite_ucp::where('id','=',$request->id)->first();
+      $fav->delete();
+      return Response::json(array('success'=>true,));
+    }
+
+
+    /*
+    *******************
+    REPORT ARTICLES FUNCTIONS
+    *******************
+    */
+
+    public function reportNv(Request $request){
+      $report = new report_nv;
+      $report->user_id = Auth::user()->id;
+      $report->article_id = $request->id;
+      $report->save();
+      return Response::json(array('success'=>true,));
+    }
+
+    public function reportUv(Request $request){
+      $report = new report_uv;
+      $report->user_id = Auth::user()->id;
+      $report->article_id = $request->id;
+      $report->save();
+      return Response::json(array('success'=>true,));
+    }
+
+    public function reportNcp(Request $request){
+      $report = new report_ncp;
+      $report->user_id = Auth::user()->id;
+      $report->article_id = $request->id;
+      $report->save();
+      return Response::json(array('success'=>true,));
+    }
+
+    public function reportUcp(Request $request){
+      $report = new report_ucp;
+      $report->user_id = Auth::user()->id;
+      $report->article_id = $request->id;
+      $report->save();
+      return Response::json(array('success'=>true,));
     }
 
 }

@@ -61,14 +61,14 @@
             <ion-icon name="notifications" class="align-middle"></ion-icon>
           </li>
           <li class="nav-item nav-avatar ">
-            <div class="pdp-box" style="background-image: url('{{asset('img/user-pdp/'.Auth::user()->num_tel.'.jpg')}}');" alt="">
+            <div class="pdp-box" style="background-image: url('{{asset('storage/users_pdp/'.Auth::user()->num_tel.'.jpg')}}');" alt="">
           </li>
         </ul>
     </nav>
     <div class="wrapper">
       <div class="sidebar">
         <div class="user-section">
-          <div class="user-avatar" style="background-image: url('{{asset('img/user-pdp/'.Auth::user()->num_tel.'.jpg')}}');">
+          <div class="user-avatar" style="background-image: url('{{asset('storage/users_pdp/'.Auth::user()->num_tel.'.jpg')}}');">
           </div>
           <a href="">{{Auth::user()->name}}</a>
           <nav class="navbar navbar-expand navbar-primary secondary-nav">
