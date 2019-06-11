@@ -39,7 +39,7 @@
           <input class="col" type="number" name="max_price">
         </div>
         <button type="submit" class="btn btn-danger"> Search </button>
-        <a class="btn btn-primary" href="{{url('/advancedSearchNewVehicles')}}"> Advanced Search </a>
+        <a class="btn btn-primary" href="{{url('/market/advancedSearchNewVehicles')}}"> Advanced Search </a>
       </form>
     </div>
     <div class="se-container col-10  col-md-5">
@@ -75,7 +75,7 @@
           <input class="col" type="number" name="max_price">
         </div>
         <button type="submit" class="btn btn-danger"> Search </button>
-          <a class="btn btn-primary" href="{{url('/advancedSearchNewCarparts')}}"> Advanced Search </a>
+          <a class="btn btn-primary" href="{{url('/market/advancedSearchNewCarparts')}}"> Advanced Search </a>
       </form>
     </div>
 
@@ -208,7 +208,7 @@
 <!-- Most Known Carpart Brands -->
 <section class="bg-light">
 </section>
-
+<?php if(Auth::check()){ ?>
 <!-- Favorite Article -->
 <section class="bg-light">
   <div>
@@ -236,6 +236,7 @@
     @endforeach
   </div>
 </section>
+<?php } ?>
 <script>
 $(document).ready(function(){
 

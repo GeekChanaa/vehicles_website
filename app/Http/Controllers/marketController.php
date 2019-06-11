@@ -120,21 +120,37 @@ class marketController extends Controller
       $list_models = vmodel::all();
       $countries = country::all();
       $cp_categories = auto_part::selectRaw('distinct category')->get();
-      $data=[
-        'list_recentnv' => $this->getRecentNv(),
-        'list_recentuv' => $this->getRecentUv(),
-        'list_recentncp' => $this->getRecentNcp(),
-        'list_recentucp' => $this->getRecentUcp(),
-        'list_favnv' => $this->getFavNv(),
-        'list_favuv' => $this->getFavUv(),
-        'list_favncp' => $this->getFavNcp(),
-        'list_favucp' => $this->getFavUcp(),
-        'list_brands_cp' => $list_brands_cp,
-        'list_brands' => $list_brands,
-        'list_models' => $list_models,
-        'cp_categories' => $cp_categories,
-        'countries' => $countries,
-      ];
+
+      if(Auth::check()){
+        $data=[
+          'list_recentnv' => $this->getRecentNv(),
+          'list_recentuv' => $this->getRecentUv(),
+          'list_recentncp' => $this->getRecentNcp(),
+          'list_recentucp' => $this->getRecentUcp(),
+          'list_favnv' => $this->getFavNv(),
+          'list_favuv' => $this->getFavUv(),
+            'list_favncp' => $this->getFavNcp(),
+            'list_favucp' => $this->getFavUcp(),
+            'list_brands_cp' => $list_brands_cp,
+            'list_brands' => $list_brands,
+            'list_models' => $list_models,
+            'cp_categories' => $cp_categories,
+            'countries' => $countries,
+          ];
+        }
+      else{
+        $data=[
+          'list_recentnv' => $this->getRecentNv(),
+          'list_recentuv' => $this->getRecentUv(),
+          'list_recentncp' => $this->getRecentNcp(),
+          'list_recentucp' => $this->getRecentUcp(),
+          'list_brands_cp' => $list_brands_cp,
+          'list_brands' => $list_brands,
+          'list_models' => $list_models,
+          'cp_categories' => $cp_categories,
+          'countries' => $countries,
+          ];
+      }
       return view('markets.index')->with($data);
     }
 
