@@ -1,5 +1,28 @@
 /*  Market index -- START */
 
+/*  Market Navbar*/
+.navbar-brand img{
+  width:200px;
+}
+
+#exampleNavComponents a{
+  font-family: Open Sans;
+  font-size: 15px;
+  font-weight: 600;
+  border: 2px solid var(--blue);
+  padding: .5em 1em;
+  margin:0 .3em;
+  transition: all .3s ease-in-out;
+}
+.main-nav a:hover{
+  background: var(--blue);
+  color:white;
+  text-decoration: none;
+}
+#exampleNavComponents button{
+  border:none;
+  background: none;
+}
 /* Search engine form */
 .search-engines{
   justify-content: center;
