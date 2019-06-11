@@ -62,6 +62,7 @@
           </li>
           <li class="nav-item nav-avatar ">
             <div class="pdp-box" style="background-image: url('{{asset('storage/users_pdp/'.Auth::user()->num_tel.'.jpg')}}');" alt="">
+            </div>
           </li>
         </ul>
     </nav>
@@ -105,7 +106,6 @@
         </div>
         <ion-icon class="collapse-btn" name="menu"></ion-icon>
       </div>
-    </div>
       @yield('content')
     </div>
     <!-- Scripts -->

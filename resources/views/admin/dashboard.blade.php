@@ -4,21 +4,7 @@
 @section('content')
 <!-- Header -->
 
-
-
-
-
-
-
 <!-- Most Important Statistics -->
-
-
-
-
-
-
-
-
 
 <section class="content-wrapper">
     <!-- Routes to other Dashboards -->
@@ -57,7 +43,7 @@
     </div>
 
 
-<div class="tasks-div" id="todo-list">
+      <div class="tasks-div" id="todo-list">
       @foreach($list_undone_tasks as $one)
       <!-- the tasks -->
       <div id="box-del{{$one->id}}" class="todo row">
