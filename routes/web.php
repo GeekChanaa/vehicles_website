@@ -200,6 +200,29 @@ Route::post('/market/searchucp','marketController@search_ucp');
 Route::get('/market/newcarparts/{id}','marketController@newcarpart');
 Route::post('/market/searchncp','marketController@search_ncp');
 
+// ADVANCED SEARCH
+Route::get('/market/advancedSearchNewVehicles','marketController@as_nv');
+Route::get('/market/advancedSearchUsedVehicles','marketController@as_uv');
+Route::get('/market/advancedSearchNewCarparts','marketController@as_ncp');
+Route::get('/market/advancedSearchUsedCarparts','marketController@as_ncp');
+
+// Add To Favorite Routes :
+Route::post('/ajax/addnvfav','marketController@addNvFav');
+Route::post('/ajax/adduvfav','marketController@addUvFav');
+Route::post('/ajax/addncpfav','marketController@addNcpFav');
+Route::post('/ajax/adducpfav','marketController@addUcpFav');
+// Delete From Favorite Routes :
+Route::delete('/ajax/deletenvfav','marketController@deleteNvFav');
+Route::delete('/ajax/deleteuvfav','marketController@deleteUvFav');
+Route::delete('/ajax/deletencpfav','marketController@deleteNcpFav');
+Route::delete('/ajax/deleteucpfav','marketController@deleteUcpFav');
+
+// Report Article Routes :
+Route::post('/ajax/reportnv','marketController@reportNv');
+Route::post('/ajax/reportuv','marketController@reportUv');
+Route::post('/ajax/reportncp','marketController@reportNcp');
+Route::post('/ajax/reportucp','marketController@reportUcp');
+
 /* ======================== Blog Routes ===================== */
 
 // Blog Index Page

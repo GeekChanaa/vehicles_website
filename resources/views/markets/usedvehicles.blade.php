@@ -16,7 +16,8 @@
   <li>{{$uv->price}} </li>
   <li>{{$uv->country}} </li>
   <li>{{$uv->city}} </li>
-
+  <button class="report" data-id="{{$uv->id}}"> report </button>
+  <button class="addtofav" data-id="{{$uv->id}}"> Add To Favorite </button>
 </div>
 
 
@@ -26,7 +27,55 @@
 
 
 
+<script>
+jQuery(document).ready(function(){
+  jQuery(".addtofav").on('click',function(e){
+              var articleid=$(this).data("id");
+               e.preventDefault();
+               $.ajaxSetup({
+                  headers: {
+                      'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                  }
 
+              });
+               jQuery.ajax({
+                  url: "/ajax/adduvfav",
+                  method: 'post',
+                  data: {
+                     articleid: articleid,
+                  },
+                  success: function(result){
+                    swal('deleted','NICE','success');
+                  },
+                  error: function(jqXHR, textStatus, errorThrown){
+                    swal('something went wrong','impossible','error');
+                }});
+               });
+
+jQuery(".report").on('click',function(e){
+        var articleid=$(this).data("id");
+         e.preventDefault();
+         $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            }
+
+        });
+         jQuery.ajax({
+            url: "/ajax/reportnv",
+            method: 'post',
+            data: {
+               id: articleid,
+            },
+            success: function(result){
+              swal('deleted','NICE','success');
+            },
+            error: function(jqXHR, textStatus, errorThrown){
+              swal('something went wrong','impossible','error');
+          }});
+         });
+    });
+</script>
 
 
 @endsection

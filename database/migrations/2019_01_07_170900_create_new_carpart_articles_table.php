@@ -17,6 +17,7 @@ class CreateNewCarpartArticlesTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->double('price')->nullable();
             $table->string('name')->nullable();
             $table->string('country')->nullable();
             $table->string('auto_part');
