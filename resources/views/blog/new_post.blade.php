@@ -10,7 +10,7 @@
 
     <span> title : </span> <input type="text" name="title"> <br>
     <span> content : </span><textarea class="span6" name="content" rows="3" placeholder="What's up?" required></textarea><br>
-    <input type="hidden" value="{{$section}}" name="section">
+    <input type="hidden" value="{{$community}}" name="section">
     <button class="btn btn-danger"> Create </button>
   </form>
 </div>

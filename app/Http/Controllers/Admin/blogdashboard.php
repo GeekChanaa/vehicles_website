@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\post;
 use App\reply;
 use App\comment;
-use App\section;
+use App\community;
 
 class blogdashboard extends Controller
 {
@@ -24,6 +24,10 @@ class blogdashboard extends Controller
 
     public function ListReplies(){
       return reply::paginate(50);
+    }
+
+    public function ListCommunities(){
+      return community::paginate(50);
     }
 
     public function ListPosts_statistics(){
@@ -50,12 +54,12 @@ class blogdashboard extends Controller
       return reply::selectRaw('count(*) as sum')->get();
     }
 
-    public function NbrSections(){
-      return section::selectRaw('count(*) as sum')->get();
+    public function NbrCommunities(){
+      return community::selectRaw('count(*) as sum')->get();
     }
 
-    public function RatePostsBySection(){
-      return $this->NbrPosts()['0']->sum/$this->NbrSections()['0']->sum;
+    public function RatePostsByCommunity(){
+      return $this->NbrPosts()['0']->sum/$this->NbrCommunities()['0']->sum;
     }
 
     public function RateCommentsByPost(){
@@ -109,7 +113,7 @@ class blogdashboard extends Controller
     'nbr_posts' => $this->NbrPosts(),
     'nbr_comments' => $this->NbrComments(),
     'nbr_replies' => $this->NbrReplies(),
-    'rate_posts_by_section' => $this->RatePostsBySection(),
+    'rate_posts_by_community' => $this->RatePostsByCommunity(),
     'rate_comments_by_post' => $this->RateCommentsByPost(),
     'rate_replies_by_comment' => $this->RateRepliesByComment(),
     'nbr_recent_replies_month' => $this->getStatisticsOfYear_replies(2019),
@@ -140,12 +144,12 @@ class blogdashboard extends Controller
       return view('admin.blog.addpost');
     }
 
-    public function addsection(){
-      return view('admin.blog.addsection');
+    public function addcommunity(){
+      return view('admin.blog.addcommunity');
     }
 
-    public function sections(){
-      return view('admin.blog.sections')->with('list_sections',$this->list_sections);
+    public function communities(){
+      return view('admin.blog.communities')->with('list_communities',$this->ListCommunities());
     }
 
     public function deletecomment(Request $request){
@@ -170,7 +174,7 @@ class blogdashboard extends Controller
     public function modifypost(Request $request){
       $post = post::all()->where('id','=',$request->id)->first();
       $post->title = $request->title;
-      $post->section = $request->section;
+      $post->community = $request->community;
       $post->content = $request->content;
       $post->rating = $request->rating;
       $post->save();

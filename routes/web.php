@@ -86,9 +86,9 @@ Route::delete('/blogmoderator/deletepost','Admin\blogdashboard@deletepost');
 Route::delete('/ajax/deletePost','Admin\blogdashboard@deletePostAjax');
 Route::delete('/ajax/deleteReply','Admin\blogdashboard@deleteReplyAjax');
 Route::delete('/ajax/deleteComment','Admin\blogdashboard@deleteCommentAjax');
-Route::get('/blogmoderator/addsection','Admin\blogdashboard@addsection');
-Route::post('/blogmoderator/createsection','sectionController@create');
-Route::get('/blogmoderator/sections','Admin\blogdashboard@sections');
+Route::get('/blogmoderator/addcommunity','Admin\blogdashboard@addcommunity');
+Route::post('/blogmoderator/createcommunity','communityController@create');
+Route::get('/blogmoderator/communities','Admin\blogdashboard@communities');
 Route::delete('/blogmoderator/deletecomment','Admin\blogdashboard@deletecomment');
 Route::post('/blogmoderator/modifyreply','Admin\blogdashboard@modifyreply');
 Route::delete('/blogmoderator/deletereply','Admin\blogdashboard@deletereply');
@@ -228,14 +228,26 @@ Route::post('/ajax/reportucp','marketController@reportUcp');
 // Blog Index Page
 Route::get('/blog','forumController@index');
 
-// Section Page (listing All Posts with all comments and replies)
-Route::get('/blog/{section}','forumController@section');
+// Community Page (listing All Posts with all comments and replies)
+Route::get('/blog/community/{community}','forumController@community');
+
+// Community interface
+Route::get('/blog/communityinterface/{community}','forumController@communityInterface');
+// Ban member from community
+Route::delete('/ajax/banMember','forumController@banMember');
 
 // Post Page (listing all comments and replies of the post)
-Route::get('/blog/{section}/{postid}','forumController@post');
+Route::get('/blog/community/{community}/{postid}','forumController@post');
+
+// Create Community
+Route::get('/blog/createcommunity','forumController@new_community');
+Route::post('/blog/createCom','forumController@createcommunity');
+
+// Delete Community
+Route::delete('/blog/deleteCommunity','forumController@deleteCommunity');
 
 // Create Post :
-Route::get('/blog/{section}/go/new_post','forumController@new_post');
+Route::get('/blog/{community}/go/new_post','forumController@new_post');
 Route::post('/blog/createpost','forumController@createpost');
 
 // Create Comment :
@@ -251,6 +263,14 @@ Route::post('/ajax/upvoteReply','forumController@upvoteReply');
 Route::post('/ajax/downvotePost','forumController@downvotePost');
 Route::post('/ajax/downvoteComment','forumController@downvoteComment');
 Route::post('/ajax/downvoteReply','forumController@downvoteReply');
+
+// REPORT POSTS COMMENTS AND REPLIES
+Route::post('/ajax/reportPost','forumController@reportPost');
+Route::post('/ajax/reportComment','forumController@reportComment');
+Route::post('/ajax/reportReply','forumController@reportReply');
+
+// Join Community
+Route::post('/ajax/joinCommunity','forumController@joinCommunity');
 
 
 /* ======================= Services Routes ======================  */

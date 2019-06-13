@@ -16,7 +16,7 @@
 <table class="col-lg-12 table table-danger">
   <th scope="col"> ID </th>
   <th scope="col"> Title </th>
-  <th scope="col"> Section </th>
+  <th scope="col"> Community </th>
   <th scope="col"> Content </th>
   <th scope="col"> UpVotes </th>
   <th scope="col"> Rating </th>
@@ -34,7 +34,7 @@
     <form method="post" action="{{url('/blogmoderator/modifypost')}}">
       {{csrf_field()}}
       <td><input type="text" placeholder="{{$post->title}}" value="{{$post->title}}" name="title"> <input name="id" value="{{$post->id}}" type="hidden"> </td>
-      <td><input type="text" placeholder="{{$post->section}}" value="{{$post->section}}" name="section"> </td>
+      <td><input type="text" placeholder="{{$post->community}}" value="{{$post->community}}" name="community"> </td>
       <td><input type="text" placeholder="{{$post->content}}" value="{{$post->content}}" name="content"> </td>
       <td><input type="text" placeholder="{{$post->upvotes}}" value="{{$post->upvotes}}" name="upvotes"> </td>
       <td><input type="text" placeholder="{{$post->rating}}" value="{{$post->rating}}" name="rating"> </td>

@@ -28,13 +28,13 @@
       <div class="row col-lg-3 col-md-6 col-12" style="margin:0 .5em">
         <div class="e-section">
           <ion-icon name="apps"></ion-icon>
-          <a href="{{url('/blogmoderator/sections')}}"> Sections </a>
-          <a class="plus" href="{{url('/blogmoderator/addsection')}}"><ion-icon name="add"></ion-icon></a>
+          <a href="{{url('/blogmoderator/communities')}}"> Communities </a>
+          <a class="plus" href="{{url('/blogmoderator/addcommunity')}}"><ion-icon name="add"></ion-icon></a>
         </div>
       </div>
     </div>
   </div>
-  <!-- <a class="col-lg-3 btn btn-danger"  href="{{url('/blogmoderator/statistics')}}"> Statistics </a> -->
+ <a class="col-lg-3 btn btn-danger"  href="{{url('/blogmoderator/statistics')}}"> Statistics </a> 
 
   <!-- Todo List -->
   <div class="todos col-sm-12 col-md-8 col-lg-6">

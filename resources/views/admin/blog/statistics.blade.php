@@ -12,7 +12,7 @@
   <a href="" class="btn btn-outline-primary">number of replies :<span> {{$nbr_replies['0']->sum}} </span> </a>
 </div>
 <div class="row">
-  <a href="" class="btn btn-outline-primary">Rate of posts by section :<span>{{$rate_posts_by_section}}  </span> </a>
+  <a href="" class="btn btn-outline-primary">Rate of posts by community :<span>{{$rate_posts_by_community}}  </span> </a>
   <a href="" class="btn btn-outline-primary">Rate of comments by post :<span>{{$rate_comments_by_post}}  </span> </a>
   <a href="" class="btn btn-outline-primary">Rate of replies by comment :<span> {{$rate_replies_by_comment}} </span> </a>
 </div>
@@ -33,13 +33,13 @@
 
   <table class="listposts table table-dark">
     <th>Title </th>
-    <th>Section </th>
+    <th>Community </th>
     <th>Creation Date </th>
     <th>Delete </th>
     @foreach($list_posts as $post)
     <tr>
       <td>{{$post->title}} </td>
-      <td>{{$post->section}} </td>
+      <td>{{$post->community}} </td>
       <td>{{$post->created_at}} </td>
       <td>
         <button type="submit" class="btn btn-danger deletepost" data-id="{{$post->id}}"> Delete </button>
@@ -94,11 +94,11 @@
 <section class="bg-light>">
   <h1> Posts Statistics and Numbers </h1>
   <div>
-    <h4> Number of posts by section </h4>
+    <h4> Number of posts by community </h4>
     <div>
       <!-- get number by ajax -->
     </div>
-    <!-- Chart Of posts By section -->
+    <!-- Chart Of posts By Community -->
     <div>
     </div>
   </div>
@@ -114,12 +114,12 @@
 <section>
   <h1> Comments Statistics and Numbers </h1>
   <div>
-    <h4> Number of comments by section </h4>
+    <h4> Number of comments by community </h4>
     <div>
-      <!-- get number by section ajax -->
+      <!-- get number by community ajax -->
       <!-- get number by post ajax -->
     </div>
-    <!-- Chart of Comments by Section -->
+    <!-- Chart of Comments by Community -->
     <div>
     </div>
   </div>
@@ -131,13 +131,13 @@
 <section>
   <h1> Replies Statistics and Numbers </h1>
   <div>
-    <h4> Number of replies by section </h4>
+    <h4> Number of replies by community </h4>
     <div>
-      <!-- Get number by section Ajax -->
+      <!-- Get number by community Ajax -->
       <!-- Get number by post Ajax -->
       <!-- Get number by reply Ajax -->
     </div>
-    <!-- chart of Replies by Section -->
+    <!-- chart of Replies by Community -->
     <div>
     </div>
   </div>

@@ -19,7 +19,7 @@ class CreatePostsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->text('content')->nullable();
             $table->string('title')->nullable();
-            $table->string('section')->nullable();
+            $table->string('community')->nullable();
             $table->integer('upvotes')->default('0');
             $table->float('rating')->default('0');
             $table->timestamps();

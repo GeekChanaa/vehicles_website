@@ -20,7 +20,7 @@ class CreateReportedRepliesTable extends Migration
             $table->unsignedInteger('reply_id');
             $table->foreign('reply_id')->references('id')->on('replies')->onDelete('cascade');
             $table->integer('value')->default('1');
-            $table->unique('user_id','reply_id');
+            $table->unique(['user_id','reply_id']);
             $table->timestamps();
         });
     }

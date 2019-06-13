@@ -5,16 +5,18 @@
 @section('content')
 
 <h1>
-  {{$section}}
+  {{$community}}
+  <button class="joincommunity btn btn-primary" data-id="{{$community}}" data-userid="{{Auth::user()->id}}"> join </button>
 </h1>
 
 <section class="bg-light">
 @foreach($list_posts as $post)
 <div>
-  <h1> <a href="{{url('/blog/'.$section.'/'.$post->id.'')}}"> {{$post->title}} </a> </h1>
+  <h1> <a href="{{url('/blog/community/'.$community.'/'.$post->id.'')}}"> {{$post->title}} </a> </h1>
   <!-- UPVOTE POST -->
   <button class="upvotepost" data-postid="{{$post->id}}" data-userid="{{auth::user()->id}}"> UpVote </button>
     <button class="downvotepost" data-postid="{{$post->id}}" data-userid="{{auth::user()->id}}"> DownVote </button>
+    <button class="reportpost" data-postid="{{$post->id}}" data-userid="{{auth::user()->id}}"> Report </button>
   <span> {{$post->content}} </span>
 
   <!-- Listing Of All Comments Of A Post -->
@@ -23,6 +25,7 @@
       {{$comment->content}}
       <button class="upvotecomment" data-commentid="{{$comment->id}}" data-userid="{{auth::user()->id}}"> UpVote </button>
       <button class="downvotecomment" data-commentid="{{$comment->id}}" data-userid="{{auth::user()->id}}"> DownVote </button>
+      <button class="reportcomment" data-commentid="{{$comment->id}}" data-userid="{{auth::user()->id}}"> Report </button>
     </div>
 
     <!-- Listing Of All Replies Of A Comment -->
@@ -31,6 +34,7 @@
         {{$reply->content}}
         <button class="upvotereply" data-replyid="{{$reply->id}}" data-userid="{{auth::user()->id}}"> UpVote </button>
         <button class="downvotereply" data-replyid="{{$reply->id}}" data-userid="{{auth::user()->id}}"> DownVote </button>
+        <button class="reportreply" data-replyid="{{$reply->id}}" data-userid="{{auth::user()->id}}"> Report </button>
 
       </div>
     @endforeach
@@ -76,7 +80,7 @@
 
 </section>
 
-<a class="btn btn-dark" href="{{url('/blog/'.$section.'/go/new_post')}}"> New Post </a>
+<a class="btn btn-dark" href="{{url('/blog/'.$community.'/go/new_post')}}"> New Post </a>
 
 
 <script>
@@ -235,6 +239,112 @@ jQuery(document).ready(function(){
                      swal('something went wrong','impossible','error');
                  }});
                 });
+
+          jQuery(".reportpost").on('click',function(e){
+            var postid=$(this).data("postid");
+            var userid=$(this).data("userid");
+             e.preventDefault();
+             $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                }
+
+            });
+             jQuery.ajax({
+                url: "/ajax/reportPost",
+                method: 'post',
+                data: {
+                   postid: postid,
+                   userid: userid,
+                },
+                success: function(result){
+                  swal('deleted','NICE','success');
+                },
+                error: function(jqXHR, textStatus, errorThrown){
+                  swal('something went wrong','impossible','error');
+              }});
+             });
+
+
+
+
+
+           jQuery(".reportcomment").on('click',function(e){
+             var commentid=$(this).data("commentid");
+             var userid=$(this).data("userid");
+              e.preventDefault();
+              $.ajaxSetup({
+                 headers: {
+                     'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                 }
+
+             });
+              jQuery.ajax({
+                 url: "/ajax/reportComment",
+                 method: 'post',
+                 data: {
+                    commentid: commentid,
+                    userid: userid,
+                 },
+                 success: function(result){
+                   swal('deleted','NICE','success');
+                 },
+                 error: function(jqXHR, textStatus, errorThrown){
+                   swal('something went wrong','impossible','error');
+               }});
+              });
+
+
+
+            jQuery(".reportreply").on('click',function(e){
+              var replyid=$(this).data("replyid");
+              var userid=$(this).data("userid");
+               e.preventDefault();
+               $.ajaxSetup({
+                  headers: {
+                      'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                  }
+
+              });
+               jQuery.ajax({
+                  url: "/ajax/reportReply",
+                  method: 'post',
+                  data: {
+                     replyid: replyid,
+                     userid: userid,
+                  },
+                  success: function(result){
+                    swal('deleted','NICE','success');
+                  },
+                  error: function(jqXHR, textStatus, errorThrown){
+                    swal('something went wrong','impossible','error');
+                }});
+               });
+
+     jQuery(".joincommunity").on('click',function(e){
+       var community=$(this).data("id");
+       var userid=$(this).data("userid");
+        e.preventDefault();
+        $.ajaxSetup({
+           headers: {
+               'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+           }
+
+       });
+        jQuery.ajax({
+           url: "/ajax/joinCommunity",
+           method: 'post',
+           data: {
+              community: community,
+              userid: userid,
+           },
+           success: function(result){
+             swal('deleted','NICE','success');
+           },
+           error: function(jqXHR, textStatus, errorThrown){
+             swal('something went wrong','impossible','error');
+         }});
+        });
     });
 </script>
 

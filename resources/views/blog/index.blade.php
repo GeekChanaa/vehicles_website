@@ -12,13 +12,18 @@
 <h1> SECTIONS </h1>
 
 
-@foreach($list_sections as $section)
-<a href="{{'/blog/'.$section->title.''}}" class="btn btn-primary"> {{$section->title}} </a>
+@foreach($list_communities as $community)
+<a href="{{'/blog/community/'.$community->title.''}}" class="btn btn-primary"> {{$community->title}} </a>
 @endforeach
 
 
 </section>
 
 
+<section class="bg-light">
+
+<a class="btn btn-danger" href="{{'/blog/createcommunity'}}"> Create a community </a>
+
+</section>
 
 @endsection
