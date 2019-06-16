@@ -14,6 +14,9 @@ class blogdashboard extends Controller
 
 
     /* Getters */
+
+
+
     public function ListPosts(){
       return post::paginate(50);
     }

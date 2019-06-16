@@ -16,6 +16,7 @@ class encyclopediadashboard extends Controller
 {
 
     // ################### GETTERS ################### //
+
     public function ListModels(){
       return vmodel::paginate(50);
     }
@@ -186,7 +187,7 @@ class encyclopediadashboard extends Controller
     }
 
     public function createBrand(Request $request){
-      
+
       $brand = new brand;
       $brand->name = $request->name ;
       $brand->year_foundation = $request->year_foundation ;

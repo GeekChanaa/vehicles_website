@@ -12,12 +12,12 @@ class taskController extends Controller
     public function create(Request $request){
       $task = new task;
       $task->user_id = Auth::user()->id;
-      $task->in_charge_of_id = 1;
+      $task->in_charge_of_id = $request->assign_id;
       $task->section = $request->section;
       $task->state = 'undone';
       $task->content = $request->content;
+      $task->deadline = $request->date;
       $task->save();
-
       return response()->json($task);
     }
     //delete todo record

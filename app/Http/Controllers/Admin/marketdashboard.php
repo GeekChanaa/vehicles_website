@@ -22,6 +22,8 @@ use DB;
 class marketdashboard extends Controller
 {
 
+
+
     // Function list Carpart Categories:
     public function CarpartCategories(){
       $categories = auto_part::selectRaw('distinct category')->get();

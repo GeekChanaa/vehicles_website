@@ -47,7 +47,9 @@
       <button class="check-btn doneTodo" data-id="{{$one->id}}" type="submit"></button>
 
      <!-- Update Content of a Todo-->
-      <input class="col-10 {{$one->state=='done'?'done':''}} update-content-todo content{{$one->id}}" data-id="{{$one->id}}" value="{{$one->content}}" disabled>
+      <input class="col-10 {{$one->state=='done'?'done':''}} update-content-todo content{{$one->id}}" data-id="{{$one->id}}" value="{{$one->content}}">
+      <!-- The user in charge of the task -->
+      <button> {{$one->User_inchargeof->name}} <img src="{{asset('storage/users_pdp/'.$one->User_inchargeof->num_tel.'.jpg')}}" ></button>
 
       <button class="col-1 delete-btn" data-id="{{$one->id}}" type="submit"><ion-icon name="remove-circle"></ion-icon></button>
     </div>
@@ -61,7 +63,9 @@
       <input id="id{{$one->id}}" type="hidden" value="{{$one->id}}">
       <button class="check-btn undoneTodo" data-id="{{$one->id}}" type="submit"></button>
     <!-- Update Content of a Todo-->
-      <input class="col-10 {{$one->state=='done'?'done':''}} update-content-todo content{{$one->id}}" data-id="{{$one->id}}" value="{{$one->content}}" disabled>
+      <input class="col-10 {{$one->state=='done'?'done':''}} update-content-todo content{{$one->id}}" data-id="{{$one->id}}" value="{{$one->content}}" >
+      <!-- The user in charge of the task -->
+      <button> {{$one->User_inchargeof->name}} <img src="{{asset('storage/users_pdp/'.$one->User_inchargeof->num_tel.'.jpg')}}" ></button>
 
       <button class="col-1 delete-btn" data-id="{{$one->id}}" type="submit"><ion-icon name="remove-circle"></ion-icon></button>
     </div>
@@ -71,6 +75,10 @@
     <!-- Create Todo -->
     <div class="add-todo">
       <input id="create-todo-content" class="col-12" type="text" placeholder="Type your todo ..">
+      <input type="date" id="create-todo-date">
+      @foreach($list_servicesm as $servicesm)
+      <option value="{{$servicesm->id}}">{{$servicesm->name}}</option>
+      @endforeach
       <div class="underline"></div>
       <button class="createTodo mx-auto" type="submit"><ion-icon name="add"></ion-icon></button>
     </div>
@@ -178,10 +186,11 @@ jQuery(document).ready(function(){
                   method: 'post',
                   data: {
                      content: $('#create-todo-content').val(),
+                     date : $('#create-todo-date').val(),
                      section: 'Services',
                       },
                   success: function(result){
-                    $('.tasks-div').prepend('<div id="box-del'+result.id+'" class="todo row"><input id="id'+result.id+'" type="hidden" value="'+result.id+'" name="id"><button class="check-btn doneTodo" data-id="'+result.id+'" type="submit"></button><input class="col-10 update-content-todo content'+result.id+'" data-id="'+result.id+'" value="'+result.content+'" disabled><button class="col-1 delete-btn" data-id="'+result.id+'" type="submit"><ion-icon name="remove-circle"></ion-icon></button></div>')
+                    $('.tasks-div').prepend('<div id="box-del'+result.id+'" class="todo row"><input id="id'+result.id+'" type="hidden" value="'+result.id+'" name="id"><button class="check-btn doneTodo" data-id="'+result.id+'" type="submit"></button><input class="col-10 update-content-todo content'+result.id+'" data-id="'+result.id+'" value="'+result.content+'" ><button class="col-1 delete-btn" data-id="'+result.id+'" type="submit"><ion-icon name="remove-circle"></ion-icon></button></div>')
                   },
                   error: function(jqXHR, textStatus, errorThrown){
                     swal('something went wrong','impossible','error');

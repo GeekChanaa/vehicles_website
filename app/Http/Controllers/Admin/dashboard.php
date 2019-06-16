@@ -108,14 +108,15 @@ class dashboard extends Controller
 
     public function index(){
       $nbr_users_by_country = $this->NumberUsersEveryCountry();
-      $list_tasks = task::all();
-      $list_done_tasks = task::all()->where('state','=','done');
-      $list_undone_tasks = task::all()->where('state','=','undone');
+      $list_tasks = task::where('section','=','Global')->with('User_inchargeof')->get();
+      $list_done_tasks = task::where('section','=','Global')->where('state','=','done')->with('User_inchargeof')->get();
+      $list_undone_tasks = task::where('section','=','Global')->where('state','=','undone')->with('User_inchargeof')->get();
       $data=[
         'nbr_users_by_country' => $nbr_users_by_country,
         'list_tasks' => $list_tasks,
         'list_done_tasks' => $list_done_tasks,
         'list_undone_tasks' => $list_undone_tasks,
+        'list_admins' => $this->getAdmins(),
       ];
       return view('admin.dashboard')->with($data);
     }
@@ -132,9 +133,10 @@ class dashboard extends Controller
     }
 
     public function blogindex(){
-      $list_done_tasks = task::where('state','=','done')->where('section','=','Blog')->get();
-      $list_undone_tasks = task::where('state','=','undone')->where('section','=','Blog')->get();
+      $list_done_tasks = task::where('state','=','done')->where('section','=','Blog')->with('User_inchargeof')->get();
+      $list_undone_tasks = task::where('state','=','undone')->where('section','=','Blog')->with('User_inchargeof')->get();
       $data=[
+        'list_blogms' => $this->getBlogModerators(),
         'list_done_tasks' => $list_done_tasks,
         'list_undone_tasks' => $list_undone_tasks,
       ];
@@ -151,9 +153,10 @@ class dashboard extends Controller
     }
 
     public function encyclopediadashboard(){
-      $list_done_tasks = task::where('state','=','done')->where('section','=','Encyclopedia')->get();
-      $list_undone_tasks = task::where('state','=','undone')->where('section','=','Encyclopedia')->get();
+      $list_done_tasks = task::where('state','=','done')->where('section','=','Encyclopedia')->with('User_inchargeof')->get();
+      $list_undone_tasks = task::where('state','=','undone')->where('section','=','Encyclopedia')->with('User_inchargeof')->get();
       $data=[
+        'list_encyclopediams' => $this->getEncyclopediaModerators(),
         'list_done_tasks' => $list_done_tasks,
         'list_undone_tasks' => $list_undone_tasks,
       ];
@@ -175,10 +178,11 @@ class dashboard extends Controller
     }
 
     public function marketindex(){
-      $list_done_tasks = task::where('state','=','done')->where('section','=','Market')->get();
-      $list_undone_tasks = task::where('state','=','undone')->where('section','=','Market')->get();
+      $list_done_tasks = task::where('state','=','done')->where('section','=','Market')->with('User_inchargeof')->get();
+      $list_undone_tasks = task::where('state','=','undone')->where('section','=','Market')->with('User_inchargeof')->get();
 
       $data=[
+        'list_marketms' => $this->getMarketModerators(),
         'list_done_tasks' => $list_done_tasks,
         'list_undone_tasks' => $list_undone_tasks,
       ];
@@ -186,9 +190,10 @@ class dashboard extends Controller
     }
 
     public function servicesindex(){
-      $list_done_tasks = task::where('state','=','done')->where('section','=','Services')->get();
-      $list_undone_tasks = task::where('state','=','undone')->where('section','=','Services')->get();
+      $list_done_tasks = task::where('state','=','done')->where('section','=','Services')->with('User_inchargeof')->get();
+      $list_undone_tasks = task::where('state','=','undone')->where('section','=','Services')->with('User_inchargeof')->get();
       $data=[
+        'list_servicesm' => $this->getServicesModerators(),
         'list_done_tasks' => $list_done_tasks,
         'list_undone_tasks' => $list_undone_tasks,
       ];
