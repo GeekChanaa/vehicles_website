@@ -49,7 +49,7 @@
      <!-- Update Content of a Todo-->
       <input class="col-10 {{$one->state=='done'?'done':''}} update-content-todo content{{$one->id}}" data-id="{{$one->id}}" value="{{$one->content}}">
       <!-- The user in charge of the task -->
-      <button> {{$one->User_inchargeof->name}} <img src="{{asset('storage/users_pdp/'.$one->User_inchargeof->num_tel.'.jpg')}}" ></button>
+      <button> {{$one->User_inchargeof->name}} <div class="todo-incharge" style="background-image: url('{{asset('storage/users_pdp/'.$one->User_inchargeof->num_tel.'.jpg')}}')" ></div></button>
 
       <button class="col-1 delete-btn" data-id="{{$one->id}}" type="submit"><ion-icon name="remove-circle"></ion-icon></button>
     </div>
@@ -65,7 +65,7 @@
     <!-- Update Content of a Todo-->
       <input class="col-10 {{$one->state=='done'?'done':''}} update-content-todo content{{$one->id}}" data-id="{{$one->id}}" value="{{$one->content}}" >
       <!-- The user in charge of the task -->
-      <button> {{$one->User_inchargeof->name}} <img src="{{asset('storage/users_pdp/'.$one->User_inchargeof->num_tel.'.jpg')}}" ></button>
+      <button> {{$one->User_inchargeof->name}} <div class="todo-incharge" style="background-image: url('{{asset('storage/users_pdp/'.$one->User_inchargeof->num_tel.'.jpg')}}')" ></div></button>
 
       <button class="col-1 delete-btn" data-id="{{$one->id}}" type="submit"><ion-icon name="remove-circle"></ion-icon></button>
     </div>

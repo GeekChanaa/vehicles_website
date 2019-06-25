@@ -112,88 +112,143 @@ class forumController extends Controller
   }
 
   public function upvotePost(Request $request){
+    // IF there is already a vote
     if(postvote::where('post_id','=',$request->postid)->where('user_id','=',$request->userid)->first()){
       $vote = postvote::where('post_id','=',$request->postid)->where('user_id','=',$request->userid)->first();
-      $vote->value=1;
-      $vote->save();
-      return Response::json(array('success'=>true,));
+      if($vote->value == -1){
+        $post = post::where('id','=',$request->postid)->first();
+        $post->upvotes = $post->upvotes+2;
+        $post->save();
+        $vote->value=1;
+        $vote->save();
+        return Response::json(array('success'=>true,));
+      }
+      // Error if there is already an upvote
+      else{
+        return Response::json(array('message'=>'you can\'t vote 2 times sorry!',));
+      }
     }
-    else{
       $vote = new postvote;
       $vote->user_id = $request->userid;
       $vote->post_id = $request->postid;
       $vote->value=1;
+      $post = post::where('id','=',$request->postid)->first();
+      $post->upvotes = $post->upvotes+1;
+      $post->save();
       $vote->save();
       return Response::json(array('success'=>true,));
-    }
   }
 
   public function downvotePost(Request $request){
+    // IF there is already a upvote
     if(postvote::where('post_id','=',$request->postid)->where('user_id','=',$request->userid)->first()){
       $vote = postvote::where('post_id','=',$request->postid)->where('user_id','=',$request->userid)->first();
-      $vote->value=-1;
-      $vote->save();
-      return Response::json(array('success'=>true,));
+      if($vote->value == 1){
+        $post = post::where('id','=',$request->postid)->first();
+        $post->upvotes = $post->upvotes-2;
+        $post->save();
+        $vote->value=-1;
+        $vote->save();
+        return Response::json(array('success'=>true,));
+      }
+      // Error if there is already an upvote
+      else{
+        return Response::json(array('message'=>'you can\'t downvote 2 times sorry!',));
+      }
     }
-    else{
       $vote = new postvote;
       $vote->user_id = $request->userid;
       $vote->post_id = $request->postid;
       $vote->value=-1;
+      $post = post::where('id','=',$request->postid)->first();
+      $post->upvotes = $post->upvotes-1;
+      $post->save();
       $vote->save();
       return Response::json(array('success'=>true,));
-    }
   }
 
   public function upvoteComment(Request $request){
+    // IF there is already a downvote
     if(commentvote::where('comment_id','=',$request->commentid)->where('user_id','=',$request->userid)->first()){
       $vote = commentvote::where('comment_id','=',$request->commentid)->where('user_id','=',$request->userid)->first();
-      $vote->value=1;
-      $vote->save();
-      return Response::json(array('success'=>true,));
+      if($vote->value == -1){
+        $comment = comment::where('id','=',$request->commentid)->first();
+        $comment->upvotes = $comment->upvotes+2;
+        $comment->save();
+        $vote->value=1;
+        $vote->save();
+        return Response::json(array('success'=>true,));
+      }
+      // Error if there is already an upvote
+      else{
+        return Response::json(array('message'=>'you can\'t vote 2 times sorry!',404));
+      }
     }
-    else{
       $vote = new commentvote;
       $vote->user_id = $request->userid;
       $vote->comment_id = $request->commentid;
       $vote->value=1;
+      $comment = comment::where('id','=',$request->commentid)->first();
+      $comment->upvotes = $comment->upvotes+1;
+      $comment->save();
       $vote->save();
       return Response::json(array('success'=>true,));
-    }
   }
 
   public function downvoteComment(Request $request){
+    // IF there is already a downvote
     if(commentvote::where('comment_id','=',$request->commentid)->where('user_id','=',$request->userid)->first()){
       $vote = commentvote::where('comment_id','=',$request->commentid)->where('user_id','=',$request->userid)->first();
-      $vote->value=-1;
-      $vote->save();
-      return Response::json(array('success'=>true,));
+      if($vote->value == 1){
+        $comment = comment::where('id','=',$request->commentid)->first();
+        $comment->upvotes = $comment->upvotes-2;
+        $comment->save();
+        $vote->value=-1;
+        $vote->save();
+        return Response::json(array('success'=>true,));
+      }
+      // Error if there is already an upvote
+      else{
+        return Response::json(array('message'=>'you can\'t downvote 2 times sorry!',404));
+      }
     }
-    else{
       $vote = new commentvote;
       $vote->user_id = $request->userid;
       $vote->comment_id = $request->commentid;
       $vote->value=-1;
+      $comment = comment::where('id','=',$request->commentid)->first();
+      $comment->upvotes = $comment->upvotes-1;
+      $comment->save();
       $vote->save();
       return Response::json(array('success'=>true,));
-    }
   }
 
   public function upvoteReply(Request $request){
+    // IF there is already a downvote
     if(replyvote::where('reply_id','=',$request->replyid)->where('user_id','=',$request->userid)->first()){
       $vote = replyvote::where('reply_id','=',$request->replyid)->where('user_id','=',$request->userid)->first();
-      $vote->value=1;
-      $vote->save();
-      return Response::json(array('success'=>true,));
+      if($vote->value == -1){
+        $reply = reply::where('id','=',$request->replyid)->first();
+        $reply->upvotes = $reply->upvotes+2;
+        $reply->save();
+        $vote->value=1;
+        $vote->save();
+        return Response::json(array('success'=>true,));
+      }
+      // Error if there is already an upvote
+      else{
+        return Response::json(array('message'=>'you can\'t vote 2 times sorry!',404));
+      }
     }
-    else{
-      $vote = new replyvote;
+      $vote = new commentvote;
       $vote->user_id = $request->userid;
       $vote->reply_id = $request->replyid;
       $vote->value=1;
+      $comment = comment::where('id','=',$request->commentid)->first();
+      $comment->upvotes = $comment->upvotes+1;
+      $comment->save();
       $vote->save();
       return Response::json(array('success'=>true,));
-    }
   }
 
   public function downvoteReply(Request $request){
@@ -297,5 +352,5 @@ class forumController extends Controller
     return redirect('/blog');
   }
 
-
+  
 }

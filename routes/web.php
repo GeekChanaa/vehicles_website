@@ -80,6 +80,10 @@ Route::group(['middleware'=>'blogmoderator'],function(){
 Route::get('/BlogDashboard','Admin\dashboard@blogindex');
 Route::get('/blogmoderator/statistics','Admin\blogdashboard@statistics');
 Route::get('/blogmoderator/posts','Admin\blogdashboard@blogposts');
+Route::get('/blogmoderator/posts/sort-by-recent','Admin\blogdashboard@blogPostsByRecent');
+Route::get('/blogmoderator/posts/sort-by-upvotes','Admin\blogdashboard@blogPostsByUpvotes');
+Route::get('/blogmoderator/posts/sort-by-downvotes','Admin\blogdashboard@blogPostsByDownvotes');
+
 Route::get('/blogmoderator/addpost','Admin\blogdashboard@addpost');
 Route::post('/blogmoderator/modifypost','Admin\blogdashboard@modifypost');
 Route::delete('/blogmoderator/deletepost','Admin\blogdashboard@deletepost');
@@ -92,6 +96,26 @@ Route::get('/blogmoderator/communities','Admin\blogdashboard@communities');
 Route::delete('/blogmoderator/deletecomment','Admin\blogdashboard@deletecomment');
 Route::post('/blogmoderator/modifyreply','Admin\blogdashboard@modifyreply');
 Route::delete('/blogmoderator/deletereply','Admin\blogdashboard@deletereply');
+//ROUTING TO REPORETD POSTS COMMENTS AND REPLIES
+Route::get('/blogmoderator/reportedposts/{userid}','Admin\blogdashboard@reportedPosts');
+Route::get('/blogmoderator/reportedcomments/{userid}','Admin\blogdashboard@reportedComments');
+Route::get('/blogmoderator/reportedreplies/{userid}','Admin\blogdashboard@reportedReplies');
+// LIVE SEARCHES
+Route::get('/ajax/searchCommunities','Admin\blogdashboard@searchCommunities');
+Route::get('/ajax/searchPosts','Admin\blogdashboard@searchPosts');
+// GET NUMBERS AJAX :
+Route::get('/ajax/NbrRepliesByCommunity','Admin\blogdashboard@NbrRepliesByCommunity');
+Route::get('/ajax/NbrRepliesByPost','Admin\blogdashboard@NbrRepliesByPost');
+// GET NUMBERS BY DAY MONTH AND YEAR AJAX :
+Route::get('/ajax/NbrPostsByDay','Admin\blogdashboard@getNumberPostsByDay');
+Route::get('/ajax/NbrCommentsByDay','Admin\blogdashboard@getNumberCommentsByDay');
+Route::get('/ajax/NbrRepliesByDay','Admin\blogdashboard@getNumberRepliesByDay');
+Route::get('/ajax/NbrPostsByMonth','Admin\blogdashboard@getNumberPostsByMonth');
+Route::get('/ajax/NbrCommentsByMonth','Admin\blogdashboard@getNumberCommentsByMonth');
+Route::get('/ajax/NbrRepliesByMonth','Admin\blogdashboard@getNumberRepliesByMonth');
+Route::get('/ajax/NbrPostsByYear','Admin\blogdashboard@getNumberPostsByYear');
+Route::get('/ajax/NbrCommentsByYear','Admin\blogdashboard@getNumberCommentsByYear');
+Route::get('/ajax/NbrRepliesByYear','Admin\blogdashboard@getNumberRepliesByYear');
 });
 
 
@@ -302,6 +326,11 @@ Route::post('/services/createcarwash','servicesController@createcarwash');
 
 // Encyclopedia index page
 Route::get('/encyclopedia','encyclopediaController@index');
+Route::get('/encyclopedia/brands','encyclopediaController@brands');
+Route::get('/encyclopedia/carpart-brands','encyclopediaController@carpartBrands');
+Route::get('/encyclopedia/news','encyclopediaController@news');
+Route::get('/encylopedia/autoparts','encyclopediaController@autoparts');
+
 
 /* ====================== Other Routes =================== */
 Route::get('/admin/getcities/{country_name}','countryController@getcities');

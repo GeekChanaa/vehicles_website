@@ -13,6 +13,14 @@
 <!-- List of posts (possiblity of filter by user / date / section ...) ability to delete or update -->
 <section class="bg-light">
 
+<div class="row col-lg-12">
+  <a href="{{url('/blogmoderator/posts/sort-by-recent')}}" class=" col-lg-3 btn btn-outline-primary">Sort by Recent</a>
+  <a href="{{url('/blogmoderator/posts/sort-by-upvotes')}}" class="col-lg-3 btn btn-outline-primary">Sort by Upvotes </a>
+  <a href="{{url('/blogmoderator/posts/sort-by-downvotes')}}" class="col-lg-3 btn btn-outline-primary">Sort by Downvotes </a>
+</div>
+
+
+<div class="row col-lg-12">
 <table class="col-lg-12 table table-danger">
   <th scope="col"> ID </th>
   <th scope="col"> Title </th>
@@ -120,6 +128,8 @@
   @endforeach
 
 </table>
+</div>
+<button>{{$list_posts->links()}}</button>
 
 </section>
 

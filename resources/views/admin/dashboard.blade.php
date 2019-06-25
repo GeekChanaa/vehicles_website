@@ -36,73 +36,83 @@
   </div>
 
   <!-- Todo List -->
-  <div class="todos col-sm-12 col-md-8 col-lg-6">
-    <div class="row todo-heading">
-      <ion-icon name="menu"></ion-icon>
-      <h2 class="col-10">Website Todo</h2>
+  <div class="row col-lg-12">
+    <div class="todos col-sm-12 col-md-8 col-lg-6">
+      <div class="row todo-heading">
+        <ion-icon name="menu"></ion-icon>
+        <h2 class="col-10">Website Todo</h2>
+      </div>
+
+
+        <div class="tasks-div" id="todo-list">
+        @foreach($list_undone_tasks as $one)
+        <!-- the tasks -->
+        <div id="box-del{{$one->id}}" class="todo row">
+
+          <input id="id{{$one->id}}" type="hidden" value="{{$one->id}}" name="id">
+          <div class="col-1 check-div"><button class="check-btn doneTodo" data-id="{{$one->id}}" type="submit"><ion-icon name="ios-checkmark-circle-outline"></ion-icon></button></div>
+
+
+         <!-- Update Content of a Todo-->
+          <div class="col-8 content-todo-div"><input class="{{$one->state=='done'?'done':''}} update-content-todo content{{$one->id}}" data-id="{{$one->id}}" value="{{$one->content}}" ></div>
+
+          <!-- The user in charge of the task -->
+          <div class="offset-2 col-1 todo-incharge" style="background-image: url('{{asset('storage/users_pdp/'.$one->User_inchargeof->num_tel.'.jpg')}}')" ></div>
+          <div class="todo-delete"><button class="delete-btn" data-id="{{$one->id}}" type="submit"><ion-icon name="md-close-circle"></ion-icon></button></div>
+
+        </div>
+        @endforeach
+
+
+        @foreach($list_done_tasks as $one)
+        <!-- the tasks -->
+        <div id="box-del{{$one->id}}" class="todo row">
+
+          <!-- Undone Todo -->
+          <input id="id{{$one->id}}" type="hidden" value="{{$one->id}}">
+          <button class="check-btn undoneTodo" data-id="{{$one->id}}" type="submit"></button>
+
+          <!-- Update Content of a Todo-->
+          <input class="col-10 {{$one->state=='done'?'done':''}} update-content-todo content{{$one->id}}" data-id="{{$one->id}}" value="{{$one->content}}" >
+
+          <!-- The user in charge of the task -->
+          <button> {{$one->User_inchargeof->name}} <div class="todo-incharge" style="background-image: url('{{asset('storage/users_pdp/'.$one->User_inchargeof->num_tel.'.jpg')}}')" ></div></button>
+
+
+          <button class="col-1 delete-btn" data-id="{{$one->id}}" type="submit"><ion-icon name="remove-circle"></ion-icon></button>
+        </div>
+        @endforeach
+  </div>
+
+        <!-- Create Todo -->
+        <div class="add-todo">
+          <input id="create-todo-content" class="col-12" type="text" placeholder="Type your todo ..">
+          <select id="create-todo-assign" style="visibility:visible;">
+            @foreach($list_admins as $admin)
+            <option value="{{$admin->id}}">{{$admin->name}}</option>
+            @endforeach
+          </select>
+          <div class="date row col-10">
+            <div class="col-1 date-cal"><button class="assign-date"><ion-icon class="bg-danger" name="md-calendar"></ion-icon></button></div>
+            <div class="col-8 date-inp"><input type="date" id="create-todo-date"></div>
+          </div>
+          <div class="underline"></div>
+          <button class="createTodo mx-auto" type="submit"><ion-icon name="add"></ion-icon></button>
+        </div>
     </div>
 
 
-      <div class="tasks-div" id="todo-list">
-      @foreach($list_undone_tasks as $one)
-      <!-- the tasks -->
-      <div id="box-del{{$one->id}}" class="todo row">
-
-        <input id="id{{$one->id}}" type="hidden" value="{{$one->id}}" name="id">
-        <button class="check-btn doneTodo" data-id="{{$one->id}}" type="submit"></button>
-
-
-       <!-- Update Content of a Todo-->
-        <input class="col-10 {{$one->state=='done'?'done':''}} update-content-todo content{{$one->id}}" data-id="{{$one->id}}" value="{{$one->content}}" >
-
-        <!-- The user in charge of the task -->
-        <button> {{$one->User_inchargeof->name}} <img src="{{asset('storage/users_pdp/'.$one->User_inchargeof->num_tel.'.jpg')}}" ></button>
-
-        <button class="col-1 delete-btn" data-id="{{$one->id}}" type="submit"><ion-icon name="remove-circle"></ion-icon></button>
-      </div>
-      @endforeach
-
-
-      @foreach($list_done_tasks as $one)
-      <!-- the tasks -->
-      <div id="box-del{{$one->id}}" class="todo row">
-
-        <!-- Undone Todo -->
-        <input id="id{{$one->id}}" type="hidden" value="{{$one->id}}">
-        <button class="check-btn undoneTodo" data-id="{{$one->id}}" type="submit"></button>
-
-        <!-- Update Content of a Todo-->
-        <input class="col-10 {{$one->state=='done'?'done':''}} update-content-todo content{{$one->id}}" data-id="{{$one->id}}" value="{{$one->content}}" >
-
-        <!-- The user in charge of the task -->
-        <button> {{$one->User_inchargeof->name}} <img src="{{asset('storage/users_pdp/'.$one->User_inchargeof->num_tel.'.jpg')}}" ></button>
-
-
-        <button class="col-1 delete-btn" data-id="{{$one->id}}" type="submit"><ion-icon name="remove-circle"></ion-icon></button>
-      </div>
-      @endforeach
-</div>
-
-      <!-- Create Todo -->
-      <div class="add-todo">
-        <input id="create-todo-content" class="col-12" type="text" placeholder="Type your todo ..">
-        <select id="create-todo-assign">
-          @foreach($list_admins as $admin)
-          <option value="{{$admin->id}}">{{$admin->name}}</option>
-          @endforeach
-        </select>
-        <input type="date" id="create-todo-date">
-        <div class="underline"></div>
-        <button class="createTodo mx-auto" type="submit"><ion-icon name="add"></ion-icon></button>
-      </div>
+  <div class="col-lg-6" style="height:70vh;margin-top:1%;">
+    <div id="world-map" style="height:70vh;"></div>
   </div>
 
+
+</div>
+
 </section>
 
 
-<section class="bg-light" style="height:400px;">
-  <div id="world-map" style="height:400px;"></div>
-</section>
+
 
 
 
@@ -279,6 +289,7 @@ jQuery(document).ready(function(){
     $(function(){
   var maps = new jvm.Map({
     map: 'world_mill_en',
+    backgroundColor: '#eaf2ff',
     container: $('#world-map'),
     regionLabelStyle: {
       initial: {
@@ -290,7 +301,7 @@ jQuery(document).ready(function(){
     },
     series: {
     regions: [{
-      scale: ['#ffc107', '#dc3545'],
+      scale: ['#b7d2ff', '#0d3c89'],
       normalizeFunction: 'polynomial',
 
 

@@ -106,9 +106,11 @@
         </div>
         <ion-icon class="collapse-btn" name="menu"></ion-icon>
       </div>
-      @yield('content')
     </div>
+      @yield('content')
+
     <!-- Scripts -->
+    <script src="{{ asset('js/anime.min.js') }}"></script>
     <script src="{{ asset('js/jquery-jvectormap-2.0.3.min.js') }}"></script>
     <script src="{{ asset('js/jquery-jvectormap-world-mill-en.js') }}"></script>
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>

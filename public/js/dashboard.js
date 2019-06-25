@@ -3,14 +3,7 @@
 
 // Toggle the underline of add-todo input ( show it when focused and hide it when blured)
 
-$('.add-todo input').focus(function(e){
-  $(this).next().css('visibility','visible');
-  $(this).next().css('width','100%');
-});
-$('.add-todo input').blur(function(e){
-  $(this).next().css('visibility','hidden');
-  $(this).next().css('width','0%');
-});
+
 
 $('.update-content-todo').click(function(e){
     $(this).removeAttr('disabled');
@@ -117,3 +110,22 @@ function adduser(){
   $('.users-table').append('<tr><td> XX </td><td><input type="text" id="name"> </input></td><td><input type="text" id="email"> </input></td><td><input type="text" id="num_tel"> </input></td><td><input type="text" id="address"> </input></td><td><input type="text" id="rank"> </input></td><td><input type="text" id="blog_score"> </input></td><td> <button class="btn btn-primary adduser"> create! </button> </td><td> done </td><td> done </td><td> done </td></tr>');
 
 }
+
+$('.todo').hover(function(){
+  $(this).children('.todo-incharge').addClass('col-2');
+  $(this).children('.todo-incharge').addClass('offset-1');
+  $(this).children('.todo-incharge').removeClass('offset-2');
+  $(this).children('.todo-delete').css('display','initial');
+  $(this).children('.todo-delete').animate({
+    'opacity' : '1'
+  },300);
+},function(){
+  $(this).children('.todo-incharge').removeClass('col-2');
+  $(this).children('.todo-incharge').removeClass('offset-2');
+  $(this).children('.todo-incharge').addClass('col-1');
+  $(this).children('.todo-incharge').addClass('offset-2');
+  $(this).children('.todo-delete').css('display','none');
+  $(this).children('.todo-delete').animate({
+    'opacity' : '0'
+  },300);
+});

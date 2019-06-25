@@ -1,4 +1,32 @@
+/* Fonts */
+
+@font-face {
+  font-family: 'Poppins-Light';
+  src: url('/fonts/Poppins-Light.ttf'); /* IE9 Compat Modes */
+  src: url('/fonts/Poppins-Light.ttf')  format('truetype') /* Safari, Android, iOS */
+}
+@font-face {
+  font-family: 'Poppins-Bold';
+  src: url('/fonts/Poppins-Bold.ttf'); /* IE9 Compat Modes */
+  src: url('/fonts/Poppins-Bold.ttf')  format('truetype') /* Safari, Android, iOS */
+}
+@font-face {
+  font-family: 'Digital';
+  src: url('/fonts/digital.ttf');
+  src: url('/fonts/digital.ttf')  format('truetype')
+}
+
+@font-face {
+  font-family: 'Poppins-ExtraLightItalic';
+  src: url('/fonts/Poppins-ExtraLightItalic.ttf'); /* IE9 Compat Modes */
+  src: url('/fonts/Poppins-ExtraLightItalic.ttf')  format('truetype') /* Safari, Android, iOS */
+}
+
+
 /* General styles */
+
+
+
 
 *{
   font-family: Open Sans;
@@ -219,13 +247,19 @@ body{
   -moz-box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.1);
   box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.1);
   padding:1em;
-  display: block;
   width:100%;
   margin:1em auto;
   margin-bottom: 2em;
   padding:0;
   transition:all .5s ease-in-out;
 }
+
+.tasks-div{
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height:40vh;
+}
+
 .todo-heading{
   background: linear-gradient(to right, rgba(85,155,247,1) 0%, rgba(59,120,189,1) 100%);
   color:white;
@@ -249,16 +283,24 @@ body{
 .todo{
   background:white;
   height:60px;
-  border-radius: 2em;
+  border-radius: 2em 0 0 2em;
   margin: 1em .5em !important;
   padding: 0 .5em;
   box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.1);
-  transition:all .5s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
-.todo *{
-  padding:0 !important;
-  margin:0 !important;
+
+.todo:hover{
+  transform : translateY(-10px);
+    height:100px;
 }
+.todo:hover .todo-incharge{
+  height:90px;
+  width: 90px;
+}
+
+
+
 
 .update-content-todo{
   background: white;
@@ -269,24 +311,23 @@ body{
   overflow: hidden;
   align-self:center;
   padding:0 .3em !important;
+  margin-bottom:1.5%;
+}
+
+.content-todo-div{
+  margin-top:15px;
 }
 
 .todo button{
   display: inline-block;
-  width:15px;
-  height:15px;
   border:none;
   background:none;
-  padding:.2em;
+  padding:0em;
 }
-.todo .check-btn{
-  line-height: 45px;
-}
-.todo .undoneTodo,.todo .doneTodo{
-  align-self: center;
-  border-radius:50%;
-  border:3px solid #515151;
-  margin: 0 0.2em 0 1em !important;
+
+.todo .undoneTodo, .todo .doneTodo{
+  margin-bottom: 1.5%;
+  margin-left: 2%;
 }
 
 .todo .undoneTodo{
@@ -295,27 +336,75 @@ body{
 
 }
 
+
+
 .todo .delete-btn{
-  height:60px;
-  color:#ee5253;
+  height:40px;
+  color:black;
+    transition: color .5s ease-out;
+    -moz-transition: color .5s ease-out;
+    -webkit-transition: color .5s ease-out;
+    -o-transition: color .5s ease-out;
+  margin-left: 10%;
 }
 .todo ion-icon{
   height: inherit;
-  font-size:20px;
+  font-size:2em;
   line-height: 50px;
+  margin-top:45%;
+}
+
+.check-div{
+  padding-left: 0 !important;
+}
+
+.check-div ion-icon:hover{
+  color:green;
+}
+
+.todo-incharge{
+  background-repeat: no-repeat;
+  height:50px;
+  width:50px;
+  background-size: cover;
+  background-position: center center;
+  /*border-radius:50%;*/
+  display: inline-block;
+  margin-top:1%;
+  filter: brightness(1);
+    transition: all 0.3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -webkit-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+
+}
+
+.todo-incharge:hover{
+    filter: brightness(0.5);
+}
+
+.todo-delete{
+  position:relative;
+  top:-60px;
+  display:none;
+  opacity:0;
+  transition: all 0.3s ease-in-out;
+}
+
+.delete-btn:hover{
+  color:red;
 }
 
 .done{
   text-decoration: line-through;
-  color:var(--main-grey);
+  color:var(--mainw-grey);
   font-style: italic;
 }
 
-.add-todo input{
+.add-todo #create-todo-content{
   background:#fcfcfc;
   height:50px;
   border:none;
-  padding: 1em 1.5em 0 1.5em;
   margin-bottom:.3em;
   font-size:17px;
 }
@@ -328,7 +417,9 @@ body{
   transition:.3s all ease-in-out;
 }
 
-.add-todo button{
+
+
+.add-todo .createTodo{
   display: block;
   text-align: center;
   margin: 0 auto;
@@ -339,11 +430,32 @@ body{
   border:none;
   color:white;
   position: relative;
+
   top: 25px;
 }
+
+
+.add-todo .date .date-cal{
+
+}
+.add-todo .date .date-cal{
+}
+#create-todo-date{
+  padding:0;
+}
+.add-todo .date .date-cal .assign-date{
+  background:none
+}
+
+
+.add-todo .date .date-cal .assign-date ion-icon{
+  color:white;
+  font-size:1.5em;
+}
+
 .add-todo ion-icon{
   height:inherit;
-  font-size:23px;
+  font-size:15px;
   font-weight: bold;
   line-height: 40px;
   color:white;
@@ -637,6 +749,115 @@ body{
     margin-left: 0;
   }
  }
+
+/* *************
+STAATISTICS CSS
+************* */
+
+.stat-card{
+  background-color: white;
+  color: black;
+  height: 180px;
+  border-radius: 8%;
+  -webkit-box-shadow: -9px 5px 20px -19px rgba(0,0,0,0.85);
+  -moz-box-shadow: -9px 5px 20px -19px rgba(0,0,0,0.85);
+  box-shadow: -9px 5px 20px -19px rgba(0,0,0,0.85);
+  transition: all 0.3s ease-in-out;
+
+}
+
+.stat-card:hover{
+  transform : translateY(-10px);
+  box-shadow: -9px 5px 30px -19px rgba(0,0,0,0.85);
+}
+
+.stat-card:hover .stat-card-nbr{
+  transform:translateY(-18px);
+}
+.stat-card:hover .stat-card-nbr span{
+  transform:translateY(35px);
+  margin-top:60%;
+  color:#5d9afc;
+
+}
+
+.stat-card-title{
+  padding : 15px 0 20px 0;
+  font-size: 0.98em;
+  font-family: 'Poppins-Bold';
+  color:#5d9afc;
+}
+
+.stat-card-titlee{
+  padding : 15px 0 20px 0;
+  font-size: 0.8em;
+  font-family: 'Poppins-Light';
+  color:#5d9afc;
+}
+
+.stat-card-nbr{
+  height:50%;
+  background-size:70%;
+  background-position: center center;
+  background-repeat:no-repeat;
+  margin-top:3%;
+  transition: all 0.3s ease-in-out;
+}
+
+.stat-card-nbr span{
+  margin-top:50%;
+  display:inline-block;
+  transition: all 0.3s ease-in-out;
+  color:transparent;
+}
+
+.sect-title{
+  font-family: 'Poppins-Bold';
+  color:white;
+}
+
+.chart-description-title{
+  font-size:6em;
+  font-family: 'Poppins-Bold';
+  color:white !important;
+}
+
+.by_div{
+  font-family: 'Poppins-Bold';
+  font-size: 1.5em;
+  margin-bottom:3%;
+  color:white;
+}
+
+.circle_nbr_div{
+  margin-top:3%;
+  height:20vh;
+  border-radius: 50%;
+  border:5px solid #5d9afc;
+  background-color:white;
+}
+
+
+
+.circle_nbr_div span{
+  margin-top:45%;
+  color:white;
+  font-size : 2em;
+  font-weight: bold;
+  font-family: 'Digital';
+  width:100%;
+}
+
+.sect-title{
+  color:white;
+  text-align:center;
+  font-family: "Poppins-Light";
+}
+
+.sect-subtitle{
+  color:white;
+  font-family: "Poppins-ExtraLightItalic";
+}
 
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
