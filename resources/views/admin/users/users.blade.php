@@ -35,33 +35,32 @@
 
   <td>{{$one->id}}<input type="hidden" name="id" value="{{$one->id}}"></td>
   <td> <label class="td-list-update{{$one->id}}"> {{$one->name}}</label>
-      <input id="name{{$one->id}}" class="td-input-update{{$one->id}} d-n" type="text" name="name" value="{{$one->name}}" placeholder="{{$one->name}}" style="color:grey !important" >
+      <input class="name" class="td-input-update{{$one->id}} d-n" type="text" name="name" value="{{$one->name}}" placeholder="{{$one->name}}" style="color:grey !important" >
    </td>
   <td><label class="td-list-update{{$one->id}}"> {{$one->email}}</label>
-      <input id="email{{$one->id}}" class="td-input-update{{$one->id}} d-n" type="text" name="email" value="{{$one->email}}" placeholder="{{$one->email}}" style="color:grey !important" >
+      <input class="email" class="td-input-update{{$one->id}} d-n" type="text" name="email" value="{{$one->email}}" placeholder="{{$one->email}}" style="color:grey !important" >
    </td>
   <td><label class="td-list-update{{$one->id}}"> {{$one->num_tel}}</label>
-      <input id="num_tel{{$one->id}}" class="td-input-update{{$one->id}} d-n" type="text" name="num_tel" value="{{$one->num_tel}}" placeholder="{{$one->num_tel}}" style="color:grey !important" >
+      <input class="num_tel" class="td-input-update{{$one->id}} d-n" type="text" name="num_tel" value="{{$one->num_tel}}" placeholder="{{$one->num_tel}}" style="color:grey !important" >
    </td>
   <td><label class="td-list-update{{$one->id}}"> {{$one->address}}</label>
-      <input id="address{{$one->id}}" class="td-input-update{{$one->id}} d-n" type="text" name="address" value="{{$one->address}}" placeholder="{{$one->address}}" style="color:grey !important" >
+      <input class="address" class="td-input-update{{$one->id}} d-n" type="text" name="address" value="{{$one->address}}" placeholder="{{$one->address}}" style="color:grey !important" >
    </td>
   <td><label class="td-list-update{{$one->id}}"> {{$one->rank}}</label>
-      <input id="rank{{$one->id}}" class="td-input-update{{$one->id}} d-n" type="text" name="rank" value="{{$one->rank}}" placeholder="{{$one->rank}}" style="color:grey !important" >
+      <input class="rank" class="td-input-update{{$one->id}} d-n" type="text" name="rank" value="{{$one->rank}}" placeholder="{{$one->rank}}" style="color:grey !important" >
    </td>
   <td><label class="td-list-update{{$one->id}}"> {{$one->blog_score}}</label>
-      <input id="blog_score{{$one->id}}" class="td-input-update{{$one->id}} d-n" type="text" name="blog_score" value="{{$one->blog_score}}" placeholder="{{$one->blog_score}}" style="color:grey !important" >
+      <input class="blog_score" class="td-input-update{{$one->id}} d-n" type="text" name="blog_score" value="{{$one->blog_score}}" placeholder="{{$one->blog_score}}" style="color:grey !important" >
    </td>
   <td>{{$one->created_at}}
    </td>
   <td>
-     <button class="btn btn-dark submit-update" type="submit"> update </button>
+     <button class="btn btn-dark updateuser" data-id="{{$one->id}}"> update </button>
   </td>
 </form>
 
   <td>
 
-    <input name="id" id="id{{$one->id}}" type="hidden" value="{{$one->id}}">
     <button class="btn btn-danger deleteuser" data-id="{{$one->id}}" type="submit"> Bye </button>
 
 </td>
@@ -75,10 +74,8 @@
 
 </tbody>
 </table>
-<div class="add-button add-user" onclick="adduser()"> <button class="btn btn-danger" style="border-radius:100%"> + </button></div>
-</div>
 
-<button class="btn btn-danger"> {{$list_users->links()}} </button> 
+{{$list_users->links()}}
 </section>
 
 
@@ -132,14 +129,14 @@ jQuery(document).ready(function(){
             url: "/updateuser",
             method: 'post',
             data: {
-               id: $("#id"+userid).val(),
-               name: $("#name"+userid).val(),
-               email: $("#email"+userid).val(),
-               num_tel: $("#num_tel"+userid).val(),
-               address: $("#address"+userid).val(),
-               rank: $("#rank"+userid).val(),
-               blog_score: $("#blog_score"+userid).val()
-                },
+               id: userid,
+               name: $("#user"+userid).children().children('.name').val(),
+               email: $("#user"+userid).children().children('.email').val(),
+               num_tel: $("#user"+userid).children().children('.num_tel').val(),
+               address: $("#user"+userid).children().children('.address').val(),
+               rank: $("#user"+userid).children().children('.rank').val(),
+               blog_score: $("#user"+userid).children().children('.blog_score').val(),
+            },
             success: function(result){
               swal('Updated','NICE','success');
             },
@@ -148,36 +145,6 @@ jQuery(document).ready(function(){
           }});
          });
       });
-
-      jQuery(document).ready(function(){
-            jQuery(".adduser").on('click',function(e){
-               e.preventDefault();
-               $.ajaxSetup({
-                  headers: {
-                      'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-                  }
-
-              });
-               jQuery.ajax({
-                  url: "/adduser",
-                  method: 'post',
-                  data: {
-                     id: $("#id").val(),
-                     name: $("#name").val(),
-                     email: $("#email").val(),
-                     num_tel: $("#num_tel").val(),
-                     address: $("#address").val(),
-                     rank: $("#rank").val(),
-                     blog_score: $("#blog_score"+userid).val()
-                      },
-                  success: function(result){
-                    swal('Added','NICE','success');
-                  },
-                  error: function(jqXHR, textStatus, errorThrown){
-                    swal('something went wrong','impossible','error');
-                }});
-               });
-            });
 </script>
 
 

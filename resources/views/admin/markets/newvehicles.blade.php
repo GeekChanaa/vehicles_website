@@ -25,6 +25,45 @@
 
 
 
+<!-- Articles by brand -->
+<!-- Articles by country -->
+<section class="bg-dark">
+  <div class="dropdown show">
+  <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Countries
+  </a>
+  <div class="dropdown-menu scrollable-dropdown" aria-labelledby="dropdownMenuLink">
+    @foreach($list_countries as $country)
+    <a class="dropdown-item" href="{{url('/marketmoderator/newvehicles/country/'.$country->name.'')}}">{{$country->name}}</a>
+    @endforeach
+  </div>
+  </div>
+</section>
+
+<section class="bg-dark">
+<!-- Articles of some day -->
+<form action="{{url('/marketmoderator/nvbyday')}}" method="post">
+{{csrf_field()}}
+<span> Choose day :  </span><input type="date" name="date">
+<button type="submit" class="btn btn-primary"> Filter </button>
+</form>
+<!-- Articles of some month -->
+<form action="{{url('/marketmoderator/nvbymonth')}}" method="post">
+{{csrf_field()}}
+<span> Choose month :  </span><input type="text" name="month"> <br>
+<span> Choose year :  </span><input type="text" name="year">
+<button type="submit" class="btn btn-primary"> Filter </button>
+</form>
+<!-- Articles of some year -->
+<form action="{{url('/marketmoderator/nvbyyear')}}" method="post">
+{{csrf_field()}}
+<span> Choose day :  </span><input type="text" name="year">
+<button type="submit" class="btn btn-primary"> Filter </button>
+</form>
+</section>
+
+
+
 <!-- List of NewVehicles by users (delete and update and add) -->
 <section class="bg-light">
 

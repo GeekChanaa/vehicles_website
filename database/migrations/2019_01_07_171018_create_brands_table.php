@@ -20,11 +20,11 @@ class CreateBrandsTable extends Migration
             $table->string('headquarters')->nullable();
             $table->string('CEO')->nullable();
             $table->string('website')->nullable();
-            $table->string('production_output')->nullable();
-            $table->string('revenue')->nullable();
+            $table->bigInteger('production_output')->nullable();
+            $table->bigInteger('revenue')->nullable();
             $table->string('specialty')->nullable();
-            $table->string('net_income')->nullable();
-            $table->integer('nbr_of_employees')->nullable();
+            $table->bigInteger('net_income')->nullable();
+            $table->bigInteger('nbr_of_employees')->nullable();
             $table->binary('description')->nullable();
             $table->timestamps();
         });

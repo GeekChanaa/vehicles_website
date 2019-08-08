@@ -10,4 +10,8 @@ class post extends Model
     public function comments(){
       return $this->hasMany('App\comment');
     }
+
+    public function reports(){
+      return $this->hasMany('App\reported_post','post_id');
+    }
 }

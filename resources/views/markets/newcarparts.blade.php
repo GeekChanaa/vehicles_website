@@ -8,23 +8,25 @@
 <section class="bg-light">
 
 <h1> Articles Available </h1>
-
+<div id="articles">
 @foreach($list_ncp as $ncp)
-<div class="row col-lg-8 offset-lg-2">
-  <li><a href="{{url('/market/newcarparts/'.$ncp->id.'')}}"> {{$ncp->id}} </a></li>
+<div class="row col-lg-8 offset-lg-2 articles">
+  <li><a href="{{url('/market/newcarpart/'.$ncp->id.'')}}"> {{$ncp->id}}</a> </li>
   <li>{{$ncp->name}} </li>
+  <li>{{$ncp->price}} </li>
   <li>{{$ncp->country}} </li>
   <li>{{$ncp->city}} </li>
-  <button class="report" data-id="{{$ncp->id}}"> report </button>
+  <?php $check = false; ?>
+  @foreach($ncp->reports as $one) @if($one->user_id == Auth::user()->id) <?php $check = true; ?> @break @endif @endforeach
+  <button class="btn @if($check) btn-primary unreport @else btn-danger report @endif" data-id="{{$ncp->id}}">@if($check) unreport @else report @endif </button>
   <button class="addtofav" data-id="{{$ncp->id}}"> Add To Favorite </button>
 </div>
 
 
-
 @endforeach
+</div>
 {{$list_ncp->links()}}
 </section>
-
 
 <script>
 jQuery(document).ready(function(){
@@ -51,7 +53,39 @@ jQuery(document).ready(function(){
                 }});
                });
 
-jQuery(".report").on('click',function(e){
+
+
+
+
+    jQuery("#articles").on('click','.report',function(e){
+             report_btn = $(this);
+             var articleid=$(this).data("id");
+              e.preventDefault();
+              $.ajaxSetup({
+                 headers: {
+                     'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                 }
+
+             });
+              jQuery.ajax({
+                 url: "/ajax/reportncp",
+                 method: 'post',
+                 data: {
+                    id: articleid,
+                 },
+                 success: function(result){
+                   report_btn.removeClass('btn-danger');
+                   report_btn.addClass('btn-primary');
+                   report_btn.removeClass('report');
+                   report_btn.addClass('unreport');
+                   report_btn.html('unreport');
+                 },
+                 error: function(jqXHR, textStatus, errorThrown){
+                   swal('something went wrong','impossible','error');
+               }});
+              });
+jQuery("#articles").on('click','.unreport',function(e){
+         unreport_btn = $(this);
          var articleid=$(this).data("id");
           e.preventDefault();
           $.ajaxSetup({
@@ -61,19 +95,23 @@ jQuery(".report").on('click',function(e){
 
          });
           jQuery.ajax({
-             url: "/ajax/reportncp",
-             method: 'post',
+             url: "/ajax/unreportncp",
+             method: 'delete',
              data: {
                 articleid: articleid,
              },
              success: function(result){
-               swal('deleted','NICE','success');
+               unreport_btn.removeClass('btn-primary');
+               unreport_btn.addClass('btn-danger');
+               unreport_btn.addClass('report');
+               unreport_btn.removeClass('unreport');
+               unreport_btn.html('report');
              },
              error: function(jqXHR, textStatus, errorThrown){
                swal('something went wrong','impossible','error');
            }});
           });
-    });
+ });
 </script>
 
 

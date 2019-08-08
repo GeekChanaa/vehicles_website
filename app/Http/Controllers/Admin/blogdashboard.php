@@ -178,14 +178,12 @@ class blogdashboard extends Controller
 
     /* STATISTICS BY DAY */
     public function getNumberPostsByDay(Request $request){
-      $nbrr = post::all()->where('created_at','=',$request->date)->count();
-      $nbr = $nbrr[0]['sum'];
+      $nbr = post::all()->where('created_at','=',$request->date)->count();
       return Response::json(array('success'=>true,'nbr' => $nbr,));
     }
 
     public function getNumberCommentsByDay(Request $request){
-      $nbrr =  comment::all()->where('created_at','=',$request->date)->count();
-      $nbr = $nbrr[0]['sum'];
+      $nbr =  comment::all()->where('created_at','=',$request->date)->count();
       return Response::json(array('success'=>true,'nbr' => $nbr,));
     }
 

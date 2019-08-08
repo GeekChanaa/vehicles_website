@@ -35,6 +35,10 @@
     </div>
   </div>
 
+  <div class="row col-lg-12">
+    <a class="btn btn-dark" href="{{url('/admin/usersDashboard')}}"> Users Dashboard </a>
+  </div>
+
   <!-- Todo List -->
   <div class="row col-lg-12">
     <div class="todos col-sm-12 col-md-8 col-lg-6">

@@ -196,8 +196,169 @@
   </div>
 </section>
 
+<!-- Number of New vehicle Articles by day month and year -->
+
+<section class="bg-dark" style="padding-top:4%;padding-bottom:4%">
+  <div class="row">
+
+    <!-- Get number of Nv by day -->
+    <div class="col-lg-4">
+      <div class="col-lg-12 text-center by_div"> By Day </div>
+      <div class="row"><input type="date" class="nvyearmonthday col-lg-5 offset-lg-2"> <button id="get_nbr_Nv_by_day" class="col-lg-2 btn btn-primary">Go</button></div>
+      <div class="col-lg-8 text-center offset-lg-2" style="margin-top:3%;">
+
+      </div>
+      <div class="row text-center col-lg-4 offset-lg-4 circle_nbr_div">
+        <span id="nbrNvByDay">
+        </span>
+      </div>
+    </div>
+    <!-- Get number of Nv by month -->
+    <div class="col-lg-4">
+      <div class="col-lg-12 text-center by_div"> By Month </div>
+        <div class="row"><input type="text" class="nvyearmonth col-lg-5">
+        <input type="text" class="nvmonth col-lg-5"> <button id="get_nbr_Nv_by_month" class="col-lg-2 btn btn-primary">Go</button></div>
+      <div class="row text-center col-lg-4 offset-lg-4 circle_nbr_div">
+          <span id="nbrNvByMonth">
+          </span>
+      </div>
+    </div>
+    <!-- Get number of Nv by year -->
+    <div class="col-lg-4">
+      <div class="col-lg-12 text-center by_div"> By Year </div>
+      <div class="row"><input type="text" class="nvyear col-lg-5 offset-lg-2"> <button id="get_nbr_Nv_by_year" class="col-lg-2 btn btn-primary">Go</button></div>
+      <div class="row text-center col-lg-4 offset-lg-4 circle_nbr_div">
+          <span id="nbrNvByYear">
+          </span>
+      </div>
+    </div>
 
 
+  </div>
+</section>
+
+<!-- Number of used vehicle article by day month and year -->
+
+<section class="bg-dark" style="padding-top:4%;padding-bottom:4%">
+  <div class="row">
+
+    <!-- Get number of Uv by day -->
+    <div class="col-lg-4">
+      <div class="col-lg-12 text-center by_div"> By Day </div>
+      <div class="row"><input type="date" class="uvyearmonthday col-lg-5 offset-lg-2"> <button id="get_nbr_Uv_by_day" class="col-lg-2 btn btn-primary">Go</button></div>
+      <div class="col-lg-8 text-center offset-lg-2" style="margin-top:3%;">
+
+      </div>
+      <div class="row text-center col-lg-4 offset-lg-4 circle_nbr_div">
+        <span id="nbrUvByDay">
+        </span>
+      </div>
+    </div>
+    <!-- Get number of Uv by month -->
+    <div class="col-lg-4">
+      <div class="col-lg-12 text-center by_div"> By Month </div>
+        <div class="row"><input type="text" class="uvyearmonth col-lg-5">
+        <input type="text" class="uvmonth col-lg-5"> <button id="get_nbr_Uv_by_month" class="col-lg-2 btn btn-primary">Go</button></div>
+      <div class="row text-center col-lg-4 offset-lg-4 circle_nbr_div">
+          <span id="nbrUvByMonth">
+          </span>
+      </div>
+    </div>
+    <!-- Get number of Uv by year -->
+    <div class="col-lg-4">
+      <div class="col-lg-12 text-center by_div"> By Year </div>
+      <div class="row"><input type="text" class="uvyear col-lg-5 offset-lg-2"> <button id="get_nbr_Uv_by_year" class="col-lg-2 btn btn-primary">Go</button></div>
+      <div class="row text-center col-lg-4 offset-lg-4 circle_nbr_div">
+          <span id="nbrUvByYear">
+          </span>
+      </div>
+    </div>
+
+
+  </div>
+</section>
+
+<!-- Number of new carpart article by day month and year -->
+
+<section class="bg-dark" style="padding-top:4%;padding-bottom:4%">
+  <div class="row">
+
+    <!-- Get number of Ncp by day -->
+    <div class="col-lg-4">
+      <div class="col-lg-12 text-center by_div"> By Day </div>
+      <div class="row"><input type="date" class="ncpyearmonthday col-lg-5 offset-lg-2"> <button id="get_nbr_Ncp_by_day" class="col-lg-2 btn btn-primary">Go</button></div>
+      <div class="col-lg-8 text-center offset-lg-2" style="margin-top:3%;">
+
+      </div>
+      <div class="row text-center col-lg-4 offset-lg-4 circle_nbr_div">
+        <span id="nbrNcpByDay">
+        </span>
+      </div>
+    </div>
+    <!-- Get number of Ncp by month -->
+    <div class="col-lg-4">
+      <div class="col-lg-12 text-center by_div"> By Month </div>
+        <div class="row"><input type="text" class="ncpyearmonth col-lg-5">
+        <input type="text" class="ncpmonth col-lg-5"> <button id="get_nbr_Ncp_by_month" class="col-lg-2 btn btn-primary">Go</button></div>
+      <div class="row text-center col-lg-4 offset-lg-4 circle_nbr_div">
+          <span id="nbrNcpByMonth">
+          </span>
+      </div>
+    </div>
+    <!-- Get number of Ncp by year -->
+    <div class="col-lg-4">
+      <div class="col-lg-12 text-center by_div"> By Year </div>
+      <div class="row"><input type="text" class="ncpyear col-lg-5 offset-lg-2"> <button id="get_nbr_Ncp_by_year" class="col-lg-2 btn btn-primary">Go</button></div>
+      <div class="row text-center col-lg-4 offset-lg-4 circle_nbr_div">
+          <span id="nbrNcpByYear">
+          </span>
+      </div>
+    </div>
+
+
+  </div>
+</section>
+
+<!-- Number of used carpart articles by day month and year -->
+
+<section class="bg-dark" style="padding-top:4%;padding-bottom:4%">
+  <div class="row">
+
+    <!-- Get number of Ucp by day -->
+    <div class="col-lg-4">
+      <div class="col-lg-12 text-center by_div"> By Day </div>
+      <div class="row"><input type="date" class="ucpyearmonthday col-lg-5 offset-lg-2"> <button id="get_nbr_Ucp_by_day" class="col-lg-2 btn btn-primary">Go</button></div>
+      <div class="col-lg-8 text-center offset-lg-2" style="margin-top:3%;">
+
+      </div>
+      <div class="row text-center col-lg-4 offset-lg-4 circle_nbr_div">
+        <span id="nbrUcpByDay">
+        </span>
+      </div>
+    </div>
+    <!-- Get number of Ucp by month -->
+    <div class="col-lg-4">
+      <div class="col-lg-12 text-center by_div"> By Month </div>
+        <div class="row"><input type="text" class="ucpyearmonth col-lg-5">
+        <input type="text" class="ucpmonth col-lg-5"> <button id="get_nbr_Ucp_by_month" class="col-lg-2 btn btn-primary">Go</button></div>
+      <div class="row text-center col-lg-4 offset-lg-4 circle_nbr_div">
+          <span id="nbrUcpByMonth">
+          </span>
+      </div>
+    </div>
+    <!-- Get number of Ucp by year -->
+    <div class="col-lg-4">
+      <div class="col-lg-12 text-center by_div"> By Year </div>
+      <div class="row"><input type="text" class="ucpyear col-lg-5 offset-lg-2"> <button id="get_nbr_Ucp_by_year" class="col-lg-2 btn btn-primary">Go</button></div>
+      <div class="row text-center col-lg-4 offset-lg-4 circle_nbr_div">
+          <span id="nbrUcpByYear">
+          </span>
+      </div>
+    </div>
+
+
+  </div>
+</section>
 
 <section class="bg-light">
   <h3>Map of Used Carpart Articles</h3>
@@ -219,10 +380,688 @@
   <div id="map_nv" style="height:400px;"></div>
 </section>
 
+
+
+<section class="bg-dark">
+  <!-- number of used carpart articles by country -->
+  <div class="col-lg-4">
+    <div class="col-lg-12 text-center by_div"> By Country </div>
+      <div class="row">
+        <div class="btn-group col-lg-8 offset-lg-2">
+          <button type="button" class="btn btn-primary">Country</button>
+          <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          </button>
+          <div class="dropdown-menu">
+            @foreach($nbr_ucp_country as $key => $nbr)
+              <button class="dropdown-item" onclick="show_nbr_ucp('{{$nbr}}')">{{$key}}</button>
+            @endforeach
+          </div>
+        </div>
+      </div>
+    <div class="row text-center col-lg-4 offset-lg-4 circle_nbr_div">
+        <span id="nbrUcpByCountry">
+        </span>
+    </div>
+  </div>
+
+  <!-- number of new carpart articles by country -->
+  <div class="col-lg-4">
+    <div class="col-lg-12 text-center by_div"> By Country </div>
+      <div class="row">
+        <div class="btn-group col-lg-8 offset-lg-2">
+          <button type="button" class="btn btn-primary">Country</button>
+          <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          </button>
+          <div class="dropdown-menu">
+            @foreach($nbr_ncp_country as $key => $nbr)
+              <button class="dropdown-item" onclick="show_nbr_ncp('{{$nbr}}')">{{$key}}</button>
+            @endforeach
+          </div>
+        </div>
+      </div>
+    <div class="row text-center col-lg-4 offset-lg-4 circle_nbr_div">
+        <span id="nbrNcpByCountry">
+        </span>
+    </div>
+  </div>
+
+  <!-- number of used vehicles by country -->
+  <div class="col-lg-4">
+    <div class="col-lg-12 text-center by_div"> By Country </div>
+      <div class="row">
+        <div class="btn-group col-lg-8 offset-lg-2">
+          <button type="button" class="btn btn-primary">Country</button>
+          <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          </button>
+          <div class="dropdown-menu">
+            @foreach($nbr_uv_country as $key => $nbr)
+              <button class="dropdown-item" onclick="show_nbr_uv('{{$nbr}}')">{{$key}}</button>
+            @endforeach
+          </div>
+        </div>
+      </div>
+    <div class="row text-center col-lg-4 offset-lg-4 circle_nbr_div">
+        <span id="nbrUvByCountry">
+        </span>
+    </div>
+  </div>
+
+  <!-- number of new vehicles by country -->
+  <div class="col-lg-4">
+    <div class="col-lg-12 text-center by_div"> By Country </div>
+      <div class="row">
+        <div class="btn-group col-lg-8 offset-lg-2">
+          <button type="button" class="btn btn-primary">Country</button>
+          <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          </button>
+          <div class="dropdown-menu">
+            @foreach($nbr_nv_country as $key => $nbr)
+              <button class="dropdown-item" onclick="show_nbr_nv('{{$nbr}}')">{{$key}}</button>
+            @endforeach
+          </div>
+        </div>
+      </div>
+    <div class="row text-center col-lg-4 offset-lg-4 circle_nbr_div">
+        <span id="nbrNvByCountry">
+        </span>
+    </div>
+  </div>
+</section>
+
+<section class="bg-light">
+  <div class="row">
+    <div class="btn-group col-lg-8 offset-lg-2">
+      <button type="button" class="btn btn-primary">Vehicle Brands</button>
+      <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      </button>
+      <div class="dropdown-menu">
+        @foreach($list_vbrands as $brand)
+        <button data-brand="{{$brand->name}}" class="dropdown-item getnbrnvbybrand"> {{$brand->name}} </button>
+        @endforeach
+      </div>
+    </div>
+  </div>
+  <div class="row text-center col-lg-4 offset-lg-4 circle_nbr_div">
+      <span id="nbrNvByBrand">
+      </span>
+  </div>
+
+  <!-- get number of used vehicle articles by brand -->
+  <div class="row">
+    <div class="btn-group col-lg-8 offset-lg-2">
+      <button type="button" class="btn btn-primary">Vehicle Brands</button>
+      <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      </button>
+      <div class="dropdown-menu">
+        @foreach($list_vbrands as $brand)
+        <button data-brand="{{$brand->name}}" class="dropdown-item getnbruvbybrand"> {{$brand->name}} </button>
+        @endforeach
+      </div>
+    </div>
+  </div>
+  <div class="row text-center col-lg-4 offset-lg-4 circle_nbr_div">
+      <span id="nbrUvByBrand">
+      </span>
+  </div>
+
+  <!-- get number of new carpart articles by brand -->
+  <div class="row">
+    <div class="btn-group col-lg-8 offset-lg-2">
+      <button type="button" class="btn btn-primary">Carpart Brands</button>
+      <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      </button>
+      <div class="dropdown-menu">
+        @foreach($list_cpbrands as $brand)
+        <button data-brand="{{$brand->name}}" class="dropdown-item getnbrncpbybrand"> {{$brand->name}} </button>
+        @endforeach
+      </div>
+    </div>
+  </div>
+  <div class="row text-center col-lg-4 offset-lg-4 circle_nbr_div">
+      <span id="nbrNcpByBrand">
+      </span>
+  </div>
+
+  <!-- get number of used carpart articles by brand -->
+
+  <div class="row">
+    <div class="btn-group col-lg-8 offset-lg-2">
+      <button type="button" class="btn btn-primary">Carpart Brands</button>
+      <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      </button>
+      <div class="dropdown-menu">
+        @foreach($list_cpbrands as $brand)
+          <button data-brand="{{$brand->name}}" class="dropdown-item getnbrnvbybrand"> {{$brand->name}} </button>
+        @endforeach
+      </div>
+    </div>
+  </div>
+  <div class="row text-center col-lg-4 offset-lg-4 circle_nbr_div">
+      <span id="nbrUcpByBrand">
+      </span>
+  </div>
+</section>
+
+
+
+
 <script>
+
+
+// New vehicle articles by day month and year
+
+function show_nbr_ucp(nbr){
+  anime({
+    targets: '#nbrUcpByCountry',
+    innerHTML: [0, nbr],
+    easing: 'linear',
+    duration : 400,
+    round: 10 // Will round the animated value to 1 decimal
+  });
+}
+
+function show_nbr_ncp(nbr){
+  anime({
+    targets: '#nbrNcpByCountry',
+    innerHTML: [0, nbr],
+    easing: 'linear',
+    duration : 400,
+    round: 10 // Will round the animated value to 1 decimal
+  });
+}
+
+function show_nbr_uv(nbr){
+  anime({
+    targets: '#nbrUvByCountry',
+    innerHTML: [0, nbr],
+    easing: 'linear',
+    duration : 400,
+    round: 10 // Will round the animated value to 1 decimal
+  });
+}
+
+function show_nbr_nv(nbr){
+  anime({
+    targets: '#nbrNvByCountry',
+    innerHTML: [0, nbr],
+    easing: 'linear',
+    duration : 400,
+    round: 10 // Will round the animated value to 1 decimal
+  });
+}
+
+jQuery(".getnbrnvbybrand").on('click',function(e){
+  var brand=$(this).data("brand");
+   e.preventDefault();
+   $.ajaxSetup({
+      headers: {
+          'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+      }
+
+  });
+   jQuery.ajax({
+      url: "/ajax/NbrNvByBrand",
+      method: 'get',
+      data: {
+        brand : brand,
+      },
+      success: function(result){
+        anime({
+          targets: '#nbrNvByBrand',
+          innerHTML: [0, result.nbr],
+          easing: 'linear',
+          duration : 400,
+          round: 10 // Will round the animated value to 1 decimal
+        });  },
+      error: function(jqXHR, textStatus, errorThrown){
+        swal('something went wrong','impossible','error');
+    }});
+});
+
+jQuery(".getnbruvbybrand").on('click',function(e){
+  var brand=$(this).data("brand");
+   e.preventDefault();
+   $.ajaxSetup({
+      headers: {
+          'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+      }
+
+  });
+   jQuery.ajax({
+      url: "/ajax/NbrUvByBrand",
+      method: 'get',
+      data: {
+        brand : brand,
+      },
+      success: function(result){
+        anime({
+          targets: '#nbrUvByBrand',
+          innerHTML: [0, result.nbr],
+          easing: 'linear',
+          duration : 400,
+          round: 10 // Will round the animated value to 1 decimal
+        });  },
+      error: function(jqXHR, textStatus, errorThrown){
+        swal('something went wrong','impossible','error');
+    }});
+});
+
+jQuery(".getnbrncpbybrand").on('click',function(e){
+  var brand=$(this).data("brand");
+   e.preventDefault();
+   $.ajaxSetup({
+      headers: {
+          'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+      }
+
+  });
+   jQuery.ajax({
+      url: "/ajax/NbrNcpByBrand",
+      method: 'get',
+      data: {
+        brand : brand,
+      },
+      success: function(result){
+        anime({
+          targets: '#nbrNcpByBrand',
+          innerHTML: [0, result.nbr],
+          easing: 'linear',
+          duration : 400,
+          round: 10 // Will round the animated value to 1 decimal
+        });  },
+      error: function(jqXHR, textStatus, errorThrown){
+        swal('something went wrong','impossible','error');
+    }});
+});
+
+jQuery(".getnbrucpbybrand").on('click',function(e){
+  var brand=$(this).data("brand");
+   e.preventDefault();
+   $.ajaxSetup({
+      headers: {
+          'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+      }
+
+  });
+   jQuery.ajax({
+      url: "/ajax/NbrUcpByBrand",
+      method: 'get',
+      data: {
+        brand : brand,
+      },
+      success: function(result){
+        anime({
+          targets: '#nbrUcpByBrand',
+          innerHTML: [0, result.nbr],
+          easing: 'linear',
+          duration : 400,
+          round: 10 // Will round the animated value to 1 decimal
+        });  },
+      error: function(jqXHR, textStatus, errorThrown){
+        swal('something went wrong','impossible','error');
+    }});
+});
+
+jQuery("#get_nbr_Nv_by_year").on('click',function(e){
+  var year=$('.nvyear').val();
+   e.preventDefault();
+   $.ajaxSetup({
+      headers: {
+          'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+      }
+
+  });
+   jQuery.ajax({
+      url: "/ajax/NbrNvByYear",
+      method: 'get',
+      data: {
+        year : year,
+      },
+      success: function(result){
+        anime({
+          targets: '#nbrNvByYear',
+          innerHTML: [0, result.nbr],
+          easing: 'linear',
+          duration : 400,
+          round: 10 // Will round the animated value to 1 decimal
+        });  },
+      error: function(jqXHR, textStatus, errorThrown){
+        swal('something went wrong','impossible','error');
+    }});
+});
+
+
+jQuery("#get_nbr_Nv_by_day").on('click',function(e){
+     var date=$('.nvyearmonthday').val();
+      e.preventDefault();
+      $.ajaxSetup({
+         headers: {
+             'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+         }
+       });
+      jQuery.ajax({
+         url: "/ajax/NbrNvByDay",
+         method: 'get',
+         data: {
+           date : date,
+         },
+         success: function(result){
+           anime({
+             targets: '#nbrNvByDay',
+             innerHTML: [0, result.nbr],
+             easing: 'linear',
+             duration : 400,
+             round: 10 // Will round the animated value to 1 decimal
+           });  },
+         error: function(jqXHR, textStatus, errorThrown){
+           swal('something went wrong','impossible','error');
+       }});
+});
+
+
+      jQuery("#get_nbr_Nv_by_month").on('click',function(e){
+        var year=$('.nvyearmonth').val();
+        var month=$('.nvmonth').val();
+         e.preventDefault();
+         $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            }
+
+        });
+         jQuery.ajax({
+            url: "/ajax/NbrNvByMonth",
+            method: 'get',
+            data: {
+              year : year,
+              month : month
+            },
+            success: function(result){
+              anime({
+                targets: '#nbrNvByMonth',
+                innerHTML: [0, result.nbr],
+                easing: 'linear',
+                duration : 400,
+                round: 10 // Will round the animated value to 1 decimal
+              });  },
+            error: function(jqXHR, textStatus, errorThrown){
+              swal('something went wrong','impossible','error');
+          }});
+         });
+
+
+// Used Vehicle Articles by day month and year
+
+jQuery("#get_nbr_Uv_by_year").on('click',function(e){
+  var year=$('.uvyear').val();
+   e.preventDefault();
+   $.ajaxSetup({
+      headers: {
+          'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+      }
+
+  });
+   jQuery.ajax({
+      url: "/ajax/NbrUvByYear",
+      method: 'get',
+      data: {
+        year : year,
+      },
+      success: function(result){
+        anime({
+          targets: '#nbrUvByYear',
+          innerHTML: [0, result.nbr],
+          easing: 'linear',
+          duration : 400,
+          round: 10 // Will round the animated value to 1 decimal
+        });  },
+      error: function(jqXHR, textStatus, errorThrown){
+        swal('something went wrong','impossible','error');
+    }});
+});
+
+jQuery("#get_nbr_Uv_by_day").on('click',function(e){
+     var date=$('.uvyearmonthday').val();
+      e.preventDefault();
+      $.ajaxSetup({
+         headers: {
+             'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+         }
+       });
+      jQuery.ajax({
+         url: "/ajax/NbrUvByDay",
+         method: 'get',
+         data: {
+           date : date,
+         },
+         success: function(result){
+           anime({
+             targets: '#nbrUvByDay',
+             innerHTML: [0, result.nbr],
+             easing: 'linear',
+             duration : 400,
+             round: 10 // Will round the animated value to 1 decimal
+           });  },
+         error: function(jqXHR, textStatus, errorThrown){
+           swal('something went wrong','impossible','error');
+       }});
+  });
+
+
+      jQuery("#get_nbr_Uv_by_month").on('click',function(e){
+        var year=$('.uvyearmonth').val();
+        var month=$('.uvmonth').val();
+         e.preventDefault();
+         $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            }
+
+        });
+         jQuery.ajax({
+            url: "/ajax/NbrUvByMonth",
+            method: 'get',
+            data: {
+              year : year,
+              month : month
+            },
+            success: function(result){
+              anime({
+                targets: '#nbrUvByMonth',
+                innerHTML: [0, result.nbr],
+                easing: 'linear',
+                duration : 400,
+                round: 10 // Will round the animated value to 1 decimal
+              });  },
+            error: function(jqXHR, textStatus, errorThrown){
+              swal('something went wrong','impossible','error');
+          }});
+         });
+
+// Number of new carpart articles by day month and year
+
+jQuery("#get_nbr_Ncp_by_year").on('click',function(e){
+  var year=$('.ncpyear').val();
+   e.preventDefault();
+   $.ajaxSetup({
+      headers: {
+          'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+      }
+
+  });
+   jQuery.ajax({
+      url: "/ajax/NbrNcpByYear",
+      method: 'get',
+      data: {
+        year : year,
+      },
+      success: function(result){
+        anime({
+          targets: '#nbrNcpByYear',
+          innerHTML: [0, result.nbr],
+          easing: 'linear',
+          duration : 400,
+          round: 10 // Will round the animated value to 1 decimal
+        });  },
+      error: function(jqXHR, textStatus, errorThrown){
+        swal('something went wrong','impossible','error');
+    }});
+   });
+
+
+   jQuery("#get_nbr_Ncp_by_day").on('click',function(e){
+     var date=$('.ncpyearmonthday').val();
+      e.preventDefault();
+      $.ajaxSetup({
+         headers: {
+             'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+         }
+       });
+      jQuery.ajax({
+         url: "/ajax/NbrNcpByDay",
+         method: 'get',
+         data: {
+           date : date,
+         },
+         success: function(result){
+           anime({
+             targets: '#nbrNcpByDay',
+             innerHTML: [0, result.nbr],
+             easing: 'linear',
+             duration : 400,
+             round: 10 // Will round the animated value to 1 decimal
+           });  },
+         error: function(jqXHR, textStatus, errorThrown){
+           swal('something went wrong','impossible','error');
+       }});
+      });
+
+
+      jQuery("#get_nbr_Ncp_by_month").on('click',function(e){
+        var year=$('.ncpyearmonth').val();
+        var month=$('.ncpmonth').val();
+         e.preventDefault();
+         $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            }
+
+        });
+         jQuery.ajax({
+            url: "/ajax/NbrNcpByMonth",
+            method: 'get',
+            data: {
+              year : year,
+              month : month
+            },
+            success: function(result){
+              anime({
+                targets: '#nbrNcpByMonth',
+                innerHTML: [0, result.nbr],
+                easing: 'linear',
+                duration : 400,
+                round: 10 // Will round the animated value to 1 decimal
+              });  },
+            error: function(jqXHR, textStatus, errorThrown){
+              swal('something went wrong','impossible','error');
+          }});
+         });
+
+
+// used carpart articles by day month and year
+
+jQuery("#get_nbr_Ucp_by_year").on('click',function(e){
+  var year=$('.ucpyear').val();
+   e.preventDefault();
+   $.ajaxSetup({
+      headers: {
+          'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+      }
+
+  });
+   jQuery.ajax({
+      url: "/ajax/NbrUcpByYear",
+      method: 'get',
+      data: {
+        year : year,
+      },
+      success: function(result){
+        anime({
+          targets: '#nbrUcpByYear',
+          innerHTML: [0, result.nbr],
+          easing: 'linear',
+          duration : 400,
+          round: 10 // Will round the animated value to 1 decimal
+        });  },
+      error: function(jqXHR, textStatus, errorThrown){
+        swal('something went wrong','impossible','error');
+    }});
+   });
+
+
+   jQuery("#get_nbr_Ucp_by_day").on('click',function(e){
+     var date=$('.ucpyearmonthday').val();
+      e.preventDefault();
+      $.ajaxSetup({
+         headers: {
+             'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+         }
+       });
+      jQuery.ajax({
+         url: "/ajax/NbrUcpByDay",
+         method: 'get',
+         data: {
+           date : date,
+         },
+         success: function(result){
+           anime({
+             targets: '#nbrUcpByDay',
+             innerHTML: [0, result.nbr],
+             easing: 'linear',
+             duration : 400,
+             round: 10 // Will round the animated value to 1 decimal
+           });  },
+         error: function(jqXHR, textStatus, errorThrown){
+           swal('something went wrong','impossible','error');
+       }});
+      });
+
+
+      jQuery("#get_nbr_Ucp_by_month").on('click',function(e){
+        var year=$('.ucpyearmonth').val();
+        var month=$('.ucpmonth').val();
+         e.preventDefault();
+         $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            }
+
+        });
+         jQuery.ajax({
+            url: "/ajax/NbrUcpByMonth",
+            method: 'get',
+            data: {
+              year : year,
+              month : month
+            },
+            success: function(result){
+              anime({
+                targets: '#nbrUcpByMonth',
+                innerHTML: [0, result.nbr],
+                easing: 'linear',
+                duration : 400,
+                round: 10 // Will round the animated value to 1 decimal
+              });  },
+            error: function(jqXHR, textStatus, errorThrown){
+              swal('something went wrong','impossible','error');
+          }});
+         });
+
+
+
 // New Vehicles chart by year
 var c = document.getElementById("nv_chart");
-var replies_chart = new Chart(c, {
+var Nv_chart = new Chart(c, {
   type : 'line',
   data : {
     labels : ["first month","second month","third month","forth month","fifth month","sixth month","seventh month","eighth month","nineth month","tenth month","eleventh month","twelveth month"],
@@ -235,7 +1074,7 @@ var replies_chart = new Chart(c, {
 
 // Used Vehicles chart by year
 var c1 = document.getElementById("uv_chart");
-var replies_chart = new Chart(c1, {
+var Nv_chart = new Chart(c1, {
   type : 'line',
   data : {
     labels : ["first month","second month","third month","forth month","fifth month","sixth month","seventh month","eighth month","nineth month","tenth month","eleventh month","twelveth month"],
@@ -246,7 +1085,7 @@ var replies_chart = new Chart(c1, {
   },
 });
 var c2 = document.getElementById("ncp_chart");
-var replies_chart = new Chart(c2, {
+var Nv_chart = new Chart(c2, {
   type : 'line',
   data : {
     labels : ["first month","second month","third month","forth month","fifth month","sixth month","seventh month","eighth month","nineth month","tenth month","eleventh month","twelveth month"],
@@ -260,7 +1099,7 @@ var replies_chart = new Chart(c2, {
 
 // Used carpart articles chart by year
 var c3 = document.getElementById("ucp_chart");
-var replies_chart = new Chart(c3, {
+var Nv_chart = new Chart(c3, {
   type : 'line',
   data : {
     labels : ["first month","second month","third month","forth month","fifth month","sixth month","seventh month","eighth month","nineth month","tenth month","eleventh month","twelveth month"],
@@ -274,7 +1113,7 @@ var replies_chart = new Chart(c3, {
 
 // New carpart articles chart by Category
 var c4 = document.getElementById("ncp_category_chart");
-var replies_chart = new Chart(c4, {
+var Nv_chart = new Chart(c4, {
   type : 'pie',
   data : {
     labels : [ @foreach($carpart_categories as $carpart_category)"{{$carpart_category['category']}}",@endforeach],
@@ -288,7 +1127,7 @@ var replies_chart = new Chart(c4, {
 
 // Chart of used carpart articles by category
 var c5 = document.getElementById("ucp_category_chart");
-var replies_chart = new Chart(c5, {
+var Nv_chart = new Chart(c5, {
   type : 'pie',
   data : {
     labels : [ @foreach($carpart_categories as $carpart_category)"{{$carpart_category['category']}}",@endforeach],
@@ -302,7 +1141,7 @@ var replies_chart = new Chart(c5, {
 
 // Chart of number of articles of the market
 var c6 = document.getElementById("nbr_articles_chart");
-var replies_chart = new Chart(c6, {
+var Nv_chart = new Chart(c6, {
   type : 'polarArea',
   data : {
     labels : ['Number of used Vehicles','Number of new Vehicles','Number of Used Carparts','Number of new Carparts'],
@@ -778,7 +1617,6 @@ regions: [{
 "US" : @if(array_key_exists('United States',$nbr_ncp_country)) {{$nbr_ncp_country['United States']}} @else {{'0'}} @endif,
 "UY" : @if(array_key_exists('Uruguay',$nbr_ncp_country)) {{$nbr_ncp_country['Uruguay']}} @else {{'0'}} @endif,
 "LB" : @if(array_key_exists('Lebanon',$nbr_ncp_country)) {{$nbr_ncp_country['Lebanon']}} @else {{'0'}} @endif,
-"LA" : @if(array_key_exists('Lao PDR',$nbr_ncp_country)) {{$nbr_ncp_country['Lao PDR']}} @else {{'0'}} @endif,
 "TW" : @if(array_key_exists('Taiwan',$nbr_ncp_country)) {{$nbr_ncp_country['Taiwan']}} @else {{'0'}} @endif,
 "TT" : @if(array_key_exists('Trinidad and Tobago',$nbr_ncp_country)) {{$nbr_ncp_country['Trinidad and Tobago']}} @else {{'0'}} @endif,
 "TR" : @if(array_key_exists('Turkey',$nbr_ncp_country)) {{$nbr_ncp_country['Turkey']}} @else {{'0'}} @endif,

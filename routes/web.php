@@ -58,11 +58,18 @@ Route::post('/createpost','forumController@createpost');
 
 Route::group(['middleware'=>'admin'],function(){
   Route::get('/Dashboard','Admin\dashboard@index');
-  Route::get('/admin/usersDashboard','Admin\dashboard@users');
+  // Users dashboard Routes
+  Route::get('/admin/usersDashboard','Admin\dashboard@usersDashboard');
+  Route::get('/admin/usersDashboard/allUsers','Admin\dashboard@users');
+  Route::get('/admin/usersDashboard/BlogModerators','Admin\dashboard@blogModerators');
+  Route::get('/admin/usersDashboard/MarketModerators','Admin\dashboard@marketModerators');
+  Route::get('/admin/usersDashboard/ServicesModerators','Admin\dashboard@servicesModerators');
+  Route::get('/admin/usersDashboard/EncyclopediaModerators','Admin\dashboard@encyclopediaModerators');
+  Route::get('/admin/usersDashboard/Statistics','Admin\dashboard@usersStatistics');
   Route::get('/admin/statistics','Admin\dashboard@statistics');
-  Route::get('/admin/blogmoderators','Admin\dashboard@blogmoderators');
-  Route::get('/admin/encyclopediamoderators','Admin\dashboard@encyclopediamoderators');
-  Route::get('/admin/editors','Admin\dashboard@editors');
+  Route::delete('/deleteuser','Admin\users@delete');
+  Route::post('/updateuser','Admin\users@update');
+  Route::post('/adduser','Admin\users@add');
   // TO DO ROUTES :
   Route::post('/admin/createTask','taskController@create');
   Route::post('/admin/doneTask','taskController@done');
@@ -70,9 +77,7 @@ Route::group(['middleware'=>'admin'],function(){
   Route::post('/admin/undoneTask','taskController@undone');
   Route::delete('/admin/deleteTask','taskController@delete');
 
-  Route::delete('/deleteuser','Admin\users@delete');
-  Route::post('/updateuser','Admin\users@update');
-  Route::post('/adduser','Admin\users@add');
+
 });
 
 /* ROUTES ONLY FOR BLOG MODERATORS */
@@ -144,11 +149,48 @@ Route::get('/marketmoderator/createucp','Admin\marketdashboard@createucp');
 Route::post('/marketmoderator/adducp','Admin\marketdashboard@adducp');
 Route::post('/marketmoderator/updateucp','Admin\marketdashboard@updateucp');
 Route::delete('/marketmoderator/deleteucp','Admin\marketdashboard@deleteucp');
+//Filters
+Route::post('/marketmoderator/ncpbyday','Admin\marketdashboard@newcarpartsbyday');
+Route::post('/marketmoderator/ncpbymonth','Admin\marketdashboard@newcarpartsbymonth');
+Route::post('/marketmoderator/ncpbyyear','Admin\marketdashboard@newcarpartsbyyear');
+Route::post('/marketmoderator/nvbyday','Admin\marketdashboard@newvehiclesbyday');
+Route::post('/marketmoderator/nvbymonth','Admin\marketdashboard@newvehiclesbymonth');
+Route::post('/marketmoderator/nvbyyear','Admin\marketdashboard@newvehiclesbyyear');
+Route::post('/marketmoderator/uvbyday','Admin\marketdashboard@usedvehiclesbyday');
+Route::post('/marketmoderator/uvbymonth','Admin\marketdashboard@usedvehiclesbymonth');
+Route::post('/marketmoderator/uvbyyear','Admin\marketdashboard@usedvehiclesbyyear');
+Route::post('/marketmoderator/ucpbyday','Admin\marketdashboard@usedcarpartsbyday');
+Route::post('/marketmoderator/ucpbymonth','Admin\marketdashboard@usedcarpartsbymonth');
+Route::post('/marketmoderator/ucpbyyear','Admin\marketdashboard@usedcarpartsbyyear');
+// GET NUMBERS BY DAY MONTH AND YEAR AJAX
+Route::get('/ajax/NbrNvByYear','Admin\marketdashboard@getNbrNvByYear');
+Route::get('/ajax/NbrUvByYear','Admin\marketdashboard@getNbrUvByYear');
+Route::get('/ajax/NbrNcpByYear','Admin\marketdashboard@getNbrNcpByYear');
+Route::get('/ajax/NbrUcpByYear','Admin\marketdashboard@getNbrUcpByYear');
+Route::get('/ajax/NbrNvByMonth','Admin\marketdashboard@getNbrNvByMonth');
+Route::get('/ajax/NbrUvByMonth','Admin\marketdashboard@getNbrUvByMonth');
+Route::get('/ajax/NbrNcpByMonth','Admin\marketdashboard@getNbrNcpByMonth');
+Route::get('/ajax/NbrUcpByMonth','Admin\marketdashboard@getNbrUcpByMonth');
+Route::get('/ajax/NbrNvByDay','Admin\marketdashboard@getNbrNvByDay');
+Route::get('/ajax/NbrUvByDay','Admin\marketdashboard@getNbrUvByDay');
+Route::get('/ajax/NbrNcpByDay','Admin\marketdashboard@getNbrNcpByDay');
+Route::get('/ajax/NbrUcpByDay','Admin\marketdashboard@getNbrUcpByDay');
+
+// GET NUMBERS BY BRAND
+Route::get('/ajax/NbrUcpByBrand','Admin\marketdashboard@NbrUcpByBrand');
+Route::get('/ajax/NbrNcpByBrand','Admin\marketdashboard@NbrNcpByBrand');
+Route::get('/ajax/NbrUvByBrand','Admin\marketdashboard@NbrUvByBrand');
+Route::get('/ajax/NbrNvByBrand','Admin\marketdashboard@NbrNvByBrand');
 
 Route::get('/ajax/getnvbyday/{date}','Admin\marketdashboard@getStatisticsOfDay_nv');
 Route::get('/ajax/getuvbyday/{date}','Admin\marketdashboard@getStatisticsOfDay_uv');
 Route::get('/ajax/getucpbyday/{date}','Admin\marketdashboard@getStatisticsOfDay_ucp');
 Route::get('/ajax/getncpbyday/{date}','Admin\marketdashboard@getStatisticsOfDay_ncp');
+// FILTERING BY COUNTRIES
+Route::get('/marketmoderator/usedvehicles/country/{country}','Admin\marketdashboard@usedvehiclesbycountry');
+Route::get('/marketmoderator/usedcarparts/country/{country}','Admin\marketdashboard@usedcarpartsbycountry');
+Route::get('/marketmoderator/newvehicles/country/{country}','Admin\marketdashboard@newvehiclesbycountry');
+Route::get('/marketmoderator/newcarparts/country/{country}','Admin\marketdashboard@newcarpartsbycountry');
 
 });
 
@@ -179,7 +221,13 @@ Route::get('/editor/addmodel','Admin\encyclopediadashboard@addvmodel');
 Route::get('/editor/editors','Admin\encyclopediadashboard@editors');
 Route::get('/encyclopediamoderator/moderators','Admin\encyclopediadashboard@moderators');
 Route::get('/encyclopediamoderator/articles','Admin\dashboard@articles');
+// Brand Listing Routes :
 Route::get('/encyclopediamoderator/brands','Admin\encyclopediadashboard@brands');
+Route::get('/encyclopediamoderator/brands-by-numberofemployees','Admin\encyclopediadashboard@brandsSortedByNbrOfEmployees');
+Route::get('/encyclopediamoderator/brands-by-revenue','Admin\encyclopediadashboard@brandsSortedByRevenue');
+Route::get('/encyclopediamoderator/brands-by-netincome','Admin\encyclopediadashboard@brandsSortedByNetIncome');
+Route::get('/encyclopediamoderator/brands-by-productionoutput','Admin\encyclopediadashboard@brandsSortedByProductionOutput');
+
 Route::get('/encyclopediamoderator/models','Admin\encyclopediadashboard@models');
 Route::get('/encyclopediamoderator/generations','Admin\encyclopediadashboard@generations');
 Route::get('/encyclopediamoderator/statistics','Admin\encyclopediadashboard@statistics');
@@ -247,6 +295,12 @@ Route::post('/ajax/reportuv','marketController@reportUv');
 Route::post('/ajax/reportncp','marketController@reportNcp');
 Route::post('/ajax/reportucp','marketController@reportUcp');
 
+// Unreport Article Routes :
+Route::delete('/ajax/unreportnv','marketController@unreportNv');
+Route::delete('/ajax/unreportuv','marketController@unreportUv');
+Route::delete('/ajax/unreportncp','marketController@unreportNcp');
+Route::delete('/ajax/unreportucp','marketController@unreportUcp');
+
 /* ======================== Blog Routes ===================== */
 
 // Blog Index Page
@@ -292,6 +346,12 @@ Route::post('/ajax/downvoteReply','forumController@downvoteReply');
 Route::post('/ajax/reportPost','forumController@reportPost');
 Route::post('/ajax/reportComment','forumController@reportComment');
 Route::post('/ajax/reportReply','forumController@reportReply');
+
+// UNREPORT POSTS COMMENTS AND REPLIES
+Route::delete('/ajax/unreportPost','forumController@unreportPost');
+Route::delete('/ajax/unreportComment','forumController@unreportComment');
+Route::delete('/ajax/unreportReply','forumController@unreportReply');
+
 
 // Join Community
 Route::post('/ajax/joinCommunity','forumController@joinCommunity');

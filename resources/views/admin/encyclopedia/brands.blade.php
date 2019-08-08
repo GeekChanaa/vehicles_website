@@ -13,11 +13,16 @@
 </div>
 </section>
 
-
+<div class="row col-lg-12">
+  <a href="{{url('/encyclopediamoderator/brands-by-numberofemployees')}}" class="col-lg-3 btn btn-danger">Sort by number of employees </a>
+  <a href="{{url('/encyclopediamoderator/brands-by-netincome')}}" class="col-lg-3 btn btn-danger">Sort by net income </a>
+  <a href="{{url('/encyclopediamoderator/brands-by-revenue')}}" class="col-lg-3 btn btn-danger">Sort by revenue </a>
+  <a href="{{url('/encyclopediamoderator/brands-by-productionoutput')}}" class="col-lg-3 btn btn-danger">Sort by production output </a>
+</div>
 
 <!-- Listing of Brands -->
 <section class="bg-light col-lg-12">
-<h1> Brands Without Logos </h1>
+<h1> {{$list_specs}} </h1>
 <table class="table table-dark">
   <thead>
     <th> id </th>
@@ -40,7 +45,7 @@
   <tbody>
 
     @foreach($list_brands as $one)
-  @if(!Storage::disk('public')->exists('brands/'.$one->name.'.png'))
+
   <tr id="brand{{$one->id}}">
     <form method="post" action="{{url('/encyclopediamoderator/modifybrand')}}">
       {{csrf_field()}}
@@ -76,7 +81,6 @@
       </form>
     </td>
   </tr>
-  @endif
     @endforeach
 
   </tbody>

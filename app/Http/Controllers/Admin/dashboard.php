@@ -121,11 +121,50 @@ class dashboard extends Controller
       return view('admin.dashboard')->with($data);
     }
 
+    public function usersDashboard(){
+      return view('admin.users.dashboard');
+    }
+
     public function users(){
       $data = [
-    'list_users' => $this->getUsers(),
+        'list_users' => $this->getUsers(),
       ];
-      return view('admin.users')->with($data);
+      return view('admin.users.users')->with($data);
+    }
+
+    public function blogModerators(){
+      $data = [
+        'list_users' => $this->getBlogModerators(),
+      ];
+      return view('admin.users.users')->with($data);
+    }
+
+    public function marketModerators(){
+      $data = [
+        'list_users' => $this->getMarketModerators(),
+      ];
+      return view('admin.users.users')->with($data);
+    }
+
+    public function servicesModerators(){
+      $data = [
+        'list_users' => $this->getServicesModerators(),
+      ];
+      return view('admin.users.users')->with($data);
+    }
+
+    public function encyclopediaModerators(){
+      $data = [
+        'list_users' => $this->getEncyclopediaModerators(),
+      ];
+      return view('admin.users.users')->with($data);
+    }
+
+    public function usersStatistics(){
+      $data=[
+        'list_users' => $this->getUsers(),
+      ];
+      return view('admin.users.statistics');
     }
 
     public function statistics(){
@@ -148,10 +187,6 @@ class dashboard extends Controller
     }
 
 
-    public function blogmoderators(){
-      return view('admin.blog.moderators');
-    }
-
     public function encyclopediadashboard(){
       $list_done_tasks = task::where('state','=','done')->where('section','=','Encyclopedia')->with('User_inchargeof')->get();
       $list_undone_tasks = task::where('state','=','undone')->where('section','=','Encyclopedia')->with('User_inchargeof')->get();
@@ -161,14 +196,6 @@ class dashboard extends Controller
         'list_undone_tasks' => $list_undone_tasks,
       ];
       return view('admin.encyclopedia.dashboard')->with($data);
-    }
-
-    public function encyclopediamoderators(){
-      return view('admin.encyclopedia.moderators');
-    }
-
-    public function editors(){
-      return view('admin.encyclopedia.editors');
     }
 
 
