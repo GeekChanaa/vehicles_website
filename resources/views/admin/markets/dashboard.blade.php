@@ -36,7 +36,7 @@
       <div class="row col-lg-3 col-md-6 col-12">
         <div class="e-section">
           <ion-icon name="bug"></ion-icon>
-          <a href="{{ url('/marketmoderator/usedvehicles') }}"> New Vehicles </a>
+          <a href="{{ url('/marketmoderator/usedvehicles') }}"> Used Vehicles </a>
           <a class="plus" href="{{url('/marketmoderator/createuv')}}"><ion-icon name="add"></ion-icon></a>
         </div>
       </div>

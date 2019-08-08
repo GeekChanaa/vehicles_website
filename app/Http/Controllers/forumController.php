@@ -62,7 +62,7 @@ class forumController extends Controller
 
  public function community($community){
    if(community::all()->where('title','=',$community)->first()){
-     $list_posts = post::where('community','=',$community)->with('comments','comments.replies')->paginate(15);
+     $list_posts = post::where('community','=',$community)->with('reports','comments','comments.replies')->paginate(15);
      $list_replies = reply::paginate(15);
      $data=[
        'list_posts' => $list_posts,
@@ -301,6 +301,30 @@ class forumController extends Controller
 
   /*
   *******************
+  UNREPORT FUNCTIONS
+  *******************
+  */
+
+  public function unreportPost(Request $request){
+    $report = reported_post::where('user_id','=',$request->userid)->where('post_id','=',$request->postid)->first();
+    $report->delete();
+    return Response::json(array('success'=>true,));
+  }
+
+  public function unreportComment(Request $request){
+    $report = reported_comment::where('user_id','=',$request->userid)->where('comment_id','=',$request->commentid)->first();
+    $report->delete();
+    return Response::json(array('success'=>true,));
+  }
+
+  public function unreportReply(Request $request){
+    $report = reported_reply::where('user_id','=',$request->userid)->where('reply_id','=',$request->replyid)->first();
+    $report->delete();
+    return Response::json(array('success'=>true,));
+  }
+
+  /*
+  *******************
   COMMUNITY FUNCTIONS
   *******************
   */
@@ -352,5 +376,5 @@ class forumController extends Controller
     return redirect('/blog');
   }
 
-  
+
 }

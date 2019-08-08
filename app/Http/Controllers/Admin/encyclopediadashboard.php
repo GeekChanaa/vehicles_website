@@ -25,6 +25,22 @@ class encyclopediadashboard extends Controller
       return brand::paginate(50);
     }
 
+    public function ListBrandsByRevenue(){
+      return brand::orderBy('revenue','desc')->paginate(50);
+    }
+
+    public function ListBrandsByNbrEmployees(){
+      return brand::orderBy('nbr_of_employees','desc')->paginate(50);
+    }
+
+    public function ListBrandsByNetIncome(){
+      return brand::orderBy('net_income','desc')->paginate(50);
+    }
+
+    public function ListBrandsByProductionOutput(){
+      return brand::orderBy('production_output','desc')->paginate(50);
+    }
+
     public function ListGenerations(){
       return generation::paginate(50);
     }
@@ -102,6 +118,7 @@ class encyclopediadashboard extends Controller
     // Listing of Brands
     public function brands(){
       $data=[
+        'list_specs' => 'List Of All Brands',
         'list_brands' => $this->ListBrands(),
         'nbr_brands' => $this->getNbrBrands(),
         'nbr_vehicle_brands' => $this->getNbrVehicleBrands(),
@@ -109,6 +126,52 @@ class encyclopediadashboard extends Controller
       ];
       return view('admin.encyclopedia.brands')->with($data);
     }
+
+    public function brandsSortedByNbrOfEmployees(){
+      $data=[
+        'list_specs' => 'Brands Sorted By Number of Employees',
+        'list_brands' => $this->ListBrandsByNbrEmployees(),
+        'nbr_brands' => $this->getNbrBrands(),
+        'nbr_vehicle_brands' => $this->getNbrVehicleBrands(),
+        'nbr_carpart_brands' => $this->getNbrCarpartBrands(),
+      ];
+      return view('admin.encyclopedia.brands')->with($data);
+    }
+
+    public function brandsSortedByRevenue(){
+      $data=[
+        'list_specs' => 'Brands Sorted By Revenue',
+        'list_brands' => $this->ListBrandsByRevenue(),
+        'nbr_brands' => $this->getNbrBrands(),
+        'nbr_vehicle_brands' => $this->getNbrVehicleBrands(),
+        'nbr_carpart_brands' => $this->getNbrCarpartBrands(),
+      ];
+      return view('admin.encyclopedia.brands')->with($data);
+    }
+
+    public function brandsSortedByNetIncome(){
+      $data=[
+        'list_specs' => 'Brands Sorted By Net Income',
+        'list_brands' => $this->ListBrandsByNetIncome(),
+        'nbr_brands' => $this->getNbrBrands(),
+        'nbr_vehicle_brands' => $this->getNbrVehicleBrands(),
+        'nbr_carpart_brands' => $this->getNbrCarpartBrands(),
+      ];
+      return view('admin.encyclopedia.brands')->with($data);
+    }
+
+    public function brandsSortedByProductionOutput(){
+      $data=[
+        'list_specs' => 'Brands Sorted By Production Output',
+        'list_brands' => $this->ListBrandsByProductionOutput(),
+        'nbr_brands' => $this->getNbrBrands(),
+        'nbr_vehicle_brands' => $this->getNbrVehicleBrands(),
+        'nbr_carpart_brands' => $this->getNbrCarpartBrands(),
+      ];
+      return view('admin.encyclopedia.brands')->with($data);
+    }
+
+
 
 
     // Listing Of Models

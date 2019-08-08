@@ -841,7 +841,7 @@ STAATISTICS CSS
 
 .circle_nbr_div span{
   margin-top:45%;
-  color:white;
+  color:black;
   font-size : 2em;
   font-weight: bold;
   font-family: 'Digital';
@@ -857,6 +857,13 @@ STAATISTICS CSS
 .sect-subtitle{
   color:white;
   font-family: "Poppins-ExtraLightItalic";
+}
+
+/* Scrollable dropdown */
+.scrollable-dropdown {
+    height: auto;
+    max-height: 200px;
+    overflow-x: hidden;
 }
 
 /* Large devices (desktops, 992px and up) */

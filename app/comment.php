@@ -14,4 +14,8 @@ class comment extends Model
     public function replies(){
       return $this->hasMany('App\reply','comment_id');
     }
+
+    public function reports(){
+      return $this->hasMany('App\reported_comment','comment_id');
+    }
 }

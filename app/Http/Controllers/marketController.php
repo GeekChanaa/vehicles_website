@@ -155,7 +155,7 @@ class marketController extends Controller
     }
 
     public function search_nv(Request $request){
-      $list_nv = new_vehicle_article::where('model','=',$request->model)->where('price','<',$request->max_price)->where('country','=',$request->country)->paginate(10);
+      $list_nv = new_vehicle_article::where('model','=',$request->model)->where('price','<',$request->max_price)->where('country','=',$request->country)->with('reports')->paginate(10);
       $data=[
         'list_nv' => $list_nv,
       ];
@@ -163,7 +163,7 @@ class marketController extends Controller
     }
 
     public function search_uv(Request $request){
-      $list_uv = used_vehicle_article::where('model','=',$request->model)->where('price','<',$request->max_price)->where('country','=',$request->country)->paginate(10);
+      $list_uv = used_vehicle_article::where('model','=',$request->model)->where('price','<',$request->max_price)->where('country','=',$request->country)->with('reports')->paginate(10);
       $data=[
         'list_uv' => $list_uv,
       ];
@@ -171,7 +171,7 @@ class marketController extends Controller
     }
 
     public function search_ncp(Request $request){
-      $list_ncp = new_carpart_article::where('auto_part','=',$request->part)->where('country','=',$request->country)->paginate(10);
+      $list_ncp = new_carpart_article::where('auto_part','=',$request->part)->where('country','=',$request->country)->with('reports')->paginate(10);
       $data=[
         'list_ncp' => $list_ncp,
       ];
@@ -179,7 +179,7 @@ class marketController extends Controller
     }
 
     public function search_ucp(Request $request){
-      $list_ucp = new_carpart_article::where('auto_part','=',$request->part)->where('country','=',$request->country)->paginate(10);
+      $list_ucp = new_carpart_article::where('auto_part','=',$request->part)->where('country','=',$request->country)->with('reports')->paginate(10);
       $data=[
         'list_ucp' => $list_ucp,
       ];
@@ -311,6 +311,36 @@ class marketController extends Controller
       $report->user_id = Auth::user()->id;
       $report->article_id = $request->id;
       $report->save();
+      return Response::json(array('success'=>true,));
+    }
+
+    /*
+    *******************
+    UNREPORT ARTICLES FUNCTIONS
+    *******************
+    */
+
+    public function unreportNv(Request $request){
+      $report = report_nv::where('article_id','=',$request->articleid)->where('user_id','=',Auth::user()->id)->first();
+      $report->delete();
+      return Response::json(array('success'=>true,));
+    }
+
+    public function unreportUv(Request $request){
+      $report = report_uv::where('article_id','=',$request->articleid)->where('user_id','=',Auth::user()->id)->first();
+      $report->delete();
+      return Response::json(array('success'=>true,));
+    }
+
+    public function unreportNcp(Request $request){
+      $report = report_ncp::where('article_id','=',$request->articleid)->where('user_id','=',Auth::user()->id)->first();
+      $report->delete();
+      return Response::json(array('success'=>true,));
+    }
+
+    public function unreportUcp(Request $request){
+      $report = report_ucp::where('article_id','=',$request->articleid)->where('user_id','=',Auth::user()->id)->first();
+      $report->delete();
       return Response::json(array('success'=>true,));
     }
 
