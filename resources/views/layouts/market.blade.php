@@ -18,9 +18,13 @@
     <link href="{{ asset('css/bootstrap-reboot.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/frontend.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/aos.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('slick/slick.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('slick/slick-theme.css') }}"/>
 
 
-    <script src="{{ asset('js/jquery.min.js') }}"> </script>
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/jquery-ui.min.js')}}"></script>
 </head>
 <body>
       <nav class="main-nav navbar navbar-default">
@@ -76,9 +80,12 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/frontend.js') }}"></script>
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.js') }}"></script>
     <script src="https://unpkg.com/ionicons@4.2.2/dist/ionicons.js"></script>
+    <script src="{{ asset('js/aos.js') }}"></script>
+    <script src="{{ asset('slick/slick.min.js') }}"></script>
 
 </body>
 </html>
